@@ -22,7 +22,8 @@ router.post("/signup", passport.authenticate("local-signup", {
 // LOGIN
 router.post("/login", passport.authenticate("local-login", { 
   failureRedirect: "/failedfailed"}), function(req, res) {
-  res.send(req.user);
+  // res.send(req.user);
+  res.render("users/show.ejs")
 }); // end login route
 
 
