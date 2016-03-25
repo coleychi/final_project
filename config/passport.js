@@ -49,6 +49,7 @@ module.exports = function(passport) {
 
           console.log("passport signup req.body: ", req.body);
 
+          // set newUser values using req.body
           newUser.username = username;
           newUser.password = newUser.generateHash(password); // calls method inside user model
           newUser.email = req.body.email;
@@ -70,13 +71,17 @@ module.exports = function(passport) {
 
 
   // LOGIN STRATEGY
+
+  // database interaction
   passport.use("local-login", new LocalStrategy({
     usernameField: "username",
     passwordField: "password",
     passReqToCallback: true
   },
+
   function(req, username, password, done) {
 
+    // find user whose username matches that of the form
     User.findOne({"username": username}, function(err, user) {
 
       // if there is an error, return error
@@ -100,6 +105,5 @@ module.exports = function(passport) {
     });
 
   }));
-
 
 }; // closes module.exports
