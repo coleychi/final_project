@@ -53,6 +53,10 @@ app.get("/", function(req, res) {
 var usersController = require("./controllers/usersController.js");
 app.use("/users", usersController); 
 
+// use quizzesController for /quizzes
+var quizzesController = require("./controllers/quizzesController.js");
+app.use("/quizzes", quizzesController);
+
 
 
 

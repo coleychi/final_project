@@ -6,6 +6,8 @@ var mongoose = require("mongoose");
 var quizSchema = new mongoose.Schema({
   title: {type: String, required: true, unique: true},
   author: {type: String, required: true},
+  description: {type: String, required: true},
+  imgUrl: {type: String},
   questions: ,
   results: []
 });
