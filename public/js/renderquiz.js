@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  $(".result").hide();
+
   // access quiz id number
   // var pathname = window.location.pathname;
   // var newPath = pathname.replace("/quizzes/", "");
@@ -10,6 +12,7 @@ $(document).ready(function() {
   var quizId = window.location.pathname.replace("/quizzes/", "");
   console.log(quizId); // confirms quiz id accessed
   var quizData = {};
+  var userResult = {};
 
   // ajax call to server-- returns quiz datas in json
   // function getQuizData() {
@@ -200,27 +203,76 @@ $(document).ready(function() {
       // if there are 2 results
       case 2:
         if (userPoints < (minCount + interval)) {
-          console.log(results[0])
+          console.log(results[0]);
         } else {
-          console.log(results[1])
+          console.log(results[1]);
         };
         break;
 
       // if there are 3 results
       case 3:
         if (userPoints < (minCount + interval)) {
-          console.log(results[0])
+          console.log(results[0]);
         } else if (userPoints < (minCount + (interval * 2))) {
-          console.log(results[1])
+          console.log(results[1]);
         } else {
-          console.log(results[2])
+          console.log(results[2]);
         };
         break;
 
+      // if there are 4 results
+      case 4:
+        if (userPoints < (minCount + interval)) {
+          userResult = results[0];
+          console.log(results[0]);
+        } else if (userPoints < (minCount + (interval * 2))) {
+          userResult = results[1];
+          console.log(results[1]);
+        } else if (userPoints < (minCount + (interval * 3))) {
+          userResult = results[2];
+          console.log(results[2]);
+        } else {
+          userResult = results[3];
+          console.log(results[3]);
+        };
+        break;
 
+      // if there are 5 results
+      case 5:
+        if (userPoints < (minCount + interval)) {
+          console.log(results[0]);
+        } else if (userPoints < (minCount + (interval * 2))) {
+          console.log(results[1]);
+        } else if (userPoints < (minCount + (interval * 3))) {
+          console.log(results[2]);
+        } else if (userPoints < (minCount + (interval * 4))) {
+          console.log(results[3]);
+        } else {
+          console.log(results[4]);
+        };
+        break;
+
+      // if there are 6 results
+      case 6:
+        if (userPoints < (minCount + interval)) {
+          console.log(results[0]);
+        } else if (userPoints < (minCount + (interval * 2))) {
+          console.log(results[1]);
+        } else if (userPoints < (minCount + (interval * 3))) {
+          console.log(results[2]);
+        } else if (userPoints < (minCount + (interval * 4))) {
+          console.log(results[3]);
+        } else if (userPoints < (minCount + (interval * 5))) {
+          console.log(results[4]);
+        } else {
+          console.log(results[5]);
+        };
+        break;
 
     }; // closes switch statement
 
+    console.log(userResult);
+    displayResult();
 
     // if (userPoints < (minCount + interval)) {
     //   // console.log("result 1");
@@ -231,10 +283,20 @@ $(document).ready(function() {
     // }
 
 
-
-
-
   }; // closes evaluateResult function
+
+
+  var displayResult = function() {
+
+    console.log(userResult);
+
+    $resultDiv = $(".result").text(userResult);
+
+    $resultDiv.show();
+
+
+
+  }; // closes displayResult function
 
 
 
