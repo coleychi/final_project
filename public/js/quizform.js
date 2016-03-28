@@ -3,7 +3,11 @@ $(document).ready(function() {
   maxOptions = 8; // sets maximum options per question
   minOptions = 2; // sets minimum options per question
   maxQuestions = 10; // sets maximum questions per quiz
+  minResults = 2;
+  maxResults = 6;
   currentPageNum = 1; // current page
+
+  $(".results").hide(); // do this in css
 
   // go to next page
   $(document).on("click", "#next-page", function(event) {
@@ -184,6 +188,81 @@ $(document).ready(function() {
 
   }); // closes #add-input click function
 
+
+  // add results
+  $(document).on("click", "#add-results", function() {
+
+    event.preventDefault();
+
+    // hide current page
+    console.log(currentPageNum); // confirms currentPageNum var accessible
+
+    $currentPage = $(".page-" + currentPageNum);
+    $currentPage.hide();
+
+    $("#next-page").remove();
+    $("#add-results").hide();
+
+    // show results div
+    $resultsDiv = $(".results");
+    $resultsDiv.show();
+
+
+    for (var i = 1; i < minResults + 1; i++) {
+
+      $resultInput = $("<input>");
+      $resultInput.attr({
+        type: "text",
+        name: "result" + i,
+        placeholder: "result " + i
+      });
+
+      $resultInput.appendTo($resultsDiv);
+
+    }; // closes for loop 
+
+    $addResultButton = $("<button>Add Result</button>");
+    $addResultButton.attr({
+      id: "add-result-field"
+    })
+    $addResultButton.appendTo($resultsDiv)
+
+
+    // submit button
+    $submitButton = $("<button>Submit</button>");
+    $submitButton.attr({
+      id: "submit-quiz"
+    })
+    $submitButton.appendTo($resultsDiv)
+
+
+  }); // closes #add-results function
+
+
+  $(document).on("click", "#add-result-field", function() {
+
+    event.preventDefault();
+    console.log("test");
+
+    $resultsDiv = $(".results");
+
+    var resultsCount = $(".results > input").length;
+    console.log(resultsCount);
+
+    if (resultsCount < maxResults) {
+
+      $newInput = $("<input>");
+      $newInput.attr({
+        type: "text",
+        name: "result" + (resultsCount + 1),
+        placeholder: "result " + (resultsCount + 1)
+      });
+
+      $newInput.insertBefore("#add-result-field");
+
+    }; // closes if resultsCount < maxResults
+
+  }); // closes #add-result-field
 
 
 
