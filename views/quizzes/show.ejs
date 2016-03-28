@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title>Quiz Data</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+	<script type="text/javascript" src="../js/renderquiz.js"></script>
+</head>
+<body>
+<h1>Quiz-- Show.ejs </h1>
+
+
+
+
+<% for (var i = 0; i < quiz.questions.length; i++) { %>
+
+	<div class="q<%= (i + 1) %>">
+
+		<b><%= quiz.questions[i].questionText %></b><br>
+
+		<% for (var j = 0; j < quiz.questions[i].responseOptions.length; j++) { %>
+
+			<div class="option" id="<%= quiz.questions[i].responseOptions[j].points %>">
+				<%= quiz.questions[i].responseOptions[j].text %>
+				
+			</div>
+
+			<%#= quiz.questions[i].responseOptions[j] %>
+
+		<% } %>
+
+	</div>
+
+<% } %>
+
+
+
+
+</body>
+</html>

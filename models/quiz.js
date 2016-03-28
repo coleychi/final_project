@@ -10,6 +10,7 @@ var quizSchema = new mongoose.Schema({
   author: {type: String, required: true},
   description: {type: String, required: true},
   imgUrl: {type: String},
+  timestamp: {type: Date, default: Date.now},
   questions: [questionSchema],
   results: []
 });
@@ -60,7 +61,13 @@ quizSchema.methods.createQuestions = function(formData) {
     // iterate through the response options
     for (var j = 0; j < optionKeys.length; j++) {
 
-      var option = formData[optionKeys[j]]; 
+      var option = {
+        text: null,
+        points: null
+      }
+
+      option.text = formData[optionKeys[j]]; 
+      option.points = (j + 1);
       console.log("option text: ", option); // confirms option text accessed
 
       // push option to newQuestion

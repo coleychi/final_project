@@ -6,7 +6,10 @@ var mongoose = require("mongoose");
 var questionSchema = new mongoose.Schema({
   questionText: {type: String, required: true, unique: true},
   // questionNumber: {type: Number},
-  responseOptions: []
+  responseOptions: [{
+    text: String,
+    points: Number
+  }]
 });
 
 
