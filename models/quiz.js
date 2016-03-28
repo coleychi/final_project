@@ -7,7 +7,7 @@ var Question = require("./question.js");
 // SCHEMA
 var quizSchema = new mongoose.Schema({
   title: {type: String, required: true, unique: true},
-  author: {type: String, required: true},
+  author: {type: String},
   description: {type: String, required: true},
   imgUrl: {type: String},
   timestamp: {type: Date, default: Date.now},
@@ -73,22 +73,20 @@ quizSchema.methods.createQuestions = function(formData) {
       // push option to newQuestion
       newQuestion.responseOptions.push(option);
 
-
     }; // closes optionKeys for loop 
 
     newQuestion.save(); // save newQuestion
 
     newQuiz.questions.push(newQuestion); // push newQuestion to newQuiz instance
 
-    newQuiz.save(); // save changes to new quiz
-
     num = num + 1; // add one to number
 
   }; // closes questionKeys for loop 
 
-
+  newQuiz.save(); // save changes to new quiz
 
 }; // closes createQuestions method
+
 
 
 quizSchema.methods.saveResults = function(formData) {
@@ -117,7 +115,7 @@ quizSchema.methods.saveResults = function(formData) {
 
   }; // closes resultKeys for loop 
 
-  newQuiz.save(); // save the quiz
+  newQuiz.update(); // save the quiz
 
 }; // closes saveResults method
 

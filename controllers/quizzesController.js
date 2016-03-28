@@ -67,6 +67,7 @@ router.get("/:quiz_id", function(req, res) {
 
 });
 
+
 // GETJSON/:QUIZ_ID-- send quiz data as json
 router.get("/getjson/:quiz_id", function(req, res) {
   Quiz.findById(req.params.quiz_id, function(err, quizData) {

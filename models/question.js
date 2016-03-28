@@ -4,7 +4,7 @@ var mongoose = require("mongoose");
 
 // SCHEMA
 var questionSchema = new mongoose.Schema({
-  questionText: {type: String, required: true, unique: true},
+  questionText: {type: String, required: true},
   // questionNumber: {type: Number},
   responseOptions: [{
     text: String,
