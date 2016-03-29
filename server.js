@@ -29,18 +29,10 @@ AWS.config.AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
 AWS.config.AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY
 AWS.config.region = "us-east-1";
 
-// create bucket
-var s3bucket = new AWS.S3({params: {Bucket: 'quizapp13'}});
-s3bucket.createBucket(function() {
-  var params = {Key: 'myKey', Body: 'Hello!'};
-  s3bucket.upload(params, function(err, data) {
-    if (err) {
-      console.log("Error uploading data: ", err);
-    } else {
-      console.log("Successfully uploaded data to myBucket/myKey");
-    }
-  });
-});
+// create new s3 instance
+var s3 = new AWS.S3();
+var bucketParams = {Bucket: "quizapp13"};
+s3.createBucket(bucketParams);
 
 // configure body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
