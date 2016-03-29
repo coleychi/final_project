@@ -1,8 +1,4 @@
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+<% include ../partials/header_partial.ejs %>
 
 <%= user %>
 <br><br>
@@ -19,7 +15,7 @@
 	<b><%= user.results[i].title %></b><br>
 	<%= user.results[i].description %><br>
 
-	<b>Only show is user is logged in </b><br>
+	<b>Only show if logged in user is owner of profile</b><br>
 	<form action="/users/deleteresult/<%= user.results[i].id %>?_method=PUT" method="POST">
 		<button>Remove</button>
 	</form>
@@ -35,6 +31,9 @@
 
 <% } %>
 
-</body>
-</html>
 
+</div><!-- closes #content-container -->
+
+<!-- SCRIPTS GO DOWN HERE -->
+
+<% include ../partials/footer_partial.ejs %>

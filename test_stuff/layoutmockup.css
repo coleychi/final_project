@@ -10,7 +10,7 @@ header {
 
 nav {
     width: 100%;
-    background-color: pink;
+    background-color: #2b2b2b;
     padding: 0.5em;
 }
 
@@ -40,6 +40,7 @@ nav ul li {
 nav ul li a {
     /*display: block;*/
     text-decoration: none;
+    color: #ffffff;
     /*color: #616161;*/
     /*padding: 10px 0;*/
 }
@@ -114,4 +115,44 @@ h1 {
 h2 {
 	font-size: 1.8em;
 }
+
+/* PROFILE CSS */
+.result-block {
+	width: 19%;
+	margin-right: 1%;
+	margin-bottom: 1%;
+	height: 10em;
+	padding: 0.75em;
+	float: left;
+	background-color: red;
+}
+
+
+.result-block b {
+	display: block;
+	color: #ffffff;
+	font-family: "Helvetica";
+	font-size: 1.2em;
+	margin-bottom: 0.5em;
+}
+
+.result-block p {
+	font-size: 0.8em;
+	font-family: "helvetica";
+}
+
+.a {
+	background-color: blue;
+}
+
+.result-block:after {
+	content: "";
+	display: table;
+	clear: both;
+} /* clear float */
+
+
+/* TRANSITIONS */
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.07); }
 
