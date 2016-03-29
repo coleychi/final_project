@@ -7,6 +7,13 @@ var User = require("../models/user.js");
 
 
 // ROUTES
+// TEST ROUTE
+router.get("/testroute", function(req, res) {
+  res.render("test_stuff/awstest.ejs")
+
+});
+
+
 // INDEX-- display quizzes
 router.get("/", function(req, res) {
   Quiz.find({}).sort({"timestamp": "asc"}).exec(function(err, quizzes) {
