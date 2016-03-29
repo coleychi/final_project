@@ -36,7 +36,7 @@ router.get("/new", isLoggedIn, function(req, res) {
 router.post("/newquiz", isLoggedIn, function(req, res) {
   var userId = req.user._id;
   console.log("user id from /newquiz: ", req.user._id)
-  res.json(req.body);
+  // res.json(req.body);
 
   var formData = req.body; // save incoming form data to formData variable
 
@@ -77,6 +77,14 @@ router.post("/newquiz", isLoggedIn, function(req, res) {
     // console.log("quiz controller: ", quiz)
 
     console.log("new quiz controller: ", newQuiz); // confirms entire quiz is here
+
+    User.findByIdAndUpdate(userId, {$addToSet: {
+      quizzesWritten: newQuiz}}, {new: true}, function(err, updatedUser) {
+        console.log("updatedUser: ", updatedUser);
+        res.redirect("/quizzes");
+      })
+
+    
 
   });
 

@@ -84,7 +84,6 @@ quizSchema.methods.createQuestions = function(formData) {
     // pushes newQuestion into question array
     newQuiz.questions.push(newQuestion); // push newQuestion to newQuiz instance
 
-
     num = num + 1; // add one to number
 
   }; // closes questionKeys for loop 
