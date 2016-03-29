@@ -6,6 +6,9 @@
 
 <h1>Quizzes-- Index</h1>
 
+<%= locals.user %>
+<br>
+
 <% for (var i = 0; i < quizzes.length; i++) { %>
 
 	<a href="/quizzes/<%= quizzes[i].id %>"><%= quizzes[i].title %></a>

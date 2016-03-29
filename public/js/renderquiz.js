@@ -13,6 +13,7 @@ $(document).ready(function() {
   console.log(quizId); // confirms quiz id accessed
   var quizData = {};
   var userResult = {};
+  var userId = null;
 
   // ajax call to server-- returns quiz datas in json
   // function getQuizData() {
@@ -32,6 +33,27 @@ $(document).ready(function() {
   // getQuizData()
 
   // console.log(data)
+
+  // ajax call to server-- returns user data if logged in
+  $.ajax({
+    url: "/quizzes/getjson/userdata",
+    method: "GET"
+
+    // success funtion
+    }).then(function(userData) {
+      // console.log("user data: ", userData);
+      if (userData === "no user") {
+        userId = null;
+      } else {
+        userId = userData
+      };
+
+      console.log("user id: ", userId);
+
+    // error function
+    }, function(error) {
+      console.log("error: ", error)
+  });
 
 
   // ajax call to server-- returns quiz datas in json
@@ -294,9 +316,31 @@ $(document).ready(function() {
 
     $resultDiv.show();
 
+    // push to user's results if user logged in
+    if (userId) {
+      
+      $.ajax({
+        url: "/users/pushresult/" + userId,
+        method: "PUT",
+        data: {data: userResult}
+
+        // success function
+        }).then(function(data) {
+          console.log(data);
+
+        // error function
+        }, function(error) {
+          console.log(error);
+      });
+
+    }; // closes if statement
+
 
 
   }; // closes displayResult function
+
+
+
 
 
 

@@ -23,7 +23,8 @@ router.post("/signup", passport.authenticate("local-signup", {
 router.post("/login", passport.authenticate("local-login", { 
   failureRedirect: "/failedfailed"}), function(req, res) {
   // res.send(req.user);
-  res.render("users/show.ejs")
+  res.redirect("/quizzes");
+  // res.render("users/show.ejs")
 }); // end login route
 
 
@@ -31,6 +32,20 @@ router.post("/login", passport.authenticate("local-login", {
 router.get("/logout", function(req, res) {
   req.logout();
   res.redirect("/users");
+});
+
+// ADD RESULT
+router.put("/pushresult/:user_id", function(req, res) {
+  console.log(req.body);
+
+  result = req.body.data;
+
+  User.findByIdAndUpdate(req.params.user_id, 
+    {$addToSet: {results: result}}, {new: true}, function(err, user) {
+      console.log(user);
+      res.send("done");
+      // res.redirect("/quizzes")
+  });
 });
 
 

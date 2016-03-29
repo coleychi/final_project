@@ -3,6 +3,7 @@ var express = require("express");
 var router = express.Router();
 var Quiz = require("../models/quiz.js");
 var Question = require("../models/question.js");
+var User = require("../models/user.js");
 
 
 // ROUTES
@@ -58,12 +59,30 @@ router.post("/newquiz", function(req, res) {
 router.get("/:quiz_id", function(req, res) {
   Quiz.findById(req.params.quiz_id, function(err, quizData) {
     // res.json(quizData);
-
     res.render("quizzes/show.ejs", {
       quiz: quizData
-    })
+    });
 
   });
+
+});
+
+
+// GETJSON/userdata-- send user data as json
+router.get("/getjson/userdata", function(req, res) {
+
+  // if user is logged in, send user data
+  if (req.user) {
+    console.log("user is authenticated");
+    res.json(req.user.id); // send 
+  } else {
+    console.log("there is no user");
+    res.json("no user");
+  };
+
+  // User.findById(req.user.id, function(err, user) {
+  //   res.json(user);
+  // });
 
 });
 
@@ -74,6 +93,7 @@ router.get("/getjson/:quiz_id", function(req, res) {
     res.json(quizData);
   });
 });
+
 
 
 // MIDDLEWARE
