@@ -1,0 +1,39 @@
+<html>
+<head>
+	<title>QuizQuiz</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+	<script type="text/javascript" src="js/authforms.js"></script>
+</head>
+<body>
+
+<header>
+	<nav>
+<!-- 		<ul>
+			<li><a href="#">Quizzes</a></li>
+			<% if (locals.login) { %>
+				<li><a href="#">Profile</a></li>
+			<% } %>
+			<li><a href="#">Link-1</a></li>
+			<li><a href="#">Link-2</a></li>
+		</ul> -->
+
+		<div class="login">
+			<% if (!locals.login) { %>
+			<a href="#" id="signup" class="auth">Signup</a> | <a href="#" id="login" class="auth">Login</a>
+			<% } %>
+
+			<% if (locals.login) { %>
+				<a href="/users/profile/<%= locals.user.id %>"><%= locals.user.username %></a> | <a href="/users/logout">Logout</a>
+			<% } %>
+		</div>
+	</nav>
+
+	<h1><a href="/quizzes">Quiz Quiz</a></h1>
+</header>
+
+<div id="content-container">
+
+
+
+

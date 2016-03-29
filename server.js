@@ -84,6 +84,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// set global variable equal to boolean value of user state (logged in/not logged in)
+app.use(function(req, res, next) {
+  res.locals.login = req.isAuthenticated(); // returns boolean
+  next();
+});
 
 // set gloabl variable equal to user if user is logged in (user object accessible on every ejs page)
 app.use(function(req, res, next) {
