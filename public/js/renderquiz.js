@@ -14,6 +14,8 @@ $(document).ready(function() {
   var quizData = {};
   var userResult = {};
   var userId = null;
+  var userData = {};
+  var quizTaken = null;
 
   // ajax call to server-- returns quiz datas in json
   // function getQuizData() {
@@ -36,7 +38,7 @@ $(document).ready(function() {
 
   // ajax call to server-- returns user data if logged in
   $.ajax({
-    url: "/quizzes/getjson/userdata",
+    url: "/users/getjson/userdata",
     method: "GET"
 
     // success funtion
@@ -45,10 +47,15 @@ $(document).ready(function() {
       if (userData === "no user") {
         userId = null;
       } else {
-        userId = userData
-      };
+        userId = userData._id;
+        userData = userData;
 
-      console.log("user id: ", userId);
+        console.log("user id: ", userId);
+        console.log("user data from ajax call: ", userData);
+
+        isQuizTaken(userData);
+
+      };
 
     // error function
     }, function(error) {
@@ -60,7 +67,6 @@ $(document).ready(function() {
   $.ajax({
     url: "/quizzes/getjson/" + quizId, 
     method: "GET"
-
     // success function
     }).then(function(data) {
       console.log("data: ", data);
@@ -74,7 +80,50 @@ $(document).ready(function() {
   });
 
 
-  // success callback for ajax call
+  // check if user has taken this quiz already
+  var isQuizTaken = function(userData) {
+    var quizTaken = false;
+    console.log("isQuizDone userData: ", userData);
+    console.log("this quiz id: ", quizId);
+
+    console.log(userData.results.length);
+
+    for (var i = 0; i < userData.results.length; i++) {
+      console.log(userData.results[i].quizId);
+      if (userData.results[i].quizId === quizId) {
+        console.log("quiz complete");
+        console.log("results loop: ", userData.results[i])
+        quizTaken = true;
+        userResult = userData.results[i]; // save userData to results
+        break; // exit out of loop if condition is met
+
+      }; 
+
+    }; // closes for loop 
+    console.log("quiz taken: ", quizTaken);
+
+    // if quiz has been taken already, hide quiz 
+    if (quizTaken) {
+      // hideQuiz(); 
+    };
+
+  };
+
+  // hide quiz function for users who have already taken quiz
+  var hideQuiz = function() {
+    console.log("hide quiz function executing");
+
+    // hide quiz content
+    // var $quizContainer = $("#quiz-container");
+    // $quizContainer.hide();
+    $("#quiz-container").hide(); // maybe just make everything transparent
+
+    // display result
+    displayResult(); // invoke displayResult function to show user's result
+
+  };
+
+  // success "callback" for ajax call for quizData
   var onSuccess = function(data) {
     // console.log("success callback: ", data);
 
@@ -138,40 +187,11 @@ $(document).ready(function() {
 
   }; // closes clickEvent
 
-
-  // // configure results
-  // var configureResult = function() {
-  //   // calculate range-- maybe move this to its own function?
-  //   console.log(quizData);
-
-  //   var maxCount = 0;
-  //   var minCount = 0;
-
-  //   // iterate over the questions
-  //   for (var i = 0; i < quizData.questions.length; i++) {
-
-  //     console.log(quizData.questions[i]);
-
-  //     console.log(quizData.questions[i].responseOptions.length);
-
-  //     maxCount += quizData.questions[i].responseOptions.length;
-
-  //     minCount += 1;
-
-  //   };
-
-  //   console.log("maxCount: ", maxCount);
-  //   console.log("minCount: ", minCount);
-
-  // };
-
-
-
   // evaluates result
   var evaluateResult = function() {
 
     var results = quizData.results; // number of possible results
-    console.log(results);
+    console.log("results: ", results); // returns array of result objects
 
     var selections = $(document).find(".selected").toArray();
     console.log("selections ", selections);
@@ -187,7 +207,6 @@ $(document).ready(function() {
       // console.log(id);
 
       userPoints += id
-
 
     }; // closes for loop 
 
@@ -216,7 +235,7 @@ $(document).ready(function() {
 
     var interval = Math.floor((maxCount - minCount) / (results.length));
 
-    console.log(interval)
+    console.log(interval);
 
 
     // can this be dynamic?? there's a lot of repetition here
@@ -225,8 +244,10 @@ $(document).ready(function() {
       // if there are 2 results
       case 2:
         if (userPoints < (minCount + interval)) {
+          userResult = results[0]
           console.log(results[0]);
         } else {
+          userResult = results[1]
           console.log(results[1]);
         };
         break;
@@ -312,7 +333,12 @@ $(document).ready(function() {
 
     console.log(userResult);
 
-    $resultDiv = $(".result").text(userResult);
+    $resultDiv = $(".result");
+
+    // format title
+    $resultHeader = $("<h2></h2>").text(userResult.title).appendTo($resultDiv);
+    // format description
+    $resultDescription = $("<p></p>").text(userResult.description).appendTo($resultDiv);
 
     $resultDiv.show();
 
@@ -322,7 +348,7 @@ $(document).ready(function() {
       $.ajax({
         url: "/users/pushresult/" + userId,
         method: "PUT",
-        data: {data: userResult}
+        data: userResult
 
         // success function
         }).then(function(data) {
@@ -344,28 +370,7 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-  // $(".q1 .option").click(function() {
-  //   // console.log($(".q1 > div.selected").length);
-
-  //   // remove class if it exists
-  //   $(".q1 .option").removeClass("selected");
-
-  //   // console.log($(this));
-
-  //   // add .selected class to clicked element
-  //   $selectedOption = $(this);
-  //   $selectedOption.addClass("selected");
-  // })
-
-
-
-
-
-
-
-
 }); // closes document.ready
+
+
+

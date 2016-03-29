@@ -24,6 +24,8 @@
 <h1>Quizzes-- Index</h1>
 
 <%= locals.user %>
+
+<a href="/users/profile/<%= locals.user.id %>">My Profile</a>
 <br>
 
 <% for (var i = 0; i < quizzes.length; i++) { %>

@@ -9,27 +9,28 @@
 
 
 
+<div id="quiz-container">
+	<% for (var i = 0; i < quiz.questions.length; i++) { %>
 
-<% for (var i = 0; i < quiz.questions.length; i++) { %>
+		<div class="q<%= (i + 1) %>">
 
-	<div class="q<%= (i + 1) %>">
+			<b><%= quiz.questions[i].questionText %></b><br>
 
-		<b><%= quiz.questions[i].questionText %></b><br>
+			<% for (var j = 0; j < quiz.questions[i].responseOptions.length; j++) { %>
 
-		<% for (var j = 0; j < quiz.questions[i].responseOptions.length; j++) { %>
+				<div class="option" id="<%= quiz.questions[i].responseOptions[j].points %>">
+					<%= quiz.questions[i].responseOptions[j].text %>
 
-			<div class="option" id="<%= quiz.questions[i].responseOptions[j].points %>">
-				<%= quiz.questions[i].responseOptions[j].text %>
+				</div>
 
-			</div>
+				<%#= quiz.questions[i].responseOptions[j] %>
 
-			<%#= quiz.questions[i].responseOptions[j] %>
+			<% } %>
 
-		<% } %>
+		</div>
 
-	</div>
-
-<% } %>
+	<% } %>
+</div>
 
 <div class="result">
 	

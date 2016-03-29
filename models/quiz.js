@@ -19,7 +19,7 @@ var quizSchema = new mongoose.Schema({
 
 
 // METHODS
-// // parse data
+// create questions and save to quiz
 quizSchema.methods.createQuestions = function(formData) {
 
   // console.log("this ", this)
@@ -90,46 +90,44 @@ quizSchema.methods.createQuestions = function(formData) {
 }; // closes createQuestions method
 
 
-
+// create results and save to quiz
 quizSchema.methods.createResults = function(formData) {
 
   var newQuiz = this;
 
-  console.log("form data from model: ", formData)
+  // console.log("form data from model: ", formData)
+  // console.log("new quiz from results model: ", newQuiz);
+  // console.log("quiz id from results: ", newQuiz.id)
 
-  console.log("new quiz from results model: ", newQuiz);
+  var keysArray = Object.keys(formData); // all keys in formData object
 
-  console.log("quiz id from results: ", newQuiz.id)
-
-  var keysArray = Object.keys(formData);
-
-  // filter all result keys
+  // filter all keys related to results
   var filterAllResultKeys = function(key) {
     return key.indexOf("res") > -1
   };
 
   var allResultKeys = keysArray.filter(filterAllResultKeys); // all result keys
-  console.log("all result keys: ", allResultKeys)
+  console.log("all result keys: ", allResultKeys); // confirming filter
 
   // filter results from formData object
-  var filterResultKeys = function(key) {
+  var filterResultTitles = function(key) {
     return key.indexOf("result-") > -1
   };
 
-  var resultTitleKeys = keysArray.filter(filterResultKeys); // result titles only (for count)
-  console.log("result titles ", resultTitleKeys);
+  var resultTitleKeys = keysArray.filter(filterResultTitles); // result titles only (for count)
+  console.log("result titles ", resultTitleKeys); // confirming filter
 
-  var num = 1;
 
+  var num = 1; // start at first result
 
   for (var i = 0; i < resultTitleKeys.length; i++) {
 
-    // create new filter for contents
+    // create new filter for contents related to specific result instance
     var filterResultData = function(key) {
       return key.indexOf(num) > -1
     };
 
-    var thisResult = allResultKeys.filter(filterResultData);
+    var thisResult = allResultKeys.filter(filterResultData); // returns keys related to result num
     console.log("this result: ", thisResult); // confirms result data bundled properly
 
     // create new result

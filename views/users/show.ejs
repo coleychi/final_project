@@ -3,6 +3,28 @@
 	<title></title>
 </head>
 <body>
-Test show page
+
+<%= user %>
+<br><br>
+<%= user.username %>
+
+<br><br>
+
+<!-- display all results -->
+<% for (var i = 0; i < user.results.length; i++) { %>
+
+	<%#= user.results[i] %> <br>
+
+	<a href="/quizzes/<%= user.results[i].quizId %>"><%= user.results[i].quizTitle %></a><br>
+	<b><%= user.results[i].title %></b><br>
+	<%= user.results[i].description %><br>
+
+	<b>Only show is user is logged in </b><br>
+	<form action="/users/deleteresult/<%= user.results[i].id %>?_method=PUT" method="POST">
+		<button>Remove</button>
+	</form>
+
+<% } %>
+
 </body>
 </html>

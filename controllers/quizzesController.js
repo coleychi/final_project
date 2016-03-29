@@ -76,25 +76,6 @@ router.get("/:quiz_id", function(req, res) {
 });
 
 
-// GETJSON/userdata-- send user data as json
-router.get("/getjson/userdata", function(req, res) {
-
-  // if user is logged in, send user data
-  if (req.user) {
-    console.log("user is authenticated");
-    res.json(req.user.id); // send 
-  } else {
-    console.log("there is no user");
-    res.json("no user");
-  };
-
-  // User.findById(req.user.id, function(err, user) {
-  //   res.json(user);
-  // });
-
-});
-
-
 // GETJSON/:QUIZ_ID-- send quiz data as json
 router.get("/getjson/:quiz_id", function(req, res) {
   Quiz.findById(req.params.quiz_id, function(err, quizData) {
