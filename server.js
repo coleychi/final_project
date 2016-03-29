@@ -9,6 +9,8 @@ var morgan = require("morgan");
 var passport = require("passport");
 var session = require("express-session");
 
+var MongoStore = require("connect-mongo")(session);
+
 var mongoUri = process.env.MONGOLAB_URI || "mongodb://localhost:27017/final_project"
 var port = process.env.PORT || 3000;
 var app = express();
@@ -72,6 +74,10 @@ app.use(morgan("dev"));
 // configure passport sessions
 app.use(session({ 
   secret: "secretsecret",
+  store: new MongoStore({
+    url: mongoUri,
+    autoRemove: "native"
+  }),
   resave: true,
   saveUninitialized: true
 }));
