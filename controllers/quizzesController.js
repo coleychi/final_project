@@ -59,37 +59,19 @@ router.post("/newquiz", isLoggedIn, function(req, res) {
     // save results to newQuiz instance
     newQuiz.createResults(formData);
 
-    // push to user (whole instance)
-    // User.findByIdAndUpdate(userId, {$addToSet: {
-    //   quizzesWritten: newQuiz}}, {new: true}, function(err, user) {
-    //   console.log("user updated: ", user)
-    // })
-    // console.log("new quiz id number: ", newQuiz._id)
-
-    // // push to user (just id)
-    // User.findByIdAndUpdate(userId, {$addToSet: {
-    //   quizzesWritten: newQuiz._id}}, {new: true}, function(err, user) {
-    //   console.log("user updated: ", user)
-    // })
-
-    // push into user
-    // newQuiz.pushToAuthor(formData);
-    // console.log("quiz controller: ", quiz)
-
+    // confirm entire quiz is accessible
     console.log("new quiz controller: ", newQuiz); // confirms entire quiz is here
 
+    // push next quiz to user
     User.findByIdAndUpdate(userId, {$addToSet: {
       quizzesWritten: newQuiz}}, {new: true}, function(err, updatedUser) {
         console.log("updatedUser: ", updatedUser);
         res.redirect("/quizzes");
-      })
-
-    
+    });
 
   });
 
 });
-
 
 
 // SHOW-- show one quiz

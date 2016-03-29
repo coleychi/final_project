@@ -26,5 +26,15 @@
 
 <% } %>
 
+<!-- quizzes written -->
+<%#= user.quizzesWritten %>
+
+<% for (var i = 0; i < user.quizzesWritten.length; i++ ) { %>
+
+	<a href="/quizzes/<%= user.quizzesWritten[i].id %>"><%= user.quizzesWritten[i].title %></a>
+
+<% } %>
+
 </body>
 </html>
+
