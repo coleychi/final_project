@@ -24,15 +24,37 @@ require("./config/passport")(passport);
 // configure public folder
 app.use(express.static("public"));
 
-// configure aws
-AWS.config.AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
-AWS.config.AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY
-AWS.config.region = "us-east-1";
+// // configure aws
+// var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY_ID;
+// var AWS_SECRET_KEY = process.env.AWS_SECRET_ACCESS_KEY;
+// var S3_BUCKET = "quizapp13";
 
-// create new s3 instance
-var s3 = new AWS.S3();
-var bucketParams = {Bucket: "quizapp13"};
-s3.createBucket(bucketParams);
+// // test route for aws
+// app.get("/test", function(req, res) {
+//   res.render("test_stuff/awstest.ejs");
+// })
+
+// app.get('/sign', function(req, res) {
+//     AWS.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
+
+//     var s3 = new AWS.S3()
+//     var options = {
+//       Bucket: S3_BUCKET,
+//       Key: req.query.file_name,
+//       Expires: 60,
+//       ContentType: req.query.file_type,
+//       ACL: 'public-read'
+//     }
+
+//     s3.getSignedUrl('putObject', options, function(err, data){
+//       if(err) return res.send('Error with S3')
+
+//       res.json({
+//         signed_request: data,
+//         url: 'https://s3.amazonaws.com/' + S3_BUCKET + '/' + req.query.file_name
+//       })
+//     })
+//   })
 
 // configure body-parser
 app.use(bodyParser.urlencoded({ extended: false }));

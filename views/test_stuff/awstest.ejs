@@ -1,23 +1,54 @@
-<html> 
+<!DOCTYPE html>
+<html>
   <head>
-    <title>S3 POST Form</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Limitless Image Upload</title>
+    <!-- source url: https://www.terlici.com/2015/05/23/uploading-files-s3.html -->
   </head>
+  <body>
+    <h1>Welcome!</h1>
+    <br>Please select an image
+    <input type="file" id="image">
+    <br>
+    <img id="preview">
 
-  <body> 
-    <form action="https://s3-bucket.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
-      <input type="hidden" name="key">
-      <input type="hidden" name="AWSAccessKeyId" value=""> 
-      <input type="hidden" name="acl" value="public-read"> 
-      <input type="hidden" name="policy">
-      <input type="hidden" name="signature">
-      <input type="hidden" name="success_action_status" value="201">
-      <input type="hidden" name="Content-Type">
+    <script>
+    function upload(file, signed_request, url, done) {
+      var xhr = new XMLHttpRequest()
+      xhr.open("PUT", signed_request)
+      xhr.setRequestHeader('x-amz-acl', 'public-read')
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          done()
+        }
+      }
 
-      File to upload to S3: 
-      <input name="file" type="file"> 
-      <br> 
-      <input type="submit" value="Upload File to S3"> 
-    </form> 
+      xhr.send(file)
+    }
+
+    function sign_request(file, done) {
+      var xhr = new XMLHttpRequest()
+      xhr.open("GET", "/sign?file_name=" + file.name + "&file_type=" + file.type)
+
+      xhr.onreadystatechange = function() {
+        if(xhr.readyState === 4 && xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText)
+          done(response)
+        }
+      }
+
+      xhr.send()
+    }
+
+    document.getElementById("image").onchange = function() {
+      var file = document.getElementById("image").files[0]
+      if (!file) return
+
+      sign_request(file, function(response) {
+        upload(file, response.signed_request, response.url, function() {
+          document.getElementById("preview").src = response.url
+        })
+      })
+    }
+    </script>
   </body>
 </html>
