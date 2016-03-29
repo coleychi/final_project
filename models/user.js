@@ -8,7 +8,7 @@ var userSchema = new mongoose.Schema({
   username: {type: String, required: true, unique: true, lowercase: true},
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
-  results: [{type: String}]
+  results: [{type: String}] // should be able to use this to access the quizzes user has already taken
 });
 
 

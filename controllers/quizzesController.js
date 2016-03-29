@@ -54,7 +54,7 @@ router.post("/newquiz", function(req, res) {
     newQuiz.createQuestions(formData);
 
     // save results to newQuiz instance
-    newQuiz.saveResults(formData);
+    newQuiz.createResults(formData);
 
     // console.log("new quiz controller: ", newQuiz);
 

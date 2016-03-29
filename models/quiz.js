@@ -91,33 +91,65 @@ quizSchema.methods.createQuestions = function(formData) {
 
 
 
-quizSchema.methods.saveResults = function(formData) {
+quizSchema.methods.createResults = function(formData) {
 
   var newQuiz = this;
 
-  console.log("new quiz from model: ", newQuiz)
+  console.log("form data from model: ", formData)
+
+  console.log("new quiz from results model: ", newQuiz);
+
+  console.log("quiz id from results: ", newQuiz.id)
 
   var keysArray = Object.keys(formData);
 
-  // filter results from formData object
-  var filterResultKeys = function(key) {
-    return key.indexOf("result") > -1
+  // filter all result keys
+  var filterAllResultKeys = function(key) {
+    return key.indexOf("res") > -1
   };
 
-  var resultKeys = keysArray.filter(filterResultKeys);
-  console.log("result keys ", resultKeys)
+  var allResultKeys = keysArray.filter(filterAllResultKeys); // all result keys
+  console.log("all result keys: ", allResultKeys)
 
-  for (var i = 0; i < resultKeys.length; i++) {
+  // filter results from formData object
+  var filterResultKeys = function(key) {
+    return key.indexOf("result-") > -1
+  };
 
-    var result = formData[resultKeys[i]];
+  var resultTitleKeys = keysArray.filter(filterResultKeys); // result titles only (for count)
+  console.log("result titles ", resultTitleKeys);
 
-    newQuiz.results.push(result); // push result into results array
+  var num = 1;
 
-    console.log("new quiz ", newQuiz)
+
+  for (var i = 0; i < resultTitleKeys.length; i++) {
+
+    // create new filter for contents
+    var filterResultData = function(key) {
+      return key.indexOf(num) > -1
+    };
+
+    var thisResult = allResultKeys.filter(filterResultData);
+    console.log("this result: ", thisResult); // confirms result data bundled properly
+
+    // create new result
+    var newResult = new Result({
+      title: formData[thisResult[0]],
+      description: formData[thisResult[1]],
+      imgUrl: formData[thisResult[2]],
+      quizTitle: newQuiz.title,
+      quizId: newQuiz.id
+    });
+
+    newResult.save();
+
+    newQuiz.results.push(newResult);
+
+    num = num + 1;
 
   }; // closes resultKeys for loop 
 
-  newQuiz.update(); // save the quiz
+  newQuiz.update(); // save quiz with results
 
 }; // closes saveResults method
 

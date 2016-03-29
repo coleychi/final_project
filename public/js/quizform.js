@@ -243,72 +243,105 @@ $(document).ready(function() {
     // hide current page
     console.log(currentPageNum); // confirms currentPageNum var accessible
 
-    $currentPage = $(".page-" + currentPageNum);
-    $currentPage.hide();
+    $currentPage = $(".page-" + currentPageNum); 
+    $currentPage.hide(); // hides fields on current page
 
-    $("#next-page").remove();
-    $("#add-results").hide();
+    $("#next-page").remove(); // hides #next-page button
+    $("#add-results").hide(); // hides #add-results button
 
-    // show results div
-    $resultsDiv = $(".results");
-    $resultsDiv.show();
+    // show results section
+    $resultsSection = $(".results"); // accesses .results div
+    $resultsSection.show(); // show results
 
-
+    // create new div for each result (mini-forms)
     for (var i = 1; i < minResults + 1; i++) {
 
-      $resultInput = $("<input>");
-      $resultInput.attr({
+      $addResultDiv = $("<div></div>"); // create div to contain inputs related to result
+      $addResultDiv.attr({
+        id: "r" + i
+      }); // set attribute
+      $addResultDiv.appendTo($resultsSection); // append to page
+
+      // create input fields
+      $titleInput = $("<input>");
+      $titleInput.attr({
         type: "text",
-        name: "result" + i,
-        placeholder: "result " + i
+        name: "result-" + i,
+        class: "r" + i
       });
 
-      $resultInput.appendTo($resultsDiv);
+      $descriptionInput = $("<input>");
+      $descriptionInput.attr({
+        type: "text",
+        name: "res" + i + "description",
+        class: "r" + i
+      });
+
+      $imgInput = $("<input>");
+      $imgInput.attr({
+        type: "text",
+        name: "res" + i + "imgUrl",
+        class: "r" + i
+      });
+
+      $titleInput.appendTo($addResultDiv);
+      $descriptionInput.appendTo($addResultDiv);
+      $imgInput.appendTo($addResultDiv);
+
+
+      // $resultInput = $("<input>");
+      // $resultInput.attr({
+      //   type: "text",
+      //   name: "result" + i,
+      //   placeholder: "result " + i
+      // });
+
+      // $resultInput.appendTo($resultsDiv);
 
     }; // closes for loop 
 
     $addResultButton = $("<button>Add Result</button>");
     $addResultButton.attr({
       id: "add-result-field"
-    })
-    $addResultButton.appendTo($resultsDiv)
+    });
+    $addResultButton.appendTo($resultsSection);
 
 
     // submit button
     $submitButton = $("<button>Submit</button>");
     $submitButton.attr({
       id: "submit-quiz"
-    })
-    $submitButton.appendTo($resultsDiv)
+    });
+    $submitButton.appendTo($resultsSection);
 
 
   }); // closes #add-results function
 
+  // // add another result
+  // $(document).on("click", "#add-result-field", function() {
 
-  $(document).on("click", "#add-result-field", function() {
+  //   event.preventDefault();
+  //   console.log("test");
 
-    event.preventDefault();
-    console.log("test");
+  //   $resultsDiv = $(".results");
 
-    $resultsDiv = $(".results");
+  //   var resultsCount = $(".results > input").length;
+  //   console.log(resultsCount);
 
-    var resultsCount = $(".results > input").length;
-    console.log(resultsCount);
+  //   if (resultsCount < maxResults) {
 
-    if (resultsCount < maxResults) {
+  //     $newInput = $("<input>");
+  //     $newInput.attr({
+  //       type: "text",
+  //       name: "result" + (resultsCount + 1),
+  //       placeholder: "result " + (resultsCount + 1)
+  //     });
 
-      $newInput = $("<input>");
-      $newInput.attr({
-        type: "text",
-        name: "result" + (resultsCount + 1),
-        placeholder: "result " + (resultsCount + 1)
-      });
+  //     $newInput.insertBefore("#add-result-field");
 
-      $newInput.insertBefore("#add-result-field");
+  //   }; // closes if resultsCount < maxResults
 
-    }; // closes if resultsCount < maxResults
-
-  }); // closes #add-result-field
+  // }); // closes #add-result-field
 
 
 
