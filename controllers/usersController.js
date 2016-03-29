@@ -34,6 +34,7 @@ router.get("/logout", function(req, res) {
   res.redirect("/users");
 });
 
+
 // ADD RESULT
 router.put("/pushresult/:user_id", function(req, res) {
   console.log(req.body);

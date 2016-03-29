@@ -7,7 +7,27 @@ $(document).ready(function() {
   maxResults = 6;
   currentPageNum = 1; // current page
 
+  isValid = null;
+
   $(".results").hide(); // do this in css
+
+  // need callback
+  // var validateForm = function() {
+  //   var isValid = true;
+
+  //   // ensure all formFields are filled
+  //   var $allInputFields = $("input")
+  //   console.log($allInputFields);
+
+  //   $allInputFields.each(function() {
+  //     // console.log($(this).val() === "")
+  //     if ($(this).val() === "") {
+  //       return isValid = false;
+  //     }
+  //   });
+  //   return isValid = true;
+  // }
+
 
   // go to next page
   $(document).on("click", "#next-page", function(event) {
@@ -22,49 +42,76 @@ $(document).ready(function() {
     $currentPage = $(".page-" + currentPageNum); // selects current page div
     $nextPage = $(".page-" + nextPageNum); // selects next page div
 
-    // hide current page
-    $currentPage.hide();
-    // $(".page-" + pageNum).hide();
+    // validateForm(); // need callback
 
-    // remove #next-page button from DOM
-    $nextPageButton = $("#next-page.q1");
-    $nextPageButton.remove();
+    // // need callback
+    // var $allInputFields = $("input");
+    
+    // console.log($allInputFields);
 
-    // if nextPage is less than maxQuestions limit, generate new question field
-    if (nextPageNum <= maxQuestions) {
+    // $allInputFields.each(function() {
+    //   console.log($(this).val())
+    //   console.log("evaluate: ", $(this).val() === "")
+    //   if ($(this).val() === "") {
+    //     return isValid = false;
+    //   }
+    //   return isValid = true;
+    // });
 
-      // if the next page exists, show the page
-      if ($nextPage.length) {
-        console.log("it exists");
-        $nextPage.show();
+    // if(isValid) {
 
-        currentPageNum = nextPageNum; // change the page number
+      // hide current page
+      $currentPage.hide();
+      // $(".page-" + pageNum).hide();
 
-      // if the next page does not exist, create it
-      } else {
-        console.log("create it");
+      // remove #next-page button from DOM
+      $nextPageButton = $("#next-page.q1");
+      $nextPageButton.remove();
 
-        // remove .active class from current page's question
-        $("#q" + currentPageNum).removeClass("active");
 
-        // create page div
-        // $nextPageDiv = $("<div></div>"); // creates div tags
-        // $nextPageDiv.attr({
-        //   class: "page-" + nextPageNum
-        // }); // sets attributes
-        // $nextPageDiv.insertAfter($currentPage); // add to page
 
-        $nextPageDiv = $("<div></div>").attr({
-          class: "page-" + nextPageNum
-        }).insertAfter($currentPage);
+      console.log(isValid)
+      // console.log(isValid)
 
-        currentPageNum = nextPageNum; // change the page number
+      // if nextPage is less than maxQuestions limit, generate new question field
+      if (nextPageNum <= maxQuestions) {
 
-        addQuestion();
+        // if the next page exists, show the page
+        if ($nextPage.length) {
+          console.log("it exists");
+          $nextPage.show();
 
-      }; // closes if else statement
+          currentPageNum = nextPageNum; // change the page number
 
-    }; // closes if nextPageNum <= maxQuestions
+        // if the next page does not exist, create it
+        } else {
+          console.log("create it");
+
+          // remove .active class from current page's question
+          $("#q" + currentPageNum).removeClass("active");
+
+          // create page div
+          // $nextPageDiv = $("<div></div>"); // creates div tags
+          // $nextPageDiv.attr({
+          //   class: "page-" + nextPageNum
+          // }); // sets attributes
+          // $nextPageDiv.insertAfter($currentPage); // add to page
+
+          $nextPageDiv = $("<div></div>").attr({
+            class: "page-" + nextPageNum
+          }).insertAfter($currentPage);
+
+          currentPageNum = nextPageNum; // change the page number
+
+          addQuestion();
+
+        }; // closes if else statement
+
+      }; // closes if nextPageNum <= maxQuestions
+
+    // } else {
+    //   alert("fill all inputs");
+    // }; // closes if isValid
 
   }); // closes #next-page click function
 
@@ -89,7 +136,6 @@ $(document).ready(function() {
     currentPageNum = prevPageNum; // change the page number
     
   }); // closes #prev-page click function
-
 
 
   // add a new question
