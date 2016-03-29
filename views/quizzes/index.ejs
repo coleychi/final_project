@@ -4,6 +4,23 @@
 </head>
 <body>
 
+<!-- LOGIN -->
+<b>Login</b>
+<form action="../users/login" method="POST">
+	Username: <input type="text" name="username">
+	Password: <input type="password" name="password">
+	<input type="submit" name="submit">
+</form>
+
+<!-- SIGNUP -->
+<b>Signup</b>
+<form action="../users/signup" method="POST">
+	Email: <input type="text" name="email">
+	Username: <input type="text" name="username">
+	Password: <input type="password" name="password">
+	<input type="submit" name="submit">
+</form>
+
 <h1>Quizzes-- Index</h1>
 
 <%= locals.user %>

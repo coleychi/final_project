@@ -4,6 +4,7 @@ var router = express.Router();
 var Quiz = require("../models/quiz.js");
 var Question = require("../models/question.js");
 var User = require("../models/user.js");
+var Result = require("../models/result.js");
 
 
 // ROUTES

@@ -70,9 +70,14 @@ app.use(methodOverride("_method"));
 app.use(morgan("dev"));
 
 // configure passport sessions
-app.use(session({ secret: "secretsecret" }));
+app.use(session({ 
+  secret: "secretsecret",
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 // set gloabl variable equal to user if user is logged in (user object accessible on every ejs page)
 app.use(function(req, res, next) {
@@ -98,10 +103,6 @@ app.use("/users", usersController);
 // use quizzesController for /quizzes
 var quizzesController = require("./controllers/quizzesController.js");
 app.use("/quizzes", quizzesController);
-
-
-
-
 
 
 

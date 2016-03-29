@@ -2,6 +2,8 @@
 var mongoose = require("mongoose");
 var questionSchema = require("./question.js").schema;
 var Question = require("./question.js");
+var resultSchema = require("./result.js").schema;
+var Result = require("./result.js");
 
 
 // SCHEMA
@@ -12,7 +14,7 @@ var quizSchema = new mongoose.Schema({
   imgUrl: {type: String},
   timestamp: {type: Date, default: Date.now},
   questions: [questionSchema],
-  results: []
+  results: [resultSchema]
 });
 
 
