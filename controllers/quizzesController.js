@@ -27,13 +27,15 @@ router.get("/", function(req, res) {
 
 
 // NEW-- create new quiz
-router.get("/new", function(req, res) {
+router.get("/new", isLoggedIn, function(req, res) {
   res.render("quizzes/new.ejs")
 });
 
 
 // NEWQUIZ-- save quiz to database
-router.post("/newquiz", function(req, res) {
+router.post("/newquiz", isLoggedIn, function(req, res) {
+  var userId = req.user._id;
+  console.log("user id from /newquiz: ", req.user._id)
   res.json(req.body);
 
   var formData = req.body; // save incoming form data to formData variable
@@ -41,14 +43,15 @@ router.post("/newquiz", function(req, res) {
   // create new quiz
   var newQuiz = new Quiz({
     title: formData.title,
-    // author: req.user.username,
+    author: req.user.username,
+    authorId: req.user._id,
     description: formData.description,
     imgUrl: formData.imgUrl 
     // req.user to save user id and username to instance
   }); 
 
   // save new quiz to instantiate to database
-  newQuiz.save(function(req, res) {
+  newQuiz.save(function(err) {
 
     // parse through form data to save questions
     newQuiz.createQuestions(formData);
@@ -56,11 +59,29 @@ router.post("/newquiz", function(req, res) {
     // save results to newQuiz instance
     newQuiz.createResults(formData);
 
-    // console.log("new quiz controller: ", newQuiz);
+    // push to user (whole instance)
+    // User.findByIdAndUpdate(userId, {$addToSet: {
+    //   quizzesWritten: newQuiz}}, {new: true}, function(err, user) {
+    //   console.log("user updated: ", user)
+    // })
+    // console.log("new quiz id number: ", newQuiz._id)
+
+    // // push to user (just id)
+    // User.findByIdAndUpdate(userId, {$addToSet: {
+    //   quizzesWritten: newQuiz._id}}, {new: true}, function(err, user) {
+    //   console.log("user updated: ", user)
+    // })
+
+    // push into user
+    // newQuiz.pushToAuthor(formData);
+    // console.log("quiz controller: ", quiz)
+
+    console.log("new quiz controller: ", newQuiz); // confirms entire quiz is here
 
   });
 
 });
+
 
 
 // SHOW-- show one quiz
@@ -86,19 +107,19 @@ router.get("/getjson/:quiz_id", function(req, res) {
 
 
 // MIDDLEWARE
-// // ensure a user is loggedin
-// function isLoggedIn(req, res, next) {
+// ensure a user is loggedin
+function isLoggedIn(req, res, next) {
 
-//   // if user is authenticated in the session, continue
-//   if (req.isAuthenticated()) {
-//     return next();
-//   } else {
+  // if user is authenticated in the session, continue
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
 
-//   // if they aren't redirect them to the homepage
-//     res.redirect("/users/newaccount");
+  // if they aren't redirect them to the homepage
+    res.redirect("/YOUDONTBELONGHERE");
 
-//   }; 
-// };
+  }; 
+};
 
 
 

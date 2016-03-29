@@ -1,6 +1,7 @@
 // REQUIREMENTS
 var mongoose = require("mongoose");
 var bcrypt = require("bcrypt-nodejs");
+var quizSchema = require("./quiz.js").schema;
 var resultSchema = require("./result.js").schema;
 
 
@@ -9,6 +10,8 @@ var userSchema = new mongoose.Schema({
   username: {type: String, required: true, unique: true, lowercase: true},
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
+  quizzesWritten: [{type: String}],
+  // quizzesWritten: [quizSchema],
   results: [resultSchema] // should be able to use this to access the quizzes user has already taken
 });
 

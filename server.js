@@ -89,7 +89,9 @@ app.use(passport.session());
 app.use(function(req, res, next) {
   if (req.isAuthenticated()) {
     res.locals.user = req.user; // entire user object (can't access keys using dot notation on other ejs pages?)
-  } 
+  } else {
+    res.locals.user = {}; // set to empty object if user is not logged in
+  };
 
   next();
 });

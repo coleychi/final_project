@@ -54,8 +54,8 @@ router.put("/pushresult/:user_id", function(req, res) {
 
   result = req.body;
 
-  User.findByIdAndUpdate(req.params.user_id, 
-    {$addToSet: {results: result}}, {new: true}, function(err, user) {
+  User.findByIdAndUpdate(req.params.user_id, {$addToSet: {
+    results: result}}, {new: true}, function(err, user) {
       console.log(user);
       res.send("done");
       // res.redirect("/quizzes")

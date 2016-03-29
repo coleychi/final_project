@@ -9,7 +9,8 @@ var Result = require("./result.js");
 // SCHEMA
 var quizSchema = new mongoose.Schema({
   title: {type: String, required: true, unique: true},
-  author: {type: String},
+  author: {type: String}, // saves username
+  authorId: {type: String},
   description: {type: String, required: true},
   imgUrl: {type: String},
   timestamp: {type: Date, default: Date.now},
@@ -77,15 +78,21 @@ quizSchema.methods.createQuestions = function(formData) {
 
     }; // closes optionKeys for loop 
 
-    newQuestion.save(); // save newQuestion
+    // saves question to database
+    newQuestion.save()
 
+    // pushes newQuestion into question array
     newQuiz.questions.push(newQuestion); // push newQuestion to newQuiz instance
+
 
     num = num + 1; // add one to number
 
   }; // closes questionKeys for loop 
 
-  newQuiz.save(); // save changes to new quiz
+  newQuiz.save(function(err, data) {
+    console.log("NEW QUIZ UPDATE LINE 94")
+    console.log(newQuiz)
+  }); // save changes to new quiz
 
 }; // closes createQuestions method
 
@@ -147,9 +154,19 @@ quizSchema.methods.createResults = function(formData) {
 
   }; // closes resultKeys for loop 
 
-  newQuiz.update(); // save quiz with results
+  newQuiz.save(); // save quiz with results
 
 }; // closes saveResults method
+
+
+
+
+// push to author's array
+// quizSchema.methods.pushToAuthor = function(formData) {
+//   console.log("pushToAuthor this: ", this)
+
+// }
+
 
 
 
