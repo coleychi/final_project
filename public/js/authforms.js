@@ -43,36 +43,39 @@ $(document).ready(function() {
   // generate signup form
   var generateSignup = function() {
     // create login form and append to popup 
-    $loginForm = $("<form></form>").attr({
+    $signupForm = $("<form></form>").attr({
       action: "../users/signup",
       method: "POST",
       class: "auth-form"
-      }).insertBefore($cancelButton)
+      }).insertBefore($cancelButton);
+
+    $signupText = $("<h4>Signup</h4>").appendTo($signupForm);
 
     // generate input fields
     $usernameInput = $("<input>").attr({
       type: "text",
       name: "username",
       placeholder: "username"
-      }).appendTo($loginForm);
+      }).appendTo($signupForm);
 
     $emailInput = $("<input>").attr({
       type: "text",
       name: "email",
       placeholder: "email"
-      }).appendTo($loginForm);
+      }).appendTo($signupForm);
 
     $passwordInput = $("<input>").attr({
       type: "password",
       name: "password",
       placeholder: "password"
-      }).appendTo($loginForm)
+      }).appendTo($signupForm)
 
     // generate submit button
     $submitInput = $("<input>").attr({
       type: "submit",
-      name: "submit"
-      }).appendTo($loginForm)
+      name: "sign up",
+      value: "Sign up"
+      }).appendTo($signupForm)
   }
 
   // generate login form
@@ -84,6 +87,8 @@ $(document).ready(function() {
       class: "auth-form"
       }).insertBefore($cancelButton);
 
+    $loginText = $("<h4>Login</h4>").appendTo($loginForm);
+
     // generate input fields
     $usernameInput = $("<input>").attr({
       type: "text",
@@ -100,7 +105,8 @@ $(document).ready(function() {
     // generate submit button
     $submitInput = $("<input>").attr({
       type: "submit",
-      name: "submit"
+      name: "log in",
+      value: "Log in"
       }).appendTo($loginForm)
   };
 
@@ -150,9 +156,9 @@ $(document).ready(function() {
     // $popupDiv.addClass("popup");
     $popupDiv.insertAfter($blackoutDiv);
 
-    $cancelButton = $("<button></button>").attr({
+    $cancelButton = $("<i></i>").attr({
       id: "closePopup"
-    }).text("cancel");
+    }).text("x");
 
     $cancelButton.appendTo($popupDiv)
 

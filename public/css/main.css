@@ -11,6 +11,7 @@
 
 body {
 	font-family: "Helvetica"; /* find a better font */
+	color: #292929;
 }
 
 /* HEADER-- nav bar, login link, title */
@@ -21,7 +22,7 @@ header {
 
 nav {
     width: 100%;
-    background-color: #202020;
+    background-color: #292929;
     /*padding: 0.75em;*/
     padding: 1.2em;
 }
@@ -83,32 +84,68 @@ nav ul li a {
 }
 
 .popup {
-	width: 45%;
-	height: 80%;
+	width: 30%;
+	height: 50%;
 	position: fixed;
 	top: 10%; /* 100 minus height divided by 2 */
-	left: 27.5%;
+	left: 35%;
 	background-color: #ffffff;
 	border-radius: 5px;
 }
 
 #closePopup {
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: 1%;
+	right: 2%;
+	font-style: normal;
+	color: #a5a5a5;
+}
+
+#closePopup:hover {
+	cursor: pointer;
 }
 
 .auth-form {
 	width: 70%;
-	margin: 0 auto;
-	background-color: red;
+	margin: 2.5em auto;
+/*	background-color: red;*/
+}
+
+.auth-form h4 {
+	margin-bottom: 1em;
 }
 
 .auth-form input {
 	width: 100%;
 	display: block;
+	font-size: 0.8em;
+	padding: 1em;
+	margin-bottom: 1em;
+	border: 0;
+	border-radius: 1px;
+/*	border-bottom: 1px solid #efefef;*/
+	background-color: #f4f4f4;
+	color: #2B2B2B;
+}
+
+.auth-form input:focus {
+	outline: none;
+	background-color: #fbfbfb;
+	border-bottom: 1px solid #69D2E7;
+	/*border: 1px solid blue;*/
+}
+
+
+.auth-form input[type="submit"] {
+	margin: auto;
 	padding: 0.5em;
-	margin-bottom: 0.5em;
+	width: 66%;
+	margin-top: 2em;
+	border-radius: 3px;
+	background-color: #69D2E7;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 0.8em;
 }
 
 h1 {
