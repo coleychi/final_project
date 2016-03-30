@@ -1,9 +1,23 @@
 <% include ../partials/header_partial.ejs %>
 
+
+<div id="quiz-info">
+<!-- 	<div class="left">
+		<img src="http://www.picgifs.com/avatars/animals/panda/avatars-panda-632900.gif" class="img-thumb">
+		<span><a href="/users/profile/<%= quiz.authorId %>"><%= quiz.author %></a></span>
+	</div> -->
+
+	<!-- <div class="right"> -->
+	<h3><%= quiz.title %></h3>
+	<p><%= quiz.description %></p>
+	<!-- </div> -->
+</div>
+
 <div id="quiz-container">
+
 	<% for (var i = 0; i < quiz.questions.length; i++) { %>
 
-		<div class="q-<%= (i + 1) %>">
+		<section class="q-<%= (i + 1) %>">
 
 			<div class="question">
 				<b><%= quiz.questions[i].questionText %></b><br>
@@ -24,12 +38,16 @@
 
 			</div> <!-- closes options -->
 
-		</div>
+		</section> <!-- closes .q-n-->
 
 	<% } %>
 </div>
 
-<div class="result">
+<div id="result-container">
+
+	<!-- <h2>Your Result: Vanilla</h2>
+
+	<p> Vanilla ice cream is delicious... and so are you. </p> -->
 	
 </div>
 

@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $(".result").hide();
+  $("#result-container").hide();
 
   // access quiz id number
   // var pathname = window.location.pathname;
@@ -334,14 +334,14 @@ $(document).ready(function() {
 
     console.log(userResult);
 
-    $resultDiv = $(".result");
+    $resultContainer = $("#result-container");
 
     // format title
-    $resultHeader = $("<h2></h2>").text(userResult.title).appendTo($resultDiv);
+    $resultHeader = $("<h2></h2>").text("Your Result: " + userResult.title).appendTo($resultContainer);
     // format description
-    $resultDescription = $("<p></p>").text(userResult.description).appendTo($resultDiv);
+    $resultDescription = $("<p></p>").text(userResult.description).appendTo($resultContainer);
 
-    $resultDiv.show();
+    $resultContainer.show();
 
     // push to user's results if user logged in
     if (userId) {
