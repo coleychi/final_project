@@ -1,0 +1,146 @@
+<html>
+<head>
+	<title>New Quiz</title>
+	<link rel="stylesheet" type="text/css" href="layoutmockup.css">
+	<link rel="stylesheet" type="text/css" href="newquizconcept.css">
+
+</head>
+<body>
+
+<header>
+	<nav>
+		<ul>
+			<li><a href="#">Quizzes</a></li>
+			<li><a href="#">Profile</a></li>
+			<li><a href="#">Link 1</a></li>
+		</ul>
+
+		<div class="login">
+			Signup | Login
+		</div>
+	</nav>
+
+	<h1>Quiz Quiz</h1>
+</header>
+
+
+<div id="content-container">
+<!-- end header partial -->
+
+
+<form id="new-quiz">
+	<!-- <h3>Create Quiz</h3> -->
+	<div class="quiz-info">
+
+		<h3>Create Quiz</h3>
+
+		<!-- <div class="field-row"> -->
+		<label for="title">Title</label>
+		<input type="text" name="title" placeholder="title">
+		<!-- </div> -->
+
+		<!-- <div class="field-row"> -->
+		<label for="description">Description</label>
+		<input type="text" name="description" placeholder="description">
+		<!-- </div> -->
+
+		<div class="field-row">
+		<label for="imgUrl">Image Url</label>
+		<input type="text" name="imgUrl" placeholder="image url">
+		</div>
+
+	</div> <!-- closes #quiz-info -->
+
+	<div class="page-1">
+
+		<span class="pageNum">1</span>
+
+		<div id="q1" class="q1 active">
+			<h3>Questions</h3>
+
+
+			<!-- <label for="question-1">Question 1</label> -->
+			<input type="text" name="question-1" class="q1" placeholder="write your question">
+
+			<div id="q1opts" class="q1">
+
+				<input type="text" name="q1opt1" class="q1" placeholder="option 1">
+				<input type="text" name="q1opt2" class="q1" placeholder="option 2">
+				<input type="text" name="q1opt3" class="q1" placeholder="option 3">
+				<input type="text" name="q1opt4" class="q1" placeholder="option 4">
+
+			</div><!-- closes #q1opts.q1 -->
+
+			<button id="add-option" class="q1">Add Option</button>
+
+
+		</div><!-- closes #q1.q1 -->
+
+	</div><!-- closes .page1 -->
+
+	<div class="results">
+		<h3>Add Results</h3>
+
+		<span class="result-label">Result 1:</span>
+
+		<div class="one-result">
+			<div class="result-left left">
+				<input type="text" placeholder="result heading">
+				<input type="text" placeholder="placeholder">
+
+			</div>
+
+			<div class="result-right right">
+				<textarea placeholder="description"></textarea>
+			</div>
+
+
+		</div> <!-- closes .one-result -->
+
+		<hr>
+
+		<span class="result-label">Result 2:</span>
+
+		<div class="one-result">
+			<div class="result-left left">
+				<input type="text" placeholder="result heading">
+				<input type="text" placeholder="placeholder">
+
+			</div>
+
+			<div class="result-right right">
+				<textarea placeholder="description"></textarea>
+			</div>
+
+
+		</div> <!-- closes .one-result -->
+
+		<button>Add Result</button>
+
+	</div>
+
+	<button id="save-quiz">Create Quiz</button>
+
+
+
+</form>
+
+
+
+	<br><br>
+
+
+
+
+
+
+
+
+
+</div> <!-- closes #content-container -->
+
+<!-- SCRIPTS WOULD GO HERE -->
+
+<!-- footer partial -->
+</body>
+</html>

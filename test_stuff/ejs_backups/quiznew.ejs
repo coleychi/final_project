@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>New Quiz</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+	<script type="text/javascript" src="../js/quizform.js"></script>
+</head>
+<body>
+
+	<form id="new-quiz" action="/quizzes/newquiz" method="POST">
+
+		<div class="page-1">
+			<input type="text" name="title" placeholder="title">
+			<input type="text" name="description" placeholder="description">
+			<input type="text" name="imgUrl" placeholder="image url">
+
+			<div id="q1" class="q1 active">
+				<input type="text" name="question-1" class="q1" placeholder="question">
+
+				<div id="q1opts" class="q1">
+
+					<input type="text" name="q1opt1" class="q1" placeholder="option 1">
+					<input type="text" name="q1opt2" class="q1" placeholder="option 2">
+					<input type="text" name="q1opt3" class="q1" placeholder="option 3">
+
+				</div><!-- closes #q1opts.q1 -->
+
+				<button id="add-option" class="q1">Add Option</button>
+
+
+			</div><!-- closes #q1.q1 -->
+
+		</div><!-- closes .page1 -->
+
+
+		<button id="next-page" class="q1">Add Question (Next)</button>
+
+		<section class="results">
+			Results
+		</section>
+
+
+		<br><br>
+		<button id="add-results">Add Results (Submit)</button>
+
+	</form>
+
+</body>
+</html>
