@@ -12,9 +12,13 @@
 <div id="quiz-container">
 	<% for (var i = 0; i < quiz.questions.length; i++) { %>
 
-		<div class="q<%= (i + 1) %>">
+		<div class="q-<%= (i + 1) %>">
 
-			<b><%= quiz.questions[i].questionText %></b><br>
+			<div class="question">
+				<b><%= quiz.questions[i].questionText %></b><br>
+			</div>
+
+			<div class="options">
 
 			<% for (var j = 0; j < quiz.questions[i].responseOptions.length; j++) { %>
 
@@ -26,6 +30,8 @@
 				<%#= quiz.questions[i].responseOptions[j] %>
 
 			<% } %>
+
+			</div> <!-- closes options -->
 
 		</div>
 

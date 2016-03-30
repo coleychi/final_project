@@ -146,7 +146,7 @@ $(document).ready(function() {
       // });
 
       // var div = $(".q" + i);
-      $(".q" + i + " .option").click(clickEvent(i))
+      $(".q-" + i + " .option").click(clickEvent(i))
 
       // div.addEventListener("click", function() {
       //   console.log("hi")
@@ -161,7 +161,7 @@ $(document).ready(function() {
     return function() {
 
       // remove class if it exists
-      $(".q" + i + " .option").removeClass("selected");
+      $(".q-" + i + " .option").removeClass("selected");
 
       console.log($(this))
 

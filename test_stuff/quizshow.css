@@ -1,0 +1,11 @@
+#quiz-container {
+	width: 100%;
+	display: block;
+	/*background-color: red;*/
+}
+
+div[class*="q-"] {
+	background-color: red;
+	display: block;
+	margin-bottom: 1em;
+}
