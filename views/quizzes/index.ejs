@@ -1,14 +1,17 @@
 <% include ../partials/header_partial.ejs %>
 
+<a href="/quizzes/new">Add Quiz</a><br><br>
 
 <% for (var i = 0; i < quizzes.length; i++) { %>
 
 	<a href="/quizzes/<%= quizzes[i].id %>"><%= quizzes[i].title %></a><br>
+	By <a href="/users/profile/<%= quizzes[i].authorId %>"><%= quizzes[i].author %></a>
+
+	<br><br>
 
 <% } %>
 
-<br><br>
-<a href="/quizzes/new">Add Quiz</a>
+
 
 
 
