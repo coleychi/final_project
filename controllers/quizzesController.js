@@ -31,6 +31,11 @@ router.get("/new", isLoggedIn, function(req, res) {
   res.render("quizzes/new.ejs")
 });
 
+// NEWQUIZ-- save quiz to database
+router.post("/newquiztest", isLoggedIn, function(req, res) {
+  res.json(req.body);
+});
+
 
 // NEWQUIZ-- save quiz to database
 router.post("/newquiz", isLoggedIn, function(req, res) {

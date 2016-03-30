@@ -1,48 +1,70 @@
-<html>
-<head>
-	<title>New Quiz</title>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
-	<script type="text/javascript" src="../js/quizform.js"></script>
-</head>
-<body>
-
-	<form id="new-quiz" action="/quizzes/newquiz" method="POST">
-
-		<div class="page-1">
-			<input type="text" name="title" placeholder="title">
-			<input type="text" name="description" placeholder="description">
-			<input type="text" name="imgUrl" placeholder="image url">
-
-			<div id="q1" class="q1 active">
-				<input type="text" name="question-1" class="q1" placeholder="question">
-
-				<div id="q1opts" class="q1">
-
-					<input type="text" name="q1opt1" class="q1" placeholder="option 1">
-					<input type="text" name="q1opt2" class="q1" placeholder="option 2">
-					<input type="text" name="q1opt3" class="q1" placeholder="option 3">
-
-				</div><!-- closes #q1opts.q1 -->
-
-				<button id="add-option" class="q1">Add Option</button>
+<% include ../partials/header_partial.ejs %>
 
 
-			</div><!-- closes #q1.q1 -->
+<form id="new-quiz" action="/quizzes/newquiz" method="POST">
 
-		</div><!-- closes .page1 -->
+	<section class="quiz-info">
+
+		<h3>Create Quiz</h3>
+
+		<label for="title">Title</label>
+		<input type="text" name="title" placeholder="title">
+
+		<label for="description">Description</label>
+		<input type="text" name="description" placeholder="description">
+
+		<label for="imgUrl">Image Url</label>
+		<input type="text" name="imgUrl" placeholder="image url">
+
+	</section> <!-- closes #quiz-info -->
 
 
-		<button id="next-page" class="q1">Add Question (Next)</button>
 
-		<section class="results">
-			Results
-		</section>
+	<section class="page-1">
+
+		<h3>Questions</h3>
+
+		<span class="pageNum">1</span>
+
+		<div id="q1" class="q1 active">
 
 
-		<br><br>
-		<button id="add-results">Add Results (Submit)</button>
+			<!-- <label for="question-1">Question 1</label> -->
+			<input type="text" name="question-1" class="q1" placeholder="write your question">
 
-	</form>
+			<div id="q1opts" class="q1">
 
-</body>
-</html>
+				<input type="text" name="q1opt1" class="q1" placeholder="option 1">
+				<input type="text" name="q1opt2" class="q1" placeholder="option 2">
+				<input type="text" name="q1opt3" class="q1" placeholder="option 3">
+				<input type="text" name="q1opt4" class="q1" placeholder="option 4">
+
+			</div><!-- closes #q1opts.q1 -->
+
+			<button id="add-option" class="q1">Add Option</button>
+
+
+		</div><!-- closes #q1.q1 -->
+
+		<button id="next-page" class="q1">Add Question (Next)</button> <!-- might have to move this -->
+
+	</section> <!-- closes .page-1 -->
+
+	<section class="results">
+		<h3>Add Results</h3>
+
+		<button id="add-result">Add Result</button>
+	</section>
+
+
+	<button>Test Button</button>
+
+</form>
+
+
+
+</div><!-- closes #content-container -->
+
+<script type="text/javascript" src="../js/newquizform.js"></script>
+
+<% include ../partials/footer_partial.ejs %>

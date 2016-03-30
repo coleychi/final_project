@@ -1,33 +1,15 @@
 $(document).ready(function() { 
 
+  // SETTINGS
   maxOptions = 8; // sets maximum options per question
   minOptions = 2; // sets minimum options per question
   maxQuestions = 10; // sets maximum questions per quiz
   minResults = 2;
   maxResults = 6;
-  currentPageNum = 1; // current page
+  currentPageNum = 1; // current page starts at 1
+  resultCount = 1; // result count starts at 1
 
   isValid = null;
-
-  $(".results").hide(); // do this in css
-
-  // need callback
-  // var validateForm = function() {
-  //   var isValid = true;
-
-  //   // ensure all formFields are filled
-  //   var $allInputFields = $("input")
-  //   console.log($allInputFields);
-
-  //   $allInputFields.each(function() {
-  //     // console.log($(this).val() === "")
-  //     if ($(this).val() === "") {
-  //       return isValid = false;
-  //     }
-  //   });
-  //   return isValid = true;
-  // }
-
 
   // go to next page
   $(document).on("click", "#next-page", function(event) {
@@ -60,23 +42,27 @@ $(document).ready(function() {
 
     // if(isValid) {
 
-      // hide current page
-      $currentPage.hide();
+      // // hide current page
+      // $currentPage.hide();
       // $(".page-" + pageNum).hide();
 
       // remove #next-page button from DOM
-      $nextPageButton = $("#next-page.q1");
-      $nextPageButton.remove();
 
+      if (!$currentPage === 1) {
+        $nextPageButton = $("#next-page.q1");
+        $nextPageButton.hide();
+      }
 
-
-      console.log(isValid)
       // console.log(isValid)
+      console.log(isValid)
 
-      // if nextPage is less than maxQuestions limit, generate new question field
+      // if nextPage is less than maxQuestions limit, generate new question div
       if (nextPageNum <= maxQuestions) {
 
-        // if the next page exists, show the page
+        // hide current page
+        $currentPage.hide();
+
+        // if the next page already exists, show the page
         if ($nextPage.length) {
           console.log("it exists");
           $nextPage.show();
@@ -97,11 +83,20 @@ $(document).ready(function() {
           // }); // sets attributes
           // $nextPageDiv.insertAfter($currentPage); // add to page
 
-          $nextPageDiv = $("<div></div>").attr({
+          // create section
+          $nextPageSection = $("<section></section>").attr({
             class: "page-" + nextPageNum
           }).insertAfter($currentPage);
 
           currentPageNum = nextPageNum; // change the page number
+
+          // create header 
+          $qHeader = $("<h3>Questions</h3>").appendTo($nextPageSection);
+
+          // create span to display question number
+          $pageNumSpan = $("<span></span>").attr({
+            class: "pageNum"
+          }).text(currentPageNum).appendTo($nextPageSection);
 
           addQuestion();
 
@@ -114,6 +109,7 @@ $(document).ready(function() {
     // }; // closes if isValid
 
   }); // closes #next-page click function
+
 
 
   // go to previous page -- THIS NEEDS TO BE RE-WRITTEN/RE-FACTORED
@@ -207,6 +203,7 @@ $(document).ready(function() {
   }; // closes addQuestion function
 
 
+
   // add options
   $(document).on("click", "#add-option", function() {
 
@@ -215,9 +212,10 @@ $(document).ready(function() {
     console.log("current page ", currentPageNum);
 
     $optionsDiv = $("#q" + currentPageNum + "opts");
-    var optCount = ($("#q" + currentPageNum + "opts > input").length)
+    var optCount = ($("#q" + currentPageNum + "opts > input").length); // number of option input fields in question
     console.log(optCount);
 
+    // check that current option count is less than max options
     if (optCount < maxOptions) {
 
       $newInput = $("<input>");
@@ -236,114 +234,90 @@ $(document).ready(function() {
 
 
   // add results
-  $(document).on("click", "#add-results", function() {
+  var addResults = function() {
+
+    $addResultButton = $("#add-result");
+
+    // create div to contain all fields related to result
+    $oneResultDiv = $("<div></div>").addClass("one-result");
+
+    // create left-side div for title and img inputs
+    $resultLeftDiv = $("<div></div>").addClass("result-left left").appendTo($oneResultDiv);
+
+    // create right-side div for description textarea
+    $resultRightDiv = $("<div></div>").addClass("result-right right").appendTo($oneResultDiv);
+
+    // create input fields
+    $titleInput = $("<input>");
+    $titleInput.attr({
+      type: "text",
+      name: "result-" + resultCount,
+      class: "r" + resultCount,
+      placeholder: "result heading"
+    });
+
+    $imgInput = $("<input>");
+    $imgInput.attr({
+      type: "text",
+      name: "res" + resultCount + "imgUrl",
+      class: "r" + resultCount,
+      placeholder: "img url"
+    });
+
+    $descriptionInput = $("<textarea></textarea>");
+    $descriptionInput.attr({
+        type: "text",
+        name: "res" + resultCount + "description",
+        class: "r" + resultCount,
+        placeholder: "description"
+    });
+
+
+    $titleInput.appendTo($resultLeftDiv);
+    $imgInput.appendTo($resultLeftDiv);
+    $descriptionInput.appendTo($resultRightDiv);
+
+    // $oneResultDiv.appendTo(".results");
+
+    $oneResultDiv.insertBefore($addResultButton);
+
+    // create result label span
+    $resultLabelSpan = $("<span></span>").addClass("result-label").text("Result " + resultCount);
+
+    $resultLabelSpan.insertBefore($oneResultDiv);
+
+    // add hr
+    if (resultCount > 1) {
+      $hrBreak = $("<hr>");
+      $hrBreak.insertBefore($resultLabelSpan)
+    }
+
+    // update result count
+    resultCount = resultCount + 1;
+
+  }; // closes addResults function
+
+
+  // add min result fields
+  for (var i = 0; i < minResults; i++) {
+    addResults();
+  };
+
+
+  $(document).on("click", "#add-result", function() {
 
     event.preventDefault();
 
-    // hide current page
-    console.log(currentPageNum); // confirms currentPageNum var accessible
+    // console.log("sup");
 
-    $currentPage = $(".page-" + currentPageNum); 
-    $currentPage.hide(); // hides fields on current page
+    // create new result field if count does not exceed max
+    if (resultCount <= maxResults) {
+      addResults();
+    };
 
-    $("#next-page").remove(); // hides #next-page button
-    $("#add-results").hide(); // hides #add-results button
-
-    // show results section
-    $resultsSection = $(".results"); // accesses .results div
-    $resultsSection.show(); // show results
-
-    // create new div for each result (mini-forms)
-    for (var i = 1; i < minResults + 1; i++) {
-
-      $addResultDiv = $("<div></div>"); // create div to contain inputs related to result
-      $addResultDiv.attr({
-        id: "r" + i
-      }); // set attribute
-      $addResultDiv.appendTo($resultsSection); // append to page
-
-      // create input fields
-      $titleInput = $("<input>");
-      $titleInput.attr({
-        type: "text",
-        name: "result-" + i,
-        class: "r" + i
-      });
-
-      $descriptionInput = $("<input>");
-      $descriptionInput.attr({
-        type: "text",
-        name: "res" + i + "description",
-        class: "r" + i
-      });
-
-      $imgInput = $("<input>");
-      $imgInput.attr({
-        type: "text",
-        name: "res" + i + "imgUrl",
-        class: "r" + i
-      });
-
-      $titleInput.appendTo($addResultDiv);
-      $descriptionInput.appendTo($addResultDiv);
-      $imgInput.appendTo($addResultDiv);
-
-
-      // $resultInput = $("<input>");
-      // $resultInput.attr({
-      //   type: "text",
-      //   name: "result" + i,
-      //   placeholder: "result " + i
-      // });
-
-      // $resultInput.appendTo($resultsDiv);
-
-    }; // closes for loop 
-
-    $addResultButton = $("<button>Add Result</button>");
-    $addResultButton.attr({
-      id: "add-result-field"
-    });
-    $addResultButton.appendTo($resultsSection);
-
-
-    // submit button
-    $submitButton = $("<button>Submit</button>");
-    $submitButton.attr({
-      id: "submit-quiz"
-    });
-    $submitButton.appendTo($resultsSection);
-
-
-  }); // closes #add-results function
-
-  // // add another result
-  // $(document).on("click", "#add-result-field", function() {
-
-  //   event.preventDefault();
-  //   console.log("test");
-
-  //   $resultsDiv = $(".results");
-
-  //   var resultsCount = $(".results > input").length;
-  //   console.log(resultsCount);
-
-  //   if (resultsCount < maxResults) {
-
-  //     $newInput = $("<input>");
-  //     $newInput.attr({
-  //       type: "text",
-  //       name: "result" + (resultsCount + 1),
-  //       placeholder: "result " + (resultsCount + 1)
-  //     });
-
-  //     $newInput.insertBefore("#add-result-field");
-
-  //   }; // closes if resultsCount < maxResults
-
-  // }); // closes #add-result-field
-
-
+  }); // closes #add-option click function
 
 
 }); // closes document.ready
+
+
