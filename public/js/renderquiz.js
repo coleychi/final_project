@@ -145,8 +145,9 @@ $(document).ready(function() {
 
       // });
 
-      // var div = $(".q" + i);
-      $(".q-" + i + " .option").click(clickEvent(i))
+      // var div = $(".q" + i); 
+      // adds click event
+      $(".q-" + i + " .option").click(clickEvent(i)) // jquery selector needs to be equal to the quiz parent
 
       // div.addEventListener("click", function() {
       //   console.log("hi")
@@ -161,7 +162,7 @@ $(document).ready(function() {
     return function() {
 
       // remove class if it exists
-      $(".q-" + i + " .option").removeClass("selected");
+      $(".q-" + i + " .option").removeClass("selected"); // jquery selector needs to be equal to the quiz parent
 
       console.log($(this))
 

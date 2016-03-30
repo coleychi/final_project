@@ -1,4 +1,13 @@
-<% include ../partials/header_partial.ejs %>
+<html>
+<head>
+	<title>Quiz Data</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+	<script type="text/javascript" src="../js/renderquiz.js"></script>
+</head>
+<body>
+<h1>Quiz-- Show.ejs </h1>
+
+
 
 <div id="quiz-container">
 	<% for (var i = 0; i < quiz.questions.length; i++) { %>
@@ -35,8 +44,6 @@
 
 
 
-</div><!-- closes #content-container -->
 
-<script type="text/javascript" src="../js/renderquiz.js"></script>
-
-<% include ../partials/footer_partial.ejs %>
+</body>
+</html>
