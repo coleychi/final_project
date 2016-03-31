@@ -264,10 +264,10 @@ $(document).ready(function() {
       // if there are 2 results
       case 2:
         if (userPoints < (minCount + interval)) {
-          userResult = results[0]
+          userResult = results[0];
           console.log(results[0]);
         } else {
-          userResult = results[1]
+          userResult = results[1];
           console.log(results[1]);
         };
         break;
@@ -275,10 +275,13 @@ $(document).ready(function() {
       // if there are 3 results
       case 3:
         if (userPoints < (minCount + interval)) {
+          userResult = results[0];
           console.log(results[0]);
         } else if (userPoints < (minCount + (interval * 2))) {
+          userResult = results[1];
           console.log(results[1]);
         } else {
+          userResult = results[2];
           console.log(results[2]);
         };
         break;
@@ -303,14 +306,19 @@ $(document).ready(function() {
       // if there are 5 results
       case 5:
         if (userPoints < (minCount + interval)) {
+          userResult = results[0];
           console.log(results[0]);
         } else if (userPoints < (minCount + (interval * 2))) {
+          userResult = results[1];
           console.log(results[1]);
         } else if (userPoints < (minCount + (interval * 3))) {
+          userResult = results[2];
           console.log(results[2]);
         } else if (userPoints < (minCount + (interval * 4))) {
+          userResult = results[3];
           console.log(results[3]);
         } else {
+          userResult = results[4];
           console.log(results[4]);
         };
         break;
@@ -318,16 +326,22 @@ $(document).ready(function() {
       // if there are 6 results
       case 6:
         if (userPoints < (minCount + interval)) {
+          userResult = results[0];
           console.log(results[0]);
         } else if (userPoints < (minCount + (interval * 2))) {
+          userResult = results[1];
           console.log(results[1]);
         } else if (userPoints < (minCount + (interval * 3))) {
+          userResult = results[2];
           console.log(results[2]);
         } else if (userPoints < (minCount + (interval * 4))) {
+          userResult = results[3];
           console.log(results[3]);
         } else if (userPoints < (minCount + (interval * 5))) {
+          userResult = results[4];
           console.log(results[4]);
         } else {
+          userResult = results[5];
           console.log(results[5]);
         };
         break;
