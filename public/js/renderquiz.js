@@ -63,7 +63,7 @@ $(document).ready(function() {
   });
 
 
-  // ajax call to server-- returns quiz datas in json
+  // ajax call to server-- returns quiz data in json
   $.ajax({
     url: "/quizzes/getjson/" + quizId, 
     method: "GET"
@@ -94,7 +94,8 @@ $(document).ready(function() {
         console.log("quiz complete");
         console.log("results loop: ", userData.results[i])
         quizTaken = true;
-        userResult = userData.results[i]; // save userData to results
+        // save userData to results
+        userResult = userData.results[i]; // result user has saved
         break; // exit out of loop if condition is met
 
       }; 
@@ -104,7 +105,7 @@ $(document).ready(function() {
 
     // if quiz has been taken already, hide quiz 
     if (quizTaken) {
-      // hideQuiz(); 
+      hideQuiz(); 
     };
 
   };
@@ -119,6 +120,7 @@ $(document).ready(function() {
     $("#quiz-container").hide(); // maybe just make everything transparent
 
     // display result
+    // removeResult()
     displayResult(); // invoke displayResult function to show user's result
 
   };
@@ -181,15 +183,31 @@ $(document).ready(function() {
       // when every question has been answered, generate result
       if (selections.length === quizData.questions.length) {
         console.log("quiz is complete");
+
+        // empty content in results container-- removes existing result if present
+        $("#result-container").empty(); // maybe this should be animated
+
         evaluateResult();
+
       }; // closes if statement
 
     }; // closes return function
 
   }; // closes clickEvent
 
+
+
   // evaluates result
   var evaluateResult = function() {
+
+    // // remove previous result if it exists before evaluating new result
+    console.log("quizTaken: ", quizTaken);
+
+    console.log("evaluate result, userdata: ", userData)
+
+    // if (quizTaken) {
+    //   removeResult();
+    // }; // cant access quiz taken from here
 
     var results = quizData.results; // number of possible results
     console.log("results: ", results); // returns array of result objects
@@ -330,9 +348,13 @@ $(document).ready(function() {
   }; // closes evaluateResult function
 
 
+  // display result outcome below quiz and submit result to server
   var displayResult = function() {
 
-    console.log(userResult);
+    console.log("user result: ", userResult);
+    resultId = userResult._id;
+    console.log("quiz taken:", quizTaken)
+    console.log("user id: ", userId)
 
     $resultContainer = $("#result-container");
 
@@ -343,6 +365,29 @@ $(document).ready(function() {
 
     $resultContainer.show();
 
+    // // if quiz has been taken, remove existing result from user model
+    // if (quizTaken) { // putting it here will remove it right away
+    //   // console.log("display result: ", userId);
+    //   // console.log("display result userData: ", userData);
+    //   // console.log("result id: ", userResult._id);
+    //   console.log("result id: ", resultId);
+
+    //   $.ajax({
+    //     url: "/users/deleteresult/" + resultId,
+    //     method: "PUT"
+    //     // success function
+    //     }).then(function(err, data) {
+    //       console.log("GOT HERE")
+    //       console.log(data)
+    //     // error function
+    //     }, function(err, data) {
+
+    //   }); 
+
+    // }; // closes if statement
+    console.log("user id", userId)
+    
+
     // push to user's results if user logged in
     if (userId) {
       
@@ -352,22 +397,60 @@ $(document).ready(function() {
         data: userResult
 
         // success function
-        }).then(function(data) {
+        }).then(function(err, data) {
           console.log(data);
 
         // error function
-        }, function(error) {
-          console.log(error);
+        }, function(err, data) {
+          console.log(err);
       });
 
     }; // closes if statement
 
 
+    // add button to retake quiz
+    $retakeQuiz = $("<button id='retake-quiz'>Retake Quiz</button>");
+    $retakeQuiz.appendTo($resultContainer);
 
   }; // closes displayResult function
 
 
+  // retake quiz
+  $(document).on("click", "#retake-quiz", function(event) {
+    
+    $("#quiz-container").show(); // display quiz
+    // $("#")
 
+    // console.log("userId: ", userId);
+    // console.log("user data: ", userData);
+    // console.log("resultId: ", resultId);
+
+    removeResult(); // putting this here removes the result as soon as the user clicks
+    userResult = {}; // clears result variable
+    $("#result-container").empty().hide(); // hides result container
+    $(".selected").removeClass("selected"); // removes selected class from options
+
+
+  });
+
+
+  // delete result from user array
+  var removeResult = function() {
+    console.log("Remove Result");
+    console.log("userId: ", userId);
+    // console.log("user data: ", userData);
+    console.log("resultId: ", resultId);
+
+    $.ajax({
+      url: "../users/deleteresult/" + resultId,
+      method: "PUT"
+      }).then(function(err, data) {
+        console.log("data: ", data)
+      }, function(err, data) {
+        console.log("error: ", err)
+      })
+
+  }; // closes removeResult function
 
 
 

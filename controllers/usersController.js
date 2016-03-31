@@ -67,7 +67,7 @@ router.put("/pushresult/:user_id", function(req, res) {
 });
 
 
-// REMOVE RESULT
+// // REMOVE RESULT-- from profile
 router.put("/deleteresult/:result_id", function(req, res) {
   var resultId = req.params.result_id;
   console.log("req.user: ", req.user); // confirms req.user accessible
@@ -79,7 +79,22 @@ router.put("/deleteresult/:result_id", function(req, res) {
 
     res.redirect(req.get("referer"));
   });
+});
 
+// REMOVE RESULT
+router.delete("/deleteresult/:result_id", function(req, res) {
+  console.log("/DELETERESULT/:RESULT_ID ROUTE")
+  var resultId = req.params.result_id;
+  console.log("req.user: ", req.user); // confirms req.user accessible
+
+  // find user and remove result from results array
+  User.findByIdAndUpdate(req.user._id, {$pull: {
+    results: {_id: resultId}}}, {new: true}, function(err, user) {
+      console.log("updated user: ", user); // confirms updated user
+
+      res.send("DONE!")
+    // res.redirect(req.get("referer"));
+  });
 });
 
 
