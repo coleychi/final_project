@@ -16,7 +16,8 @@ router.get("/", function(req, res) {
 // SIGNUP
 router.post("/signup", passport.authenticate("local-signup", { 
   failureRedirect: "/failedfailed"}), function(req, res) {
-  res.send(req.user); // checks that data persists
+  // res.send(req.user); // checks that data persists
+  res.redirect("/quizzes"); // should this be to profile?
 }); 
 
 
@@ -34,7 +35,7 @@ router.get("/logout", function(req, res) {
   req.logout();
   req.session.destroy(function(err) {
     res.clearCookie('connect.sid');
-    console.log("session ended")
+    console.log("session ended");
     res.redirect("/quizzes");
   });
 });

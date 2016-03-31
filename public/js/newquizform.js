@@ -53,6 +53,8 @@ $(document).ready(function() {
         $nextPageButton.hide();
       }
 
+      // console.log("")
+
       // console.log(isValid)
       console.log(isValid)
 

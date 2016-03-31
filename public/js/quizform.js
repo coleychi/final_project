@@ -35,17 +35,6 @@ $(document).ready(function() {
     event.preventDefault();
 
     // nextPage();
-    // $("input").each(function(n,element){ 
-    //   if ($element).val() == "") {
-    //     alert("there are blank fields");
-    //     return false;
-    //   } else {
-    //     console.log("continue")
-    //   }
-    // });
-
-    console.log($("input").val())
-
 
     var nextPageNum = currentPageNum + 1;
     // console.log(nextPageNum); // confirms addition is correct
