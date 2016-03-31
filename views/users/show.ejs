@@ -22,7 +22,7 @@ Results See All
 	<% } %>
 
 
-	<div class="result-block grow">
+<!-- 	<div class="result-block grow">
 			<b>Result block 1</b>
 			<p>a a a</p>
 	</div>
@@ -45,7 +45,7 @@ Results See All
 
 	<div class="result-block a grow">
 		<b>Result block 5</b>
-	</div>
+	</div> -->
 
 </section>
 
@@ -65,40 +65,8 @@ Quizzes-- see all
 
 
 
-<br><br><br>
-<%#= user %>
-<br><br>
-<%= user %>
-
-<br><br>
-
-<!-- display all results -->
-<% for (var i = 0; i < user.results.length; i++) { %>
-
-	<%#= user.results[i] %> <br>
-
-	<a href="/quizzes/<%= user.results[i].quizId %>"><%= user.results[i].quizTitle %></a><br>
-	<b><%= user.results[i].title %></b><br>
-	<%= user.results[i].description %><br>
-
-	<b>Only show if logged in user is owner of profile</b><br>
-	<form action="/users/deleteresult/<%= user.results[i].id %>?_method=PUT" method="POST">
-		<button>Remove</button>
-	</form>
-
-<% } %>
-
-<!-- quizzes written -->
-<%#= user.quizzesWritten %>
-
-<% for (var i = 0; i < user.quizzesWritten.length; i++ ) { %>
-
-	<a href="/quizzes/<%= user.quizzesWritten[i].id %>"><%= user.quizzesWritten[i].title %></a>
-
-<% } %>
-
-
 </div><!-- closes #content-container -->
+
 
 Logged in user: <%= locals.username %>
 

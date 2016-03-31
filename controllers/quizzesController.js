@@ -49,6 +49,7 @@ router.post("/newquiz", isLoggedIn, function(req, res) {
     title: formData.title,
     author: req.user.username,
     authorId: req.user._id,
+    authorIconUrl: req.user.iconUrl,
     description: formData.description,
     imgUrl: formData.imgUrl 
     // req.user to save user id and username to instance

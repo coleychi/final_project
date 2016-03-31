@@ -11,6 +11,7 @@ var quizSchema = new mongoose.Schema({
   title: {type: String, required: true},
   author: {type: String}, // saves username
   authorId: {type: String},
+  authorIconUrl: {type: String},
   description: {type: String, required: true},
   imgUrl: {type: String},
   timestamp: {type: Date, default: Date.now},

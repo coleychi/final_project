@@ -4,7 +4,8 @@
 	<div class="row">
 
 		<div class="index-left left">
-			<img src="http://www.newhealthadvisor.com/images/1HT02932/ice%20cream.jpg" class="quiz-thumb">
+			<img src="<%= quizzes[i].imgUrl %>" class="quiz-thumb">
+			<!-- <img src="http://www.newhealthadvisor.com/images/1HT02932/ice%20cream.jpg" class="quiz-thumb"> -->
 		</div>
 
 		<div class="index-right right">
@@ -27,21 +28,7 @@
 
 <!-- <button id="load-more">Load More</button> -->
 
-<br><br>
 
-
-
-
-<a href="/quizzes/new">Add Quiz</a><br><br>
-
-<% for (var i = 0; i < quizzes.length; i++) { %>
-
-	<a href="/quizzes/<%= quizzes[i].id %>"><%= quizzes[i].title %></a><br>
-	By <a href="/users/profile/<%= quizzes[i].authorId %>"><%= quizzes[i].author %></a>
-
-	<br><br>
-
-<% } %>
 
 
 
