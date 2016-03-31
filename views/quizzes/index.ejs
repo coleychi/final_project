@@ -1,5 +1,5 @@
 <% include ../partials/header_partial.ejs %>
-<div>
+
 <% for (var i = 0; i < quizzes.length; i++) { %>
 	<div class="row">
 
@@ -11,7 +11,7 @@
 			<h2><a href="/quizzes/<%= quizzes[i].id %>"><%= quizzes[i].title %></a></h2>
 			<p><%= quizzes[i].description %></p>
 			<div class="bottom-bar">
-				sdfl
+				<a href="/users/profile/<%= quizzes[i].authorId %>"><%= quizzes[i].author %></a> <i class="fa fa-clock-o"></i><%= moment(quizzes[i].timestamp).fromNow() %>
 			</div>
 		</div>
 
@@ -24,6 +24,10 @@
 
 	</div> <!-- closes row -->
 <% } %>
+
+<!-- <button id="load-more">Load More</button> -->
+
+<br><br>
 
 
 
@@ -46,6 +50,6 @@
 
 </div><!-- closes #content-container -->
 
-<!-- SCRIPTS GO DOWN HERE -->
+<!-- <script type="text/javascript" src="../js/quizindex.js"></script> -->
 
 <% include ../partials/footer_partial.ejs %>

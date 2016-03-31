@@ -4,6 +4,7 @@ var AWS = require("aws-sdk");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var methodOverride = require("method-override");
+var moment = require("moment");
 var mongoose = require("mongoose");
 var morgan = require("morgan");
 var passport = require("passport");
@@ -85,6 +86,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// require moment
+app.locals.moment = require("moment");
+
 // set global variable equal to boolean value of user state (logged in/not logged in)
 app.use(function(req, res, next) {
   res.locals.login = req.isAuthenticated(); // returns boolean
@@ -102,6 +106,11 @@ app.use(function(req, res, next) {
 
   next();
 });
+
+// // ejs filter
+// ejs.filters.timeFromNow = function(date) {
+//   return moment(date).fromNow();
+// }
 
 
 // root

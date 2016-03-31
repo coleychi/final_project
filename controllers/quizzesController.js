@@ -6,7 +6,6 @@ var Question = require("../models/question.js");
 var User = require("../models/user.js");
 var Result = require("../models/result.js");
 
-
 // ROUTES
 // TEST ROUTE
 router.get("/testroute", function(req, res) {
@@ -90,6 +89,22 @@ router.get("/:quiz_id", function(req, res) {
   });
 
 });
+
+
+// DELETE QUIZ-- needs to delete the quiz, pull it from the authors array, delete all associated questions 
+// and responses, and pull results from array of all users who have taken it
+router.delete("/deletequiz/:quiz_id", function(req, res) {
+  // console.log("DELETEQUIZ ROUTE HIT!");
+
+  Quiz.findByIdAndRemove(req.params.quiz_id, function(err, quizData) {
+    // console.log(quizData);
+    // res.redirect("/quizzes");
+    // res.json("deletesuccessful")
+
+  });
+
+});
+
 
 
 // GETJSON/:QUIZ_ID-- send quiz data as json

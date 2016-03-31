@@ -455,6 +455,26 @@ $(document).ready(function() {
 
 
 
+
+
+
+  // DELETE ENTIRE QUIZ
+  $(document).on("click", "#delete-quiz", function(event) {
+    // console.log("click");
+
+    $.ajax({
+      url: "../quizzes/deletequiz/" + quizId,
+      method: "DELETE"
+      }).then(function(err, data) {
+        // window.location.replace("/quizzes");
+      }, function(err, data) {
+        console.log("error: ", err)
+      })
+
+  });
+
+
+
 }); // closes document.ready
 
 
