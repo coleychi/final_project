@@ -44,7 +44,7 @@ $(document).ready(function() {
   var generateSignup = function() {
     // create login form and append to popup 
     $signupForm = $("<form></form>").attr({
-      action: "../users/signup",
+      action: "/users/signup",
       method: "POST",
       class: "auth-form"
       }).insertBefore($cancelButton);
@@ -82,7 +82,7 @@ $(document).ready(function() {
   var generateLogin = function() {
     // create login form and append to popup 
     $loginForm = $("<form></form>").attr({
-      action: "../users/login",
+      action: "/users/login",
       method: "POST",
       class: "auth-form"
       }).insertBefore($cancelButton);

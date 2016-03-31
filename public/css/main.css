@@ -130,6 +130,7 @@ h1 a {
 	background-color: #000000;
 	opacity: 0.85;
 	overflow: auto;
+	z-index: 1;
 }
 
 .popup {
@@ -140,6 +141,7 @@ h1 a {
 	left: 35%;
 	background-color: #ffffff;
 	border-radius: 5px;
+	z-index: 2;
 }
 
 #closePopup {
@@ -659,4 +661,81 @@ div[id*="opts"]:after {
 	padding: 0.75em 0;
 	width: 30%;
 }
+
+
+
+/* USER PROFILE */
+.profile-section-container {
+	width: 85%;
+	background-color: #ffffff;
+	padding: 1em;
+	margin: 0 auto 1em;	
+}
+
+#profile-info-container {
+	width: 85%;
+	background-color: #ffffff;
+	padding: 1em;
+	margin: 0 auto 1em;
+}
+
+#profile-info-content {
+	width: 70%;
+	/*background-color: red;*/
+	margin: 0 auto;
+}
+
+#result-tiles-container {
+	width: 85%;
+	margin: auto;
+	background-color: #ffffff;
+	padding: 0.75em;
+	padding-bottom: 0.25em;
+	margin-bottom: 1em; /* match profile-section-container */
+}
+
+.result-block {
+	width: 19.2%; /* 96 % 5 */
+	margin-right: 1%;
+	margin-bottom: 1%;
+	height: 8.5em;
+	padding: 0.75em;
+	float: left;
+	background-color: red;
+}
+
+#result-tiles-container .result-block:nth-child(5n) {
+	margin-right: 0%;
+	/*background-color: yellow;*/
+	/*width: 32.667%;*/
+	/*margin-left: 1%;*/
+}
+
+.result-block b {
+	display: block;
+	color: #ffffff;
+	font-family: "Helvetica";
+	font-size: 1.2em;
+	margin-bottom: 0.5em;
+}
+
+.result-block p {
+	font-size: 0.8em;
+	font-family: "helvetica";
+}
+
+.a {
+	background-color: blue;
+}
+
+#result-tiles-container:after {
+	content: "";
+	display: table;
+	clear: both;
+} /* clear float */
+
+
+/* TRANSITIONS */
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.05); }
 

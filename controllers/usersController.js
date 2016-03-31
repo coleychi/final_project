@@ -32,7 +32,11 @@ router.post("/login", passport.authenticate("local-login", {
 // LOGOUT
 router.get("/logout", function(req, res) {
   req.logout();
-  res.redirect("/users");
+  req.session.destroy(function(err) {
+    res.clearCookie('connect.sid');
+    console.log("session ended")
+    res.redirect("/quizzes");
+  });
 });
 
 

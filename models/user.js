@@ -7,8 +7,8 @@ var resultSchema = require("./result.js").schema;
 
 // SCHEMA
 var userSchema = new mongoose.Schema({
-  username: {type: String, required: true, unique: true, lowercase: true},
-  email: {type: String, required: true, unique: true},
+  username: {type: String, required: true, lowercase: true},
+  email: {type: String, required: true},
   password: {type: String, required: true},
   // quizzesWritten: [{type: String}]
   quizzesWritten: [quizSchema],

@@ -9,7 +9,7 @@ var morgan = require("morgan");
 var passport = require("passport");
 var session = require("express-session");
 
-var MongoStore = require("connect-mongo")(session);
+// var MongoStore = require("connect-mongo")(session);
 
 var mongoUri = process.env.MONGOLAB_URI || "mongodb://localhost:27017/final_project"
 var port = process.env.PORT || 3000;
@@ -72,15 +72,16 @@ app.use(methodOverride("_method"));
 app.use(morgan("dev"));
 
 // configure passport sessions
-app.use(session({ 
-  secret: "secretsecret",
-  store: new MongoStore({
-    url: mongoUri,
-    autoRemove: "native"
-  }),
-  resave: true,
-  saveUninitialized: true
-}));
+app.use(session({secret: "secretsecret"}))
+// app.use(session({ 
+//   secret: "secretsecret",
+//   store: new MongoStore({
+//     url: mongoUri,
+//     autoRemove: "native"
+//   }),
+//   resave: true,
+//   saveUninitialized: true
+// }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -93,10 +94,12 @@ app.use(function(req, res, next) {
 // set gloabl variable equal to user if user is logged in (user object accessible on every ejs page)
 app.use(function(req, res, next) {
   if (req.isAuthenticated()) {
+    console.log("server.js, req.user: ", req.user)
     res.locals.user = req.user; // entire user object (can't access keys using dot notation on other ejs pages?)
-  } else {
-    res.locals.user = {}; // set to empty object if user is not logged in
-  };
+  } 
+  // else {
+  //   res.locals.user = {}; // set to empty object if user is not logged in
+  // };
 
   next();
 });
@@ -104,7 +107,7 @@ app.use(function(req, res, next) {
 
 // root
 app.get("/", function(req, res) {
-  res.send("hello");
+  res.redirect("/quizzes");
 });
 
 

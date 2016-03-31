@@ -10,18 +10,9 @@
 
 <header>
 	<nav>
-	<div class="page-links">
-		<a href="/quizzes">Quizzes</a> | <a href="/quizzes/new">New</a>
-	</div>
-<!-- 		<ul>
-			<li><a href="/quizzes">Quizzes</a></li>
-			<% if (locals.login) { %>
-				<li><a href="/users/profile/<%= locals.user.id %>">Profile</a></li>
-			<% } else { %>
-				<li><a href="#" id="signup">Profile</a></li>
-			<% } %>
-			<li><a href="/quizzes/new">Add Quiz</a></li>
-		</ul> -->
+		<div class="page-links">
+			<a href="/quizzes">Quizzes</a> | <a href="/quizzes/new">New</a>
+		</div>
 
 		<div class="login">
 			<% if (!locals.login) { %>
@@ -32,6 +23,7 @@
 				<a href="/users/profile/<%= locals.user.id %>"><%= locals.user.username %></a> | <a href="/users/logout">Logout</a>
 			<% } %>
 		</div>
+
 	</nav>
 
 	<h1><a href="/quizzes">Quiz Quiz</a></h1>
