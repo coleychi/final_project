@@ -10,6 +10,7 @@ var userSchema = new mongoose.Schema({
   username: {type: String, required: true, lowercase: true},
   email: {type: String, required: true},
   password: {type: String, required: true},
+  iconUrl: {type: String, required: true, default: "http://i.imgur.com/tbOFv.png"},
   // quizzesWritten: [{type: String}]
   quizzesWritten: [quizSchema],
   results: [resultSchema] // should be able to use this to access the quizzes user has already taken
