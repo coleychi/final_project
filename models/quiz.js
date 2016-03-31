@@ -88,7 +88,7 @@ quizSchema.methods.createQuestions = function(formData) {
 
   }; // closes questionKeys for loop 
 
-  newQuiz.save(function(err, data) {
+  newQuiz.update(function(err, data) {
     console.log("NEW QUIZ UPDATE LINE 94")
     console.log(newQuiz)
   }); // save changes to new quiz
@@ -139,8 +139,8 @@ quizSchema.methods.createResults = function(formData) {
     // create new result
     var newResult = new Result({
       title: formData[thisResult[0]],
-      description: formData[thisResult[1]],
-      imgUrl: formData[thisResult[2]],
+      imgUrl: formData[thisResult[1]],
+      description: formData[thisResult[2]],
       quizTitle: newQuiz.title,
       quizId: newQuiz.id
     });
