@@ -220,6 +220,7 @@ h1 a {
 	/*background-color: red;*/
 	background-color: #ffffff;
 	padding: 0.75em;
+	/*position: relative;*/
 }
 
 #quiz-info .left {
@@ -229,8 +230,22 @@ h1 a {
 }
 
 #quiz-info .right {
-	width: 87.5%;
+	width: 81.5%;
+	margin-right: 1%;
 	/*background-color: blue;*/
+}
+
+#quiz-info .side-panel {
+	width: 5%;
+	float: left;
+	/*background-color: yellow;*/
+}
+
+.side-panel li, .side-panel li a {
+	list-style: none;
+	text-align: center;
+	color: #d3d3d3;
+	cursor: pointer;
 }
 
 #quiz-info span a {
@@ -281,6 +296,8 @@ h1 a {
 	margin-top: 0.3em;
 	/*background-color: pink;*/
 }
+
+
 
 #quiz-container {
 	width: 70%;
