@@ -2,6 +2,7 @@
 <head>
 	<title>QuizQuiz</title>
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
 	<script type="text/javascript" src="/js/authforms.js"></script>
 </head>
@@ -9,13 +10,17 @@
 
 <header>
 	<nav>
+<!-- 	<div class="page-links">
+		<a href="/quizzes">Quizzes</a> | <a href="/quizzes/new">New</a>
+		</div> -->
 <!-- 		<ul>
-			<li><a href="#">Quizzes</a></li>
+			<li><a href="/quizzes">Quizzes</a></li>
 			<% if (locals.login) { %>
-				<li><a href="#">Profile</a></li>
+				<li><a href="/users/profile/<%= locals.user.id %>">Profile</a></li>
+			<% } else { %>
+				<li><a href="#" id="signup">Profile</a></li>
 			<% } %>
-			<li><a href="#">Link-1</a></li>
-			<li><a href="#">Link-2</a></li>
+			<li><a href="/quizzes/new">Add Quiz</a></li>
 		</ul> -->
 
 		<div class="login">
@@ -30,10 +35,11 @@
 	</nav>
 
 	<h1><a href="/quizzes">Quiz Quiz</a></h1>
+
+	<!-- <a href="#">Link</a> <a href="#">Another</a> -->
+
 </header>
 
 <div id="content-container">
-
-
 
 
