@@ -1,5 +1,33 @@
 <% include ../partials/header_partial.ejs %>
 
+<% for (var i = 0; i < quizzes.length; i++) { %>
+	<div class="row">
+
+		<div class="index-left left">
+			<img src="http://www.newhealthadvisor.com/images/1HT02932/ice%20cream.jpg" class="quiz-thumb">
+		</div>
+
+		<div class="index-right right">
+			<h2><a href="/quizzes/<%= quizzes[i].id %>"><%= quizzes[i].title %></a></h2>
+			<p><%= quizzes[i].description %></p>
+			<div class="bottom-bar">
+				sdfl
+			</div>
+		</div>
+
+		<!-- panel will have edit and delete buttons for user -->
+		<!-- <div class="panel">
+			dsf<br>
+			dsf
+		</div> -->
+
+
+	</div> <!-- closes row -->
+<% } %>
+
+
+
+
 <a href="/quizzes/new">Add Quiz</a><br><br>
 
 <% for (var i = 0; i < quizzes.length; i++) { %>
