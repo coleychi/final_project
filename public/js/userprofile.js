@@ -1,1 +1,7 @@
-console.log("sup")
+$(document).ready(function() {
+
+
+
+
+
+}); // closes document ready

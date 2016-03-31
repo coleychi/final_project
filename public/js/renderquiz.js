@@ -73,6 +73,7 @@ $(document).ready(function() {
       quizData = data; // saves to global scope
       onSuccess(data); // uses success callback function
       // configureResult();
+      $("#quiz-container").removeClass("hide");
 
     // error function
     }, function(error) {

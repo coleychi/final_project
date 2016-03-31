@@ -12,19 +12,19 @@
 Results See All
 <section id="result-tiles-container">
 <!-- display all results -->
-<% for (var i = 0; i < user.results.length; i++) { %>
+	<% for (var i = 0; i < user.results.length; i++) { %>
+		<div class="result-block grow">
+			<b><%= user.results[i].title %></b>
+			<p><%= user.results[i].description %></p>
+			<a href="/quizzes/<%= user.results[i].quizId %>"><%= user.results[i].quizTitle %></a>
+		</div>
+
+	<% } %>
+
+
 	<div class="result-block grow">
-		<b><%= user.results[i].title %></b>
-		<p><%= user.results[i].description %></p>
-		<a href="/quizzes/<%= user.results[i].quizId %>"><%= user.results[i].quizTitle %></a>
-	</div>
-
-<% } %>
-
-
-	<div class="result-block grow">
-		<b>Result block 1</b>
-		<p>Blah blah blah blah</p>
+			<b>Result block 1</b>
+			<p>a a a</p>
 	</div>
 
 	<div class="result-block a grow">
@@ -52,6 +52,14 @@ Results See All
 Quizzes-- see all
 
 <section class="profile-section-container">
+	<% for (var i = 0; i < user.quizzesWritten.length; i++) { %>
+
+		<div>
+			<a href="/quizzes/<%= user.quizzesWritten[i].id %>"><%= user.quizzesWritten[i].title %></a>
+		</div>
+
+	<% } %>
+
 </section>
 
 
@@ -60,7 +68,7 @@ Quizzes-- see all
 <br><br><br>
 <%#= user %>
 <br><br>
-<%= user.username %>
+<%= user %>
 
 <br><br>
 
@@ -94,8 +102,10 @@ Quizzes-- see all
 
 Logged in user: <%= locals.username %>
 
-<% if (locals.user.username == user.username) { %>
- HELLO
+<% if (locals.username === user.username) { %>
+
+	<script type="text/javascript" src="/js/userprofile.js"></script>
+
 <% } %>
 
 <% include ../partials/footer_partial.ejs %>
