@@ -418,16 +418,26 @@ section[class*="q-"]:after {
 }*/
 
 .share {
-	margin-top: 0.5em;
-	border-top: 1px solid #efefef; /* make this only stretch across about 80% of div? */
+	margin-top: 0.7em;
+	/*border-top: 1px solid #efefef;*/ /* make this only stretch across about 80% of div? */
+	padding-top: 0.3em;
 	/*padding: 0.5em 0;*/
 	/*background-color: red;*/
 }
 
-.share button {
+.share i {
 	display: inline-block;
 	border: 0;
-	background-color: blue;
+	/*background-color: blue;*/
+	font-size: 0.8em;
+	margin-top: 0.5em;
+	margin-right: 2%;
+	color: #d3d3d3;
+}
+
+.share i:hover {
+	cursor: pointer;
+	color: #663399;
 }
 
 

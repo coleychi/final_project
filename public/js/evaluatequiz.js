@@ -350,9 +350,26 @@ $(document).ready(function() {
 
     $resultContainer.show();
 
+    // display share panel
+    $sharePanel = $("<div class='share'></div>");
+    $sharePanel.appendTo($resultContainer);
+
     // add button to retake quiz
-    $retakeQuiz = $("<button id='retake-quiz'>Retake Quiz</button>");
-    $retakeQuiz.appendTo($resultContainer);
+    $retakeQuiz = $("<i class='fa fa-refresh' id='retake-quiz'></i>");
+    $retakeQuiz.appendTo($sharePanel);
+
+    // add facebook
+    $shareFacebook = $("<i class='fa fa-facebook' id='share-result-fb'></i>");
+    $shareFacebook.appendTo($sharePanel);
+
+    // add twitter
+    $shareTwitter = $("<i class='fa fa-twitter' id='share-result-twitter'></i>");
+    $shareTwitter.appendTo($sharePanel);
+
+    // add email
+    $shareEmail = $("<i class='fa fa-envelope' id='share-result-email'></i>");
+    $shareEmail.appendTo($sharePanel);
+
 
   }; // closes displayResult
 
