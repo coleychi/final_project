@@ -11,23 +11,11 @@ $(document).ready(function() {
   currentPageNum = 1; // current page starts at 1
   resultCount = 1; // result count starts at 1
 
-  // isValid = null;
+  valid = false;
 
   // grab hint text and save
   var hintText = $(".hint").text();
   console.log(hintText);
-
-  // do not allow fields to be added until validation occurs
-  // $("#next-page").prop("disabled", true);
-  // $("#add-option").prop("disabled", true);
-  // $("#add-result").prop("disabled", true);
-
-
-  // selects all inputs for question
-  // input = $("input.q1")
-  // console.log(input);
-
-  valid = false;
 
   var validateInput = function(inputArray, callback) {
     console.log("validate input");
@@ -56,7 +44,7 @@ $(document).ready(function() {
 
     console.log("got here"); 
     console.log(valid)
-    
+
     callback();
 
   }
@@ -209,133 +197,10 @@ $(document).ready(function() {
 
     }); // closes validate input function
 
-  //   if (valid) {
-
-
-
-    
-
-
-  // //   var canContinue = false;
-
-  // //   // select inputs for question
-  // //   input = $("input.q" + currentPageNum).toArray()
-  // //   console.log(input)
-
-  // //   $("input.q" + currentPageNum).each(function() {
-
-  // //     if (this.value == "") {
-  // //       console.log("no input")
-  // //       return
-  // //     }
-  // //     else canContinue = true;
-  // //     console.log("got here");
-
-  // //   });
-
-  // // if (canContinue === true) {
-
-  //   var nextPageNum = currentPageNum + 1;
-  //   // console.log(nextPageNum); // confirms addition is correct
-
-  //   $currentPage = $(".page-" + currentPageNum); // selects current page div
-  //   $nextPage = $(".page-" + nextPageNum); // selects next page div
-
-
-  //   // validateForm(); // need callback
-
-  //   // // need callback
-  //   // var $allInputFields = $("input");
-    
-  //   // console.log($allInputFields);
-
-  //   // $allInputFields.each(function() {
-  //   //   console.log($(this).val())
-  //   //   console.log("evaluate: ", $(this).val() === "")
-  //   //   if ($(this).val() === "") {
-  //   //     return isValid = false;
-  //   //   }
-  //   //   return isValid = true;
-  //   // });
-
-  //   // if(isValid) {
-
-  //     // // hide current page
-  //     // $currentPage.hide();
-  //     // $(".page-" + pageNum).hide();
-
-  //     // remove #next-page button from DOM
-
-  //     if (!$currentPage === 1) {
-  //       $nextPageButton = $("#next-page.q1");
-  //       $nextPageButton.hide();
-  //     }
-
-  //     // console.log("")
-
-  //     // console.log(isValid)
-  //     // console.log(isValid)
-
-  //     // if nextPage is less than maxQuestions limit, generate new question div
-  //     if (nextPageNum <= maxQuestions) {
-
-  //       // hide current page
-  //       $currentPage.hide();
-
-  //       // if the next page already exists, show the page
-  //       if ($nextPage.length) {
-  //         console.log("it exists");
-  //         $nextPage.show();
-
-  //         currentPageNum = nextPageNum; // change the page number
-
-  //       // if the next page does not exist, create it
-  //       } else {
-  //         console.log("create it");
-
-  //         // remove .active class from current page's question
-  //         $("#q" + currentPageNum).removeClass("active");
-
-  //         // create page div
-  //         // $nextPageDiv = $("<div></div>"); // creates div tags
-  //         // $nextPageDiv.attr({
-  //         //   class: "page-" + nextPageNum
-  //         // }); // sets attributes
-  //         // $nextPageDiv.insertAfter($currentPage); // add to page
-
-  //         // create section
-  //         $nextPageSection = $("<section></section>").attr({
-  //           class: "page-" + nextPageNum
-  //         }).insertAfter($currentPage);
-
-  //         currentPageNum = nextPageNum; // change the page number
-
-  //         // create header 
-  //         $qHeader = $("<h3>Questions</h3>").appendTo($nextPageSection);
-
-  //         // show hint div
-  //         $hintDiv = $("<div class='hint'></div>").text(hintText).appendTo($nextPageSection);
-
-  //         // create span to display question number
-  //         $pageNumSpan = $("<span></span>").attr({
-  //           class: "pageNum"
-  //         }).text(currentPageNum).appendTo($nextPageSection);
-
-  //         addQuestion();
-
-  //       }; // closes if else statement
-
-  //     }; // closes if nextPageNum <= maxQuestions
-
-  //   // } else {
-  //   //   alert("fill all inputs");
-  //   // }; // closes if isValid
-
-  //   // }; // closes can continue-- add else for an error?
-
-  //   }; // closes if valid
 
   }); // closes #next-page click function
+
+
 
 
 
@@ -446,33 +311,46 @@ $(document).ready(function() {
 
     event.preventDefault();
 
+    inputArray = $("#q" + currentPageNum + "opts > input");
 
-    console.log("current page ", currentPageNum);
+    console.log(inputArray);
 
-    $optionsDiv = $("#q" + currentPageNum + "opts");
-    var optCount = ($("#q" + currentPageNum + "opts > input").length); // number of option input fields in question
-    console.log(optCount);
+    validateInput(inputArray, function() {
 
-    // check that current option count is less than max options
-    if (optCount < maxOptions) {
+      if (valid) {
 
-      $newInput = $("<input>");
-      $newInput.attr({
-        type: "text",
-        name: "q" + currentPageNum + "opt" + (optCount + 1),
-        class: "q" + currentPageNum,
-        placeholder: "option " + (optCount + 1)
-      });
+        console.log("current page ", currentPageNum);
 
-      $newInput.appendTo($optionsDiv);
+        $optionsDiv = $("#q" + currentPageNum + "opts");
+        var optCount = ($("#q" + currentPageNum + "opts > input").length); // number of option input fields in question
+        console.log(optCount);
 
-      canContinue = false;
+        // check that current option count is less than max options
+        if (optCount < maxOptions) {
 
-    } else {
-      $("#add-option").hide();
-    }; // closes if optCount < maxOptions
+          $newInput = $("<input>");
+          $newInput.attr({
+            type: "text",
+            name: "q" + currentPageNum + "opt" + (optCount + 1),
+            class: "q" + currentPageNum,
+            placeholder: "option " + (optCount + 1)
+          });
+
+          $newInput.appendTo($optionsDiv);
+
+          canContinue = false;
+
+        } else {
+          $("#add-option").hide();
+        }; // closes if optCount < maxOptions
+
+      };
+
+    }); // closes validate input
 
   }); // closes #add-input click function
+
+
 
 
   // add results
@@ -546,18 +424,87 @@ $(document).ready(function() {
   };
 
 
+  // add result field
   $(document).on("click", "#add-result", function() {
 
     event.preventDefault();
 
-    // console.log("sup");
+    inputArray = $(".results").find("input, textarea");
+    console.log(inputArray);
 
-    // create new result field if count does not exceed max
-    if (resultCount <= maxResults) {
-      addResults();
-    };
+    validateInput(inputArray, function() {
+
+      if (valid) {
+
+        // create new result field if count does not exceed max
+        if (resultCount <= maxResults) {
+          addResults();
+        };
+
+      };
+
+    }); // closes validateInput 
 
   }); // closes #add-option click function
+
+
+  $("#new-quiz").submit(function(event) {
+    isValid = false;
+
+    // allInputs = $("input, textarea");
+    // console.log(allInputs)
+
+    // if last question is blank, delete it
+    pages = $("section[class^='page'");
+    console.log(pages.length);
+    lastPage = $(".page-" + pages.length);
+    console.log(lastPage);
+
+    // if (pages.length === 1) {
+    //   console.log("do not submit, form is invalid")
+    //   event.preventDefault(); // do not submit, form is invalid
+    //   return
+    // }
+
+    lastPageInputFields = lastPage.find("input")
+    console.log(lastPageInputFields)
+
+    validateInput(lastPageInputFields, function() {
+
+      // if the only question is blank, the form is invalid
+      if (!valid && pages.length === 1) {
+        console.log("do not submit");
+        event.preventDefault();
+        return
+      }
+
+      // if last question is invalid, remove it
+      if (!valid) {
+        console.log("remove last question");
+        // lastPage.empty();
+        lastPage.remove();
+      };
+
+      allInputs = $("input, textarea");
+      console.log(allInputs);
+
+
+      // run validation on all input forms with change
+      validateInput(allInputs, function() {
+
+        console.log("is form valid?: ", valid);
+
+        if (!valid) {
+          console.log("not valid, do not submit");
+          event.preventDefault();
+        };
+
+
+      });
+
+    });
+
+  });
 
 
 }); // closes document.ready
