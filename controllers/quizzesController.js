@@ -30,6 +30,10 @@ router.get("/new", isLoggedIn, function(req, res) {
   res.render("quizzes/new.ejs")
 });
 
+router.get("/newscoredquiz", isLoggedIn, function(req, res) {
+  res.render("quizzes/newscoredquiz.ejs")
+});
+
 // NEWQUIZ-- save quiz to database
 router.post("/newquiztest", isLoggedIn, function(req, res) {
   res.json(req.body);
@@ -100,7 +104,9 @@ router.delete("/deletequiz/:quiz_id", function(req, res) {
   Quiz.findByIdAndRemove(req.params.quiz_id, function(err, quizData) {
     // console.log(quizData);
     // res.redirect("/quizzes");
-    // res.json("deletesuccessful")
+    res.json("deletesuccessful")
+    
+    // res.redirect("/quizzes");
 
   });
 

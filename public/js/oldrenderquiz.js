@@ -1,4 +1,4 @@
-// this worked on friday afternoon before i started refactoring ajax calls
+// this can prob be deleted
 $(document).ready(function() {
 
   $("#result-container").hide();
@@ -471,6 +471,8 @@ $(document).ready(function() {
       })
 
   }; // closes removeResult function
+
+
 
 
 

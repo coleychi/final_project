@@ -77,8 +77,8 @@ router.put("/deleteresult/:result_id", function(req, res) {
   User.findByIdAndUpdate(req.user._id, {$pull: {
     results: {_id: resultId}}}, {new: true}, function(err, user) {
       console.log("updated user: ", user); // confirms updated user
-
-    res.redirect(req.get("referer"));
+      res.send("done")
+    // res.redirect(req.get("referer"));
   });
 });
 
