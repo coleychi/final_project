@@ -17,8 +17,37 @@ $(document).ready(function() {
   var hintText = $(".hint").text();
   console.log(hintText);
 
-  input = $("input.q1")
-  console.log(input);
+
+  // selects all inputs for question
+  // input = $("input.q1")
+  // console.log(input);
+
+
+  var validateInput = function() {
+
+    // console.log(currentPageNum);
+
+    // // select inputs for question
+    input = $("input.q" + currentPageNum).toArray()
+    console.log(input)
+
+    $("input.q" + currentPageNum).each(function() {
+
+      if (this.value == "") {
+        console.log("no input")
+        stuffDone = true;
+        return false
+      }
+
+      console.log("got here");
+
+
+    })
+
+  }
+
+
+
 
 
   // go to next page
@@ -26,13 +55,31 @@ $(document).ready(function() {
 
     event.preventDefault();
 
-    // nextPage();
+    var canContinue = false;
+
+    // select inputs for question
+    input = $("input.q" + currentPageNum).toArray()
+    console.log(input)
+
+    $("input.q" + currentPageNum).each(function() {
+
+      if (this.value == "") {
+        console.log("no input")
+        return
+      }
+      else canContinue = true;
+      console.log("got here");
+
+    });
+
+  if (canContinue === true) {
 
     var nextPageNum = currentPageNum + 1;
     // console.log(nextPageNum); // confirms addition is correct
 
     $currentPage = $(".page-" + currentPageNum); // selects current page div
     $nextPage = $(".page-" + nextPageNum); // selects next page div
+
 
     // validateForm(); // need callback
 
@@ -122,6 +169,8 @@ $(document).ready(function() {
     // } else {
     //   alert("fill all inputs");
     // }; // closes if isValid
+
+  }; // closes can continue-- add else for an error?
 
   }); // closes #next-page click function
 
