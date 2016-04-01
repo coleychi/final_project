@@ -1,3 +1,5 @@
+// this model worked on friday morning before i added shuffle
+
 // REQUIREMENTS
 var mongoose = require("mongoose");
 var questionSchema = require("./question.js").schema;
@@ -62,8 +64,6 @@ quizSchema.methods.createQuestions = function(formData) {
     var optionKeys = keysArray.filter(filterOptionKeys);
     console.log("option keys ", optionKeys);
 
-    var optionsArray = [];
-
     // iterate through the response options
     for (var j = 0; j < optionKeys.length; j++) {
 
@@ -77,28 +77,11 @@ quizSchema.methods.createQuestions = function(formData) {
       console.log("option text: ", option); // confirms option text accessed
 
       // push option to newQuestion
-      // newQuestion.responseOptions.push(option);
-      optionsArray.push(option)
+      newQuestion.responseOptions.push(option);
 
     }; // closes optionKeys for loop 
 
-    // shuffle options
-    console.log("options array: ", optionsArray);
-    var shuffledOptions = optionsArray.sort(function() {
-      return 0.5 - Math.random()
-    });
-
-    console.log("shuffled array: ", optionsArray); // confirms options were shuffled
-
-    // push options into question
-    for (var j = 0; j < optionsArray.length; j++) {
-      newQuestion.responseOptions.push(optionsArray[j])
-    }
-
-
-
     // saves question to database
-    console.log("about to save")
     newQuestion.save()
 
     // pushes newQuestion into question array

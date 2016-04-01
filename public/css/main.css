@@ -368,7 +368,7 @@ section[class*="q-"] {
 	margin-bottom: 0.3em;
 	display: inline-block;
 	float: left;
-	border-bottom: 3px solid #ffffff;
+	border-bottom: 5px solid #ffffff;
 }
 
 .options .option:nth-child(3n) {
