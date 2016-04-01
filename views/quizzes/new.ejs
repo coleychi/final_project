@@ -24,10 +24,13 @@
 
 		<h3>Questions</h3>
 
+		<div class="hint">
+				Click arrow to add another question. Options have points that correspond to results. For more information about how quizzes work, click here.
+		</div>
+
 		<span class="pageNum">1</span>
 
 		<div id="q1" class="q1 active">
-
 
 			<!-- <label for="question-1">Question 1</label> -->
 			<input type="text" name="question-1" class="q1" placeholder="write your question">
@@ -37,7 +40,6 @@
 				<input type="text" name="q1opt1" class="q1" placeholder="option 1">
 				<input type="text" name="q1opt2" class="q1" placeholder="option 2">
 				<input type="text" name="q1opt3" class="q1" placeholder="option 3">
-				<input type="text" name="q1opt4" class="q1" placeholder="option 4">
 
 			</div><!-- closes #q1opts.q1 -->
 
@@ -46,7 +48,7 @@
 
 		</div><!-- closes #q1.q1 -->
 
-		<button id="next-page" class="q1">Add Question (Next)</button> <!-- might have to move this -->
+		<i class="fa fa-chevron-right next p1" id="next-page"></i> <!-- might have to move this -->
 
 	</section> <!-- closes .page-1 -->
 
@@ -57,7 +59,7 @@
 	</section>
 
 
-	<button>Test Button</button>
+	<button id="save-quiz">Save Quiz</button>
 
 </form>
 

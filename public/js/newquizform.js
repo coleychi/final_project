@@ -1,8 +1,10 @@
 $(document).ready(function() { 
 
+  // console.log("new quiz")
+
   // SETTINGS
-  maxOptions = 8; // sets maximum options per question
-  minOptions = 2; // sets minimum options per question
+  maxOptions = 9; // sets maximum options per question
+  minOptions = 3; // sets minimum options per question
   maxQuestions = 10; // sets maximum questions per quiz
   minResults = 2;
   maxResults = 6;
@@ -10,6 +12,14 @@ $(document).ready(function() {
   resultCount = 1; // result count starts at 1
 
   isValid = null;
+
+  // grab hint text and save
+  var hintText = $(".hint").text();
+  console.log(hintText);
+
+  input = $("input.q1")
+  console.log(input);
+
 
   // go to next page
   $(document).on("click", "#next-page", function(event) {
@@ -94,6 +104,9 @@ $(document).ready(function() {
 
           // create header 
           $qHeader = $("<h3>Questions</h3>").appendTo($nextPageSection);
+
+          // show hint div
+          $hintDiv = $("<div class='hint'></div>").text(hintText).appendTo($nextPageSection);
 
           // create span to display question number
           $pageNumSpan = $("<span></span>").attr({
@@ -195,12 +208,22 @@ $(document).ready(function() {
     $addOptionButton.insertAfter($optsDiv);
 
 
+
     // these buttons prob need to be moved to a better place
-    $newNextButton = $("<button id='next-page'>Next Page</button>");
+    $newNextButton = $("<i class='fa fa-chevron-right next' id='next-page'></i>");
     $newNextButton.insertAfter($addOptionButton);
 
-    $newPrevButton = $("<button id='prev-page'>Prev Page</button>");
+    $newPrevButton = $("<i class='fa fa-chevron-left prev' id='prev-page'></i>");
     $newPrevButton.insertAfter($addOptionButton);
+
+
+
+    // these buttons prob need to be moved to a better place
+    // $newNextButton = $("<button id='next-page'>Next Page</button>");
+    // $newNextButton.insertAfter($addOptionButton);
+
+    // $newPrevButton = $("<button id='prev-page'>Prev Page</button>");
+    // $newPrevButton.insertAfter($addOptionButton);
 
   }; // closes addQuestion function
 
@@ -230,6 +253,8 @@ $(document).ready(function() {
 
       $newInput.appendTo($optionsDiv);
 
+    } else {
+      $("#add-option").hide();
     }; // closes if optCount < maxOptions
 
   }); // closes #add-input click function
