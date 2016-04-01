@@ -406,23 +406,39 @@ section[class*="q-"]:after {
 	margin: 0 auto;
 	background-color: #ffffff;
 	padding: 0.5em 0.8em;
+	display: table;
 	/*border: 1px solid #efefef;*/
 }
 
-/*#result-container h2 {
-	margin-bottom: 0.5em;
-}*/
+#result-container .content {
+	width: 70%;
+	/*background-color: red;*/
+	display: table-cell;
+	vertical-align: top;
+	/*float: left;*/
+}
 
-/*#result-container p {
+#result-container .image {
+	width: 30%;
+	/*background-color: #efefef;*/
+	/*float: left;*/
+	display: table-cell;
+}
 
-}*/
+#result-container .image:empty {
+	background-color: #efefef;
+}
+
 
 .share {
+	width: 100%;
+	display: table-row;
 	margin-top: 0.7em;
 	/*border-top: 1px solid #efefef;*/ /* make this only stretch across about 80% of div? */
 	padding-top: 0.3em;
 	/*padding: 0.5em 0;*/
 	/*background-color: red;*/
+	/*background-color: yellow;*/
 }
 
 .share i {
@@ -439,6 +455,8 @@ section[class*="q-"]:after {
 	cursor: pointer;
 	color: #663399;
 }
+
+
 
 
 

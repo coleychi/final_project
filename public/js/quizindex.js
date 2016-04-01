@@ -1,5 +1,7 @@
 $(document).ready(function() { 
 
+
+
   var incr = 3; // number of quizzes that display 
 
   rowCount = $(".row").length;

@@ -1,5 +1,16 @@
 $(document).ready(function() {
 
+  // $("img").each(function() {
+  //   var $this = $(this);
+
+  //   $this.onerror = function() {
+  //     $this.remove()
+  //   }
+  // })
+
+
+
+
   $("#result-container").hide(); // hides result container
 
   // access quiz id for ajax call to server
@@ -341,12 +352,26 @@ $(document).ready(function() {
 
   // show user's result
   var displayResult = function() {
+    resultImgUrl = userResult.imgUrl;
+    console.log("result image: ", resultImgUrl);
+
     $resultContainer = $("#result-container");
 
+    $resultContentDiv = $("<div class='content'></div>");
+
+    $resultImageDiv = $("<div class='image'></div>");
+
+    $resultImage = $("<img src='" + resultImgUrl + "' class='img-thumb'>");
+
+    $resultImage.appendTo($resultImageDiv)
+
     // format title
-    $resultHeader = $("<h2></h2>").text("Your Result: " + userResult.title).appendTo($resultContainer);
+    $resultHeader = $("<h2></h2>").text("Your Result: " + userResult.title).appendTo($resultContentDiv);
     // format description
-    $resultDescription = $("<p></p>").text(userResult.description).appendTo($resultContainer);
+    $resultDescription = $("<p></p>").text(userResult.description).appendTo($resultContentDiv);
+
+    $resultContentDiv.appendTo($resultContainer);
+    $resultImageDiv.appendTo($resultContainer);
 
     $resultContainer.show();
 
