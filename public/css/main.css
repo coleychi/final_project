@@ -420,7 +420,7 @@ section[class*="q-"]:after {
 .share {
 	margin-top: 0.5em;
 	border-top: 1px solid #efefef; /* make this only stretch across about 80% of div? */
-	padding: 0.5em 0;
+	/*padding: 0.5em 0;*/
 	/*background-color: red;*/
 }
 
