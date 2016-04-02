@@ -70,12 +70,11 @@ $(document).ready(function() {
       // }, function(response){});
 
       FB.ui({
-      method: "feed",
-      display: "popup",
-      link: fullUrl,
-      picture: "http://i.imgur.com/tbOFv.png",
-      caption: 'An example caption',
-      description: "an example description"
+        method: "feed",
+        display: "popup",
+        link: fullUrl,
+        name: quizData.title + " on QuizQuiz",
+        picture: "http://i.imgur.com/tbOFv.png" // quizData.imgUrl
       }, function(response){});
 
     }); // closes fb click function

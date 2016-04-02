@@ -459,12 +459,21 @@ $(document).ready(function() {
   // SHARE-- fb
   $(document).on("click", "#share-result-fb", function(event) {
     console.log("clicked");
+    console.log(quizData);
+    console.log(userResult)
 
       FB.ui({
-      display: "popup",
-      method: "share",
-      href: "http://quizquizquiz.herokuapp.com/", //change this to fullUrl
+        method: "feed",
+        display: "popup",
+        link: fullUrl,
+        name: userResult.title,
+        description: userResult.description,
+        caption: quizData.title + " on QuizQuiz",
+        picture: "http://i.imgur.com/tbOFv.png"  // userResult.imgUrl
       }, function(response){});
+
+
+
   });
 
   // DELETE ENTIRE QUIZ
