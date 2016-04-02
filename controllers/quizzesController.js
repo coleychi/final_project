@@ -100,36 +100,70 @@ router.get("/:quiz_id", function(req, res) {
 // and responses, and pull results from array of all users who have taken it
 router.delete("/deletequiz/:quiz_id", function(req, res) {
   quizId = req.params.quiz_id;
-  userId = req.user.id
+  userId = req.user.id;
   console.log("userid from delete route: ", userId)
 
-  Quiz.findById(quizId, function(err, quiz) {
+  // find all users who have result matching quizId
+  User.find({"results.quizId": quizId}, function(err, usersArray) {
+    console.log("users who have taken this quiz: ", usersArray.length);
+
+    // iterate through users who have taken quiz and remove the result
+    for (var i = 0; i < usersArray.length; i++) {
+      tempUserId = usersArray[i]._id;
+
+      // console.log("user id: ", usersArray[i]._id);
+      User.findByIdAndUpdate(tempUserId, {$pull: {
+
+        results: {"quizId": quizId}
+
+        }}, function(err, data) {
+        console.log("removed a result")
+      });
+
+    }; // closes for loop  
+
+    Quiz.findById(quizId, function(err, quiz) {
     console.log("quiz: ", quiz); // returns the entire quiz object
 
-    quiz.removeQuestions();
-    quiz.removeResults();
+    quiz.removeQuestions(); // removes questions from questions collection
+    quiz.removeResults(); // removes results from results collection
 
     // pull quiz from author's array
     User.findByIdAndUpdate(userId, {$pull: {
       quizzesWritten: {_id: quizId}}}, {new: true}, function(err, updatedUser) {
         console.log("updated user without the quiz: ", updatedUser);
-        
+
         // delete quiz
         quiz.remove(function(err) {
-          console.log("removed the quiz")
-          res.redirect("/quizzes")
+          console.log("removed the quiz");
+          res.redirect("/quizzes");
         });
   
+      });
+
     });
 
-  });
+  }); // db.users.find({"results.quizId": "56fedc6822dcb68175d2d148"}).pretty();
 
-  // Quiz.findByIdAndRemove(req.params.quiz_id, function(err, quizData) {
-  //   // console.log(quizData);
-  //   // res.redirect("/quizzes");
-  //   res.json("deletesuccessful");
-    
-  //   // res.redirect("/quizzes");
+
+  // Quiz.findById(quizId, function(err, quiz) {
+  //   console.log("quiz: ", quiz); // returns the entire quiz object
+
+  //   quiz.removeQuestions();
+  //   quiz.removeResults();
+
+  //   // pull quiz from author's array
+  //   User.findByIdAndUpdate(userId, {$pull: {
+  //     quizzesWritten: {_id: quizId}}}, {new: true}, function(err, updatedUser) {
+  //       console.log("updated user without the quiz: ", updatedUser);
+
+  //       // delete quiz
+  //       quiz.remove(function(err) {
+  //         console.log("removed the quiz")
+  //         res.redirect("/quizzes")
+  //       });
+  
+  //   });
 
   // });
 

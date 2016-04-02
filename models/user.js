@@ -42,6 +42,10 @@ userSchema.methods.validPassword = function(password) {
 //   };
 // };
 
+// userSchema.methods.pullResults = function(array) {
+//   console.log("user array from user model: ", array)
+// };
+
 
 // EXPORT
 module.exports = mongoose.model("User", userSchema);
