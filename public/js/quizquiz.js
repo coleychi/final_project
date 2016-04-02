@@ -70,9 +70,12 @@ $(document).ready(function() {
       // }, function(response){});
 
       FB.ui({
-      method: 'feed',
-      link: 'https://developers.facebook.com/docs/',
+      method: "feed",
+      display: "popup",
+      link: fullUrl,
+      picture: quizData.imgUrl,
       caption: 'An example caption',
+      description: "an example description"
       }, function(response){});
 
     }); // closes fb click function
