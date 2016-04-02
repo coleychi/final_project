@@ -73,7 +73,7 @@ $(document).ready(function() {
       method: "feed",
       display: "popup",
       link: fullUrl,
-      picture: quizData.imgUrl,
+      picture: "http://i.imgur.com/tbOFv.png",
       caption: 'An example caption',
       description: "an example description"
       }, function(response){});
