@@ -466,7 +466,7 @@ $(document).ready(function() {
       method: 'share_open_graph',
       action_type: "quizquiz_:take",
       action_properties: JSON.stringify({
-        result: {
+        quiz: {
           "og:url": fullUrl,
           "og:title": userResult.title + " from " + quizData.title,
           "og:description": userResult.description,
