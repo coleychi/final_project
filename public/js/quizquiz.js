@@ -73,8 +73,8 @@ $(document).ready(function() {
         method: "feed",
         display: "popup",
         link: fullUrl,
-        caption: quizData.title + " on QuizQuiz"
-        // picture: "http://i.imgur.com/tbOFv.png" // quizData.imgUrl
+        caption: quizData.title + " on QuizQuiz",
+        picture: "http://i.imgur.com/tbOFv.png" // quizData.imgUrl
       }, function(response){});
 
     }); // closes fb click function

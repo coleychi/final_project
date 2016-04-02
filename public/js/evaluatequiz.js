@@ -467,10 +467,10 @@ $(document).ready(function() {
       action_type: 'og.likes',
       action_properties: JSON.stringify({
         object: {
-          "og:url": 'https://developers.facebook.com/docs/',
-          "og:title": "title",
-          "og:description": "description",
-          "og:image": "http://i.imgur.com/tbOFv.png"
+          "og:url": fullUrl,
+          "og:title": userResult.title,
+          "og:description": userResult.description,
+          "og:image": "http://i.imgur.com/tbOFv.png" // userResult.imgUrl
         }
       })
       }, function(response){});
