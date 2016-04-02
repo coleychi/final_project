@@ -464,7 +464,7 @@ $(document).ready(function() {
 
     FB.ui({
       method: 'share_open_graph',
-      action_type: 'og.take',
+      action_type: "quizquiz_:take",
       action_properties: JSON.stringify({
         quiz: {
           "og:url": fullUrl,
