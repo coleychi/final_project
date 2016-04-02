@@ -7,7 +7,12 @@ $(document).ready(function() {
   rowCount = $(".row").length;
   console.log(rowCount);
 
-  $("#content-container .row:lt(" + 3 + ")");
-  $("#content-container .row:lt(" + 3 + ")").removeClass("hide");
+  // $("#content-container .row:lt(" + incr + ")");
+  $("#content-container .row:lt(" + incr + ")").removeClass("hide");
+
+  $("#load-more").on("click", function() {
+    incr += incr;
+    $("#content-container .row:lt(" + incr + ")").removeClass("hide");
+  })
 
 });

@@ -16,7 +16,7 @@ router.get("/testroute", function(req, res) {
 
 // INDEX-- display quizzes
 router.get("/", function(req, res) {
-  Quiz.find({}).sort({"timestamp": "asc"}).exec(function(err, quizzes) {
+  Quiz.find({}).sort({"timestamp": "desc"}).exec(function(err, quizzes) {
     // res.json(quizzes);
     res.render("quizzes/index.ejs", {
       quizzes: quizzes
