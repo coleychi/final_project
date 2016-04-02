@@ -466,7 +466,12 @@ $(document).ready(function() {
       method: 'share_open_graph',
       action_type: 'og.likes',
       action_properties: JSON.stringify({
-        object:'https://developers.facebook.com/docs/',
+        object: {
+          og:url: 'https://developers.facebook.com/docs/',
+          og:title: "title",
+          og:description: "description",
+          og:image: "image"
+        }
       })
       }, function(response){});
 
