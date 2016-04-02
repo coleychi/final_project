@@ -58,7 +58,9 @@ $(document).ready(function() {
       FB.ui({
       display: 'popup',
       method: 'share',
+      name: "this is the name of my share",
       href: 'http://quizquizquiz.herokuapp.com/', //change this to fullUrl
+      description: "this is my description"
       }, function(response){});
 
 
