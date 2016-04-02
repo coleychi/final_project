@@ -54,20 +54,28 @@ $(document).ready(function() {
 
     // click event to share -- customize
     $("#facebook-share").click(function() {
-      console.log("clicked")
+
+      // FB.ui({
+      // display: 'popup',
+      // method: 'share',
+      // href: 'http://quizquizquiz.herokuapp.com/', //change this to fullUrl
+      // }, function(response){});
+
+      // FB.ui({
+      // method: 'share_open_graph',
+      // action_type: 'og.likes',
+      // action_properties: JSON.stringify({
+      //   object:'https://developers.facebook.com/docs/',
+      // })
+      // }, function(response){});
 
       FB.ui({
-      display: 'popup',
-      method: 'share',
-      name: "this is the name of my share",
-      href: 'http://quizquizquiz.herokuapp.com/', //change this to fullUrl
-      description: "this is my description"
+      method: 'feed',
+      link: 'https://developers.facebook.com/docs/',
+      caption: 'An example caption',
       }, function(response){});
 
-
-      })
-
-    })
+    }); // closes fb click function
 
 
 
