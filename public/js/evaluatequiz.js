@@ -463,7 +463,7 @@ $(document).ready(function() {
       FB.ui({
       display: "popup",
       method: "share",
-      href: "http://buzzfeed.com", //change this to fullUrl
+      href: "http://quizquizquiz.herokuapp.com/", //change this to fullUrl
       }, function(response){});
   });
 
