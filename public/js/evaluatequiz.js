@@ -470,7 +470,7 @@ $(document).ready(function() {
           "og:url": 'https://developers.facebook.com/docs/',
           "og:title": "title",
           "og:description": "description",
-          "og:image": "image"
+          "og:image": "http://i.imgur.com/tbOFv.png"
         }
       })
       }, function(response){});
