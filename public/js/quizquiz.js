@@ -54,6 +54,7 @@ $(document).ready(function() {
 
     // click event to share -- customize
     $("#facebook-share").click(function() {
+      console.log("clicked")
 
       FB.ui({
       display: 'popup',
