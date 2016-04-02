@@ -464,11 +464,11 @@ $(document).ready(function() {
 
     FB.ui({
       method: 'share_open_graph',
-      action_type: 'og.likes',
+      action_type: 'og.took',
       action_properties: JSON.stringify({
-        object: {
+        quiz: {
           "og:url": fullUrl,
-          "og:title": userResult.title,
+          "og:title": userResult.title " from " + quizData.title,
           "og:description": userResult.description,
           "og:image": "http://i.imgur.com/tbOFv.png" // userResult.imgUrl
         }

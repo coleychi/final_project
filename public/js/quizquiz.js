@@ -55,11 +55,11 @@ $(document).ready(function() {
     // click event to share -- customize
     $("#facebook-share").click(function() {
 
-      // FB.ui({
-      // display: 'popup',
-      // method: 'share',
-      // href: fullUrl
-      // }, function(response){});
+      FB.ui({
+      display: 'popup',
+      method: 'share',
+      href: fullUrl
+      }, function(response){});
 
       // FB.ui({
       // method: 'share_open_graph',
@@ -69,13 +69,13 @@ $(document).ready(function() {
       // })
       // }, function(response){});
 
-      FB.ui({
-        method: "feed",
-        display: "popup",
-        link: fullUrl,
-        caption: quizData.title + " on QuizQuiz",
-        picture: "http://i.imgur.com/tbOFv.png" // quizData.imgUrl
-      }, function(response){});
+      // FB.ui({
+      //   method: "feed",
+      //   display: "popup",
+      //   link: fullUrl,
+      //   caption: quizData.title + " on QuizQuiz",
+      //   picture: "http://i.imgur.com/tbOFv.png" // quizData.imgUrl
+      // }, function(response){});
 
     }); // closes fb click function
 
