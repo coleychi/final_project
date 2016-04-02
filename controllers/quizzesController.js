@@ -99,16 +99,39 @@ router.get("/:quiz_id", function(req, res) {
 // DELETE QUIZ-- needs to delete the quiz, pull it from the authors array, delete all associated questions 
 // and responses, and pull results from array of all users who have taken it
 router.delete("/deletequiz/:quiz_id", function(req, res) {
-  // console.log("DELETEQUIZ ROUTE HIT!");
+  quizId = req.params.quiz_id;
+  userId = req.user.id
+  console.log("userid from delete route: ", userId)
 
-  Quiz.findByIdAndRemove(req.params.quiz_id, function(err, quizData) {
-    // console.log(quizData);
-    // res.redirect("/quizzes");
-    res.json("deletesuccessful")
-    
-    // res.redirect("/quizzes");
+  Quiz.findById(quizId, function(err, quiz) {
+    console.log("quiz: ", quiz); // returns the entire quiz object
+
+    quiz.removeQuestions();
+    quiz.removeResults();
+
+    // pull quiz from author's array
+    User.findByIdAndUpdate(userId, {$pull: {
+      quizzesWritten: {_id: quizId}}}, {new: true}, function(err, updatedUser) {
+        console.log("updated user without the quiz: ", updatedUser);
+        
+        // delete quiz
+        quiz.remove(function(err) {
+          console.log("removed the quiz")
+          res.redirect("/quizzes")
+        });
+  
+    });
 
   });
+
+  // Quiz.findByIdAndRemove(req.params.quiz_id, function(err, quizData) {
+  //   // console.log(quizData);
+  //   // res.redirect("/quizzes");
+  //   res.json("deletesuccessful");
+    
+  //   // res.redirect("/quizzes");
+
+  // });
 
 });
 

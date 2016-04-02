@@ -30,6 +30,12 @@ button {
 	height: auto;
 }
 
+#no-button {
+	outline: 0;
+	background-color: none;
+	border: 0;
+}
+
 /*.img-thumb {
 	width: auto;
 	height: 100%;
@@ -1061,14 +1067,14 @@ ul.tabs li.selected {
 	border-bottom: 3px solid #663399;
 }
 
-.quiz-line h2 {
+.quiz-line a h2 {
 	display: inline;
 	line-height: 1em;
 	font-size: 1em;
 
 }
 
-.quiz-line span {
+.quiz-line a span {
 	display: inline;
 	margin-left: 1%;
 	line-height: 1em;

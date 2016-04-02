@@ -30,7 +30,7 @@ $(document).ready(function() {
     // console.log(quizTitle);
     var quizPath = window.location.pathname;
     // console.log(quizPath);
-    var fullUrl = "http://localhost:3000" + quizPath; // change this to heroku app
+    var fullUrl = "http://quizquizquiz.herokuapp.com/" + quizPath; // change this to heroku app
     // console.log(fullUrl);
 
 

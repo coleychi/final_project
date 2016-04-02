@@ -189,6 +189,57 @@ quizSchema.methods.createResults = function(formData) {
 
 
 
+// REMOVE METHODS
+// remove all questions
+quizSchema.methods.removeQuestions = function() {
+  console.log("this in removeQuestions: ", this);
+
+  quiz = this;
+
+  // console.log("type of ", typeof(quiz))
+
+  questionsArray = quiz.questions;
+  console.log("questions in removeQuestions: ", questionsArray);
+
+  // remove questions from collection
+  for (var i = 0; i < questionsArray.length; i++) {
+
+    console.log("question id: ", questionsArray[i]._id);
+    questionId = questionsArray[i]._id;
+
+    Question.findByIdAndRemove(questionId);
+
+  }
+
+}
+
+// remove all results
+quizSchema.methods.removeResults = function() {
+
+  quiz = this
+
+  resultsArray = quiz.results;
+  console.log("results in removeResults: ", resultsArray);
+
+  // remove results from collection
+  for (var i = 0; i < resultsArray.length; i++) {
+
+    console.log("result id: ", resultsArray[i]._id);
+    resultId = resultsArray[i]._id;
+
+    Result.findByIdAndRemove(resultId);
+
+  }
+
+
+};
+
+
+// remove result instances in all users who have it
+
+
+
+
 
 
 // EXPORT

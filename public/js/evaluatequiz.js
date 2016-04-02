@@ -9,8 +9,6 @@ $(document).ready(function() {
   // })
 
 
-
-
   $("#result-container").hide(); // hides result container
 
   // access quiz id for ajax call to server
@@ -352,6 +350,7 @@ $(document).ready(function() {
 
   // show user's result
   var displayResult = function() {
+
     resultImgUrl = userResult.imgUrl;
     console.log("result image: ", resultImgUrl);
 
@@ -395,6 +394,8 @@ $(document).ready(function() {
     $shareEmail = $("<i class='fa fa-envelope' id='share-result-email'></i>");
     $shareEmail.appendTo($sharePanel);
 
+    parseResultForShare(userResult)
+
 
   }; // closes displayResult
 
@@ -410,22 +411,79 @@ $(document).ready(function() {
   });
 
 
-  // DELETE ENTIRE QUIZ
-  $(document).on("click", "#delete-quiz", function(event) {
-    // console.log("click");
+  var parseResultForShare = function(userResult) {
 
-    $.ajax({
-      url: "../quizzes/deletequiz/" + quizId,
-      method: "DELETE"
-      }).then(function(response) {
-        if(response.redirect) {
-          window.location.href = response.redirect;
-        }
-      }, function(err, data) {
-        console.log("error: ", err)
-      })
+    console.log("got to parse result function");
+    console.log(userResult)
 
+    path = window.location.pathname;
+    fullUrl = "http://quizquizquiz.herokuapp.com/" + path;
+    // console.log(userResult.title);
+    resultName = userResult.title;
+    // console.log(quizData)
+    quizTitle = quizData.title;
+    tweetText = "I got " + resultName + "! " + quizTitle;
+
+
+    // twitter
+    twitterLink = "https://twitter.com/intent/tweet?url=" + fullUrl + "&text=" + tweetText + "&via=" + "quizquizapp"
+
+    // anchor tag to share-- customize
+    $tweetLink = $("<a></a>").attr({
+      href: twitterLink
+    })
+
+    $("#share-result-twitter").wrap($tweetLink);
+
+
+    // email
+    subject = "Check out " + quizTitle + " on QuizQuiz!";
+    body = "I took " + quizTitle + " and got " + resultName + ". Get your result here: " + fullUrl + "!";
+
+    var changeSpaces = function(string) {
+      return string.replace(/ /g, "%20");
+    }; // ensure spaces persist by changing to %20
+
+    emailLink = "mailto:?subject=" + changeSpaces(subject) + "&body=" + changeSpaces(body);
+
+    // anchor tag to share
+    $emailLink = $("<a></a>").attr({
+      href: emailLink
+    });
+
+    $("#share-result-email").wrap($emailLink);
+
+  }; // closes parseResult function
+
+
+  // SHARE-- fb
+  $(document).on("click", "#share-result-fb", function(event) {
+    console.log("clicked");
+
+      FB.ui({
+      display: "popup",
+      method: "share",
+      href: "http://buzzfeed.com", //change this to fullUrl
+      }, function(response){});
   });
+
+  // DELETE ENTIRE QUIZ
+  // $(document).on("click", "#delete-quiz", function(event) {
+  //   // console.log("click");
+
+  //   $.ajax({
+  //     url: "../quizzes/deletequiz/" + quizId,
+  //     method: "DELETE"
+  //     }).then(function(response) {
+  //       if(response.redirect) {
+  //         window.location.href = response.redirect;
+  //       }
+  //     }, function(err, data) {
+  //       console.log("error: ", err)
+  //     })
+
+  // });
+
 
 
 
