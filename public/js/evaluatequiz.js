@@ -462,15 +462,15 @@ $(document).ready(function() {
     console.log(quizData);
     console.log(userResult)
 
-      FB.ui({
-        method: "feed",
-        display: "popup",
-        link: fullUrl,
-        name: userResult.title,
-        description: userResult.description,
-        caption: quizData.title + " on QuizQuiz",
-        picture: "http://i.imgur.com/tbOFv.png"  // userResult.imgUrl
-      }, function(response){});
+      // FB.ui({
+      //   method: "feed",
+      //   display: "popup",
+      //   link: fullUrl,
+      //   name: userResult.title,
+      //   description: userResult.description,
+      //   caption: quizData.title + " on QuizQuiz",
+      //   picture: "http://i.imgur.com/tbOFv.png"  // userResult.imgUrl
+      // }, function(response){});
 
 
 
