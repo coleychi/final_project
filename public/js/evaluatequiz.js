@@ -470,7 +470,7 @@ $(document).ready(function() {
           "og:url": fullUrl,
           "og:title": userResult.title + " from " + quizData.title,
           "og:description": userResult.description,
-          "og:image": "http://i.imgur.com/tbOFv.png" // userResult.imgUrl
+          "og:image": quizData.imgUrl // userResult.imgUrl
         }
       })
       }, function(response){});

@@ -78,6 +78,7 @@ $(document).ready(function() {
       xhr.send(file);
   };
 
+
   // switch to url input
   $(document).on("click", "#switch-to-url", function(event) {
     console.log("switch");
@@ -120,13 +121,10 @@ $(document).ready(function() {
     $fileInput.insertAfter("#switch-to-url");
     $imgUrl.insertAfter($fileInput)
 
-
     $(".image-upload").show();
 
-    
-
-
   });
+
 
 
   // grab hint text and save
