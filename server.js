@@ -89,6 +89,7 @@ app.use(passport.session());
 // require moment
 app.locals.moment = require("moment"); 
 
+
 // set global variable equal to boolean value of user state (logged in/not logged in)
 app.use(function(req, res, next) {
   res.locals.login = req.isAuthenticated(); // returns boolean

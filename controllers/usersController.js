@@ -50,7 +50,8 @@ router.get("/logout", function(req, res) {
 router.get("/profile/:user_id", function(req, res) {
   User.findById(req.params.user_id, function(err, user) {
     res.render("users/show.ejs", {
-      user: user
+      user: user,
+      shortenResult: shortenResult
     });
   });
 });
@@ -121,6 +122,36 @@ router.get("/getjson/userdata", function(req, res) {
   // });
 
 });
+
+
+// shorten result descriptions on profile
+function shortenResult(string) {
+  // return string.length
+
+  // if string is less than 85 characters, do nothing
+  if (string.length < 85) {
+    return string
+  } else {
+    // clip at 85 characters
+    shortened = string.substring(0, 85);
+
+    // if in middle of word, cut the partial word
+    shortened = shortened.substring(0, Math.min(shortened.length, shortened.lastIndexOf(" ")));
+
+    // if remainder is only one word
+      // do stuff
+
+    // add ellipses
+    shortened += "...";
+
+    return shortened
+  }
+  // console.log("short result: ", string);
+  // return "testing"
+};
+
+
+
 
 
 

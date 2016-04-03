@@ -22,15 +22,17 @@
 
 <section class="profile-content-container">
 
-	<!-- Results See All -->
 	<div id="result-tiles-container">
-	<!-- display all results -->
+
+		<!-- to display most recent first -->
+		<% userResults = user.results.reverse() %>
+
 		<% for (var i = 0; i < user.results.length; i++) { %>
 			<div class="result-block grow">
 				<a href="/quizzes/<%= user.results[i].quizId %>">
 				<div class="result-info">
-					<b><%= user.results[i].title %></b>
-					<p><%= user.results[i].description %></p>
+					<b><%= userResults[i].title %></b>
+					<p><%= shortenResult(userResults[i].description) %></p>
 				</div>
 				</a>
 
@@ -42,8 +44,6 @@
 
 			</div>
 					
-
-
 		<% } %>
 
 	</div>
@@ -51,7 +51,6 @@
 </section>
 
 
-<!-- Quizzes see all -->
 
 <div id="quizzes-content-container">
 
@@ -63,7 +62,7 @@
 		<div class="quiz-line">
 			<a href="/quizzes/<%= user.quizzesWritten[i]._id %>">
 				<h2><%= userQuizzes[i].title %></h2>
-				<span><%= user.quizzesWritten[i].description %></span>
+				<span><%= userQuizzes[i].description %></span>
 				<!-- <h2><%= user.quizzesWritten[i].title %></h2>  -->
 				<!-- <span><%= user.quizzesWritten[i].description %></span> -->
 			</a>

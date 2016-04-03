@@ -117,7 +117,7 @@ $(document).ready(function() {
     // console.log("clicked");
     generatePopup();
 
-    generateLogin();
+    generateLogin($cancelButton);
     // // create login form and append to popup 
     // $loginForm = $("<form></form>").attr({
     //   action: "../users/login",
@@ -214,7 +214,6 @@ $(document).ready(function() {
     generateLogin($hiddenElementL)
 
   }); 
-
 
 
 }); // closes document ready

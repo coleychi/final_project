@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
   var quizId = window.location.pathname.replace("/quizzes/", "");
 
   var quizData = {}
