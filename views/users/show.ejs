@@ -54,13 +54,18 @@
 <!-- Quizzes see all -->
 
 <div id="quizzes-content-container">
+
+	<!-- to display most recent first -->
+	<% userQuizzes = user.quizzesWritten.reverse() %>
 	
 	<% for (var i = 0; i < user.quizzesWritten.length; i++) { %>
 
 		<div class="quiz-line">
 			<a href="/quizzes/<%= user.quizzesWritten[i]._id %>">
-				<h2><%= user.quizzesWritten[i].title %></h2> 
+				<h2><%= userQuizzes[i].title %></h2>
 				<span><%= user.quizzesWritten[i].description %></span>
+				<!-- <h2><%= user.quizzesWritten[i].title %></h2>  -->
+				<!-- <span><%= user.quizzesWritten[i].description %></span> -->
 			</a>
 		</div>
 

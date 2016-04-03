@@ -12,6 +12,11 @@ router.get("/", function(req, res) {
   res.render("users/index.ejs");
 });
 
+// new account page
+router.get("/newaccount", function(req, res) {
+  res.render("users/new.ejs");
+})
+
 
 // SIGNUP
 router.post("/signup", passport.authenticate("local-signup", { 

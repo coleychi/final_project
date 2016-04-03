@@ -661,6 +661,11 @@ section[class*="page"] h3 {
 	font-family: "Lato";
 }
 
+.hint a {
+	text-decoration: none;
+	color: #663399;
+}
+
 .pageNum {
 	background-color: #e1d8eb;
 	color: #663399;
@@ -964,6 +969,16 @@ ul.tabs li.selected {
 	/*border-bottom: 1px solid #fff;*/
 }
 
+ul.tabs li:hover {
+	/*background-color: #e1d8eb;*/
+	cursor: pointer;
+}
+
+ul.tabs li.selected:hover {
+	/*background-color: #fff;*/
+	cursor: default;
+}
+
 
 /*#result-tiles-container {
 	width: 85%;
@@ -1086,6 +1101,18 @@ ul.tabs li.selected {
 .user-panel {
 	background-color: green;
 }
+
+
+
+/* PAGES/QUIZINFO.EJS */
+
+#blurb {
+	width: 80%;
+	margin: auto;
+	padding: 1em;
+	background-color: #ffffff;
+}
+
 
 
 /* TRANSITIONS AND EXTRA CLASSES */

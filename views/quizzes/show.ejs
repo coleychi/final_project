@@ -17,12 +17,11 @@
 		<li><i class="fa fa-twitter" id="twitter-share"></i></li>
 
 		<% if (locals.userid === quiz.authorId ) { %>
+			<!-- <li><a href="/quizzes/edit/<%= quiz.id %>"><i class="fa fa-pencil"></i></a></li> -->
 			<li>
 				<form action="/quizzes/deletequiz/<%= quiz.id %>?_method=DELETE" method="POST" name="deleteQuiz">
 					<i class="fa fa-trash-o" id="delete-button" onclick="document.deleteQuiz.submit()"></i>
 				</form>
-
-
 			</li>
 		<% } %>
 	</div>

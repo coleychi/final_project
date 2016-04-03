@@ -129,6 +129,18 @@ var quizzesController = require("./controllers/quizzesController.js");
 app.use("/quizzes", quizzesController);
 
 
+// about route off root
+app.get("/about", function(req, res) {
+  res.render("pages/about.ejs");
+});
+
+
+// 404 route
+// app.get("*", function(req, res) {
+//   res.send("this doesn't exist");
+// });
+
+
 
 // LISTEN
 app.listen(port, function() {

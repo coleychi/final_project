@@ -1,0 +1,17 @@
+body {
+	background-color: #663399;
+	font-size: 16px;
+}
+
+p {
+	width: 80%;
+	margin: 3em auto;
+	font-family: "Helvetica";
+	font-weight: bold;
+	color: #ffffff;
+	font-size: 3em;
+}
+
+.small {
+	font-size: 1em;
+}

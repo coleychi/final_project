@@ -1,1 +1,37 @@
-edit.ejs
+<!-- CONCERNS: should result be deleted from all users' profiles if quiz is edited? Should a user who has already taken the quiz have the edits reflected in their profile? Also... how can I have the user change point values? -->
+
+<% include ../partials/header_partial.ejs %>
+
+<%= quiz %>
+
+
+<form id="edit quiz">
+
+	<% for (var i = 0; i < quiz.questions.length; i++) { %>
+
+		<b><%= quiz.questions[i].questionText %></b>
+
+		<br>
+
+		<% for (var j = 0; j < quiz.questions[i].responseOptions.length; j++) { %>
+
+			<%= quiz.questions[i].responseOptions[j].text %>
+
+
+		<% } %>
+
+		<br>
+
+
+	<% } %>
+
+
+</form>
+
+<%= quiz.questions[0].responseOptions[0] %>
+
+</div><!-- closes #content-container -->
+
+<!-- scripts here-->
+
+<% include ../partials/footer_partial.ejs %>

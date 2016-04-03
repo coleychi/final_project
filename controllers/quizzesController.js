@@ -34,7 +34,7 @@ router.get("/newscoredquiz", isLoggedIn, function(req, res) {
   res.render("quizzes/newscoredquiz.ejs")
 });
 
-// NEWQUIZ-- save quiz to database
+// NEWQUIZ-- test route to form data in json
 router.post("/newquiztest", isLoggedIn, function(req, res) {
   res.json(req.body);
 });
@@ -75,7 +75,35 @@ router.post("/newquiz", isLoggedIn, function(req, res) {
     User.findByIdAndUpdate(userId, {$addToSet: {
       quizzesWritten: newQuiz}}, {new: true}, function(err, updatedUser) {
         console.log("updatedUser: ", updatedUser);
-        res.redirect("/quizzes");
+        res.redirect("/quizzes/" + newQuiz._id);
+    });
+
+  });
+
+});
+
+router.get("/quiztypes", function(req, res) {
+  res.render("pages/quizinfo.ejs");
+});
+
+
+// SHOW-- show one quiz
+router.get("/:quiz_id", function(req, res) {
+  // find quiz and pass data to client-side
+  Quiz.findById(req.params.quiz_id, function(err, quizData) {
+
+    // if a quiz with that id is not found, display error page
+    if (quizData === null) {
+      // return res.json("not here");
+      return res.render("pages/error.ejs");
+    }
+
+    // console.log("SHOW ME QUIZ DATA: ", quizData); // confirm quiz data
+    // res.json(quizData);
+
+    // if quiz data is retrieved, render it
+    res.render("quizzes/show.ejs", {
+      quiz: quizData
     });
 
   });
@@ -83,11 +111,11 @@ router.post("/newquiz", isLoggedIn, function(req, res) {
 });
 
 
-// SHOW-- show one quiz
-router.get("/:quiz_id", function(req, res) {
+// EDIT-- edit an existing quiz
+router.get("/edit/:quiz_id", function(req, res) {
+  // find quiz and pass data to client-side
   Quiz.findById(req.params.quiz_id, function(err, quizData) {
-    // res.json(quizData);
-    res.render("quizzes/show.ejs", {
+    res.render("quizzes/edit.ejs", {
       quiz: quizData
     });
 
@@ -180,6 +208,13 @@ router.get("/getjson/:quiz_id", function(req, res) {
 
 
 
+// 404 route
+// router.get("*", function(req, res) {
+//   res.send("this doesn't exist");
+// });
+
+
+
 // MIDDLEWARE
 // ensure a user is loggedin
 function isLoggedIn(req, res, next) {
@@ -190,7 +225,7 @@ function isLoggedIn(req, res, next) {
   } else {
 
   // if they aren't redirect them to the homepage
-    res.redirect("/YOUDONTBELONGHERE");
+    res.redirect("../users/newaccount");
 
   }; 
 };
