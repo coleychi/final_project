@@ -54,7 +54,7 @@ $(document).ready(function() {
   });
 
 
-  // hover
+  // hover-- does not work if user clicks quizzes and returns back to results
   $(".result-block").hover(function() {
     $(".hover-overlay", this).show();
 
