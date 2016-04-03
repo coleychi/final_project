@@ -13,8 +13,30 @@
 		<label for="description">Description</label>
 		<input type="text" name="description" placeholder="description">
 
-		<label for="imgUrl">Image Url</label>
-		<input type="text" name="imgUrl" placeholder="image url">
+		<label for="imgUrl" id="imgUrl-label">Image</label>
+
+		<div class="image-upload">
+			<div class="img-path">
+				<input type="text" id="img-path" placeholder="upload your image">
+				<!-- <span>upload a file</span> -->
+			</div>
+			<div class="upload-button">
+				<label for="file-input" class="quiz-img">
+					Select
+				</label>
+			</div>
+
+			<span class="small" id="switch">Or click to enter a url</span>
+			<input type="file" id="file-input" class="upload">
+
+			<input type="hidden" id="imgUrl" name="imgUrl" value="" />
+
+		</div>
+		<!-- <input type="file" id="file-input"/> -->
+		<!-- <img id="preview-quizimg" src="http://i.imgur.com/tbOFv.png" /> -->
+		<!-- <input type="hidden" id="imgUrl" name="imgUrl" value="" /> -->
+		<!-- <input type="hidden" id="avatar_url" name="avatar_url" value="http://i.imgur.com/tbOFv.png" /> -->
+		<!-- <input type="text" name="imgUrl" placeholder="image url"> -->
 
 	</section> <!-- closes #quiz-info -->
 

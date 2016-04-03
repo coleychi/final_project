@@ -668,6 +668,69 @@ section[class*="q-"]:after {
 	font-size: 0.85em;
 }
 
+.image-upload {
+	width: 100%;
+	/*background-color: red;*/
+	overflow: hidden;
+	font-size: 0.85em;
+	/*position: relative;*/
+	/*height: 2em;*/
+}
+
+#img-path {
+	padding: 0.4em;
+	font-size: 1em;
+}
+
+.img-path {
+	/*display: inline-block;*/
+	width: 75%;
+	/*background-color: #f4f4f4;*/
+	/*padding: 0.3em 0.5em;*/
+	float: left;
+}
+
+.upload-button {
+	float: left;
+	width: 23.5%;
+	/*display: block;*/
+	/*background-color: green;*/
+	margin-left: 1.5%;
+	/*padding: 0.3em 0.5em;*/
+	cursor: pointer;
+}
+
+.upload-button label {
+	background-color: #663399;
+	padding: 0.3em 0.5em;
+	font-weight: bold;
+    color: #ffffff;
+	font-size: 0.85em;
+	cursor: pointer;
+	text-transform: none;
+	border-radius: 10px;
+	font-family: "Helvetica";
+	text-align: center;
+}
+
+.image-upload input[type="file"] {
+	display: none;
+}
+
+.small {
+	margin-top: -0.3em;
+	width: 100%;
+	float: left;
+	display: block;
+	color: #a8a8a8;
+	font-size: 0.6em;
+	font-weight: 700;
+	/*letter-spacing: 1px;*/
+	text-transform: uppercase;
+	font-family: "Lato", "Helvetica", sans-serif;
+}
+
+
 .quiz-info input:focus {
 	border-radius: 0;
 	outline: none;
