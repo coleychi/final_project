@@ -10,7 +10,7 @@ $(document).ready(function() {
     method: "GET"
     // success function
     }).then(function(data) {
-      // console.log("data: ", data);
+      console.log("data: ", data);
       quizData = data; // save quiz data to data
       shareQuiz(quizData); // pass data to shareQuiz function
 

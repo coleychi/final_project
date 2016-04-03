@@ -92,8 +92,10 @@ router.get("/:quiz_id", function(req, res) {
   // find quiz and pass data to client-side
   Quiz.findById(req.params.quiz_id, function(err, quizData) {
 
+    console.log("quiz data?: ", quizData)
+
     // if a quiz with that id is not found, display error page
-    if (quizData === null) {
+    if (quizData === null || quizData === undefined) {
       // return res.json("not here");
       return res.render("pages/error.ejs");
     }
@@ -202,6 +204,9 @@ router.delete("/deletequiz/:quiz_id", function(req, res) {
 // GETJSON/:QUIZ_ID-- send quiz data as json
 router.get("/getjson/:quiz_id", function(req, res) {
   Quiz.findById(req.params.quiz_id, function(err, quizData) {
+    console.log("getjson route hit");
+    console.log("getjson err, ", err);
+    console.log("getjson quizData, ", quizData)
     res.json(quizData);
   });
 });

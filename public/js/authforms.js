@@ -4,7 +4,7 @@ $(document).ready(function() {
     // console.log("clicked");
     generatePopup();
 
-    generateSignup();
+    generateSignup($cancelButton);
 
     // // create login form and append to popup 
     // $loginForm = $("<form></form>").attr({
@@ -41,13 +41,15 @@ $(document).ready(function() {
   });
 
   // generate signup form
-  var generateSignup = function() {
+  var generateSignup = function(elem) {
     // create login form and append to popup 
     $signupForm = $("<form></form>").attr({
       action: "/users/signup",
       method: "POST",
       class: "auth-form"
-      }).insertBefore($cancelButton);
+      }).insertBefore(elem);
+
+    // insertBefore($cancelButton)
 
     $signupText = $("<h4>Signup</h4>").appendTo($signupForm);
 
@@ -79,13 +81,13 @@ $(document).ready(function() {
   }
 
   // generate login form
-  var generateLogin = function() {
+  var generateLogin = function(elem) {
     // create login form and append to popup 
     $loginForm = $("<form></form>").attr({
       action: "/users/login",
       method: "POST",
       class: "auth-form"
-      }).insertBefore($cancelButton);
+      }).insertBefore(elem);
 
     $loginText = $("<h4>Login</h4>").appendTo($loginForm);
 
@@ -175,7 +177,44 @@ $(document).ready(function() {
     $blackoutDiv.remove();
     $popupDiv.remove();
 
-  }
+  };
+
+
+
+
+  $("#signup-login").click(function() {
+    //--- generate popup
+    // black everything else out
+    $blackoutDiv = $("<div></div>").addClass("blackout");
+    $("body").prepend($blackoutDiv).hide().fadeIn();
+    // create popup
+    $popupDiv = $("<div></div>").addClass("big-popup");
+    $popupDiv.insertAfter($blackoutDiv);
+    // add cancel button
+    $cancelButton = $("<i></i>").attr({
+      id: "closePopup"
+    }).text("x").appendTo($popupDiv);
+
+    //-- create divs for forms
+    // top container
+    $topContainer = $("<div></div>").addClass("signlog-top").appendTo($popupDiv);
+    $notice = $("<h2></h2>").text("You must be logged in to create quizzes");
+    $notice.appendTo($topContainer);
+
+    // signup form on left
+    $signupContainer = $("<div></div>").addClass("signup").appendTo($popupDiv);
+    $hiddenElementS = $("<i></i>").appendTo($signupContainer); // so i dont need to rewrite generateSignup function
+
+    // login form on left
+    $loginContainer = $("<div></div>").addClass("login-pop").appendTo($popupDiv);
+    $hiddenElementL = $("<i></i>").appendTo($loginContainer);
+
+    //-- generate forms
+    generateSignup($hiddenElementS);
+    generateLogin($hiddenElementL)
+
+  }); 
+
 
 
 }); // closes document ready

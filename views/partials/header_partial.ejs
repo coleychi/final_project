@@ -12,7 +12,12 @@
 <header>
 	<nav>
 		<div class="page-links">
-			<a href="/quizzes">Quizzes</a> | <a href="/about">About </a> | <a href="/quizzes/new">New</a>
+			<a href="/quizzes">Quizzes</a> | <a href="/about">About </a> | 
+			<% if (locals.login) { %>
+				<a href="/quizzes/new">New</a>
+			<% } else { %>
+				<a href="#" id="signup-login">New</a>
+			<% } %>
 		</div>
 
 		<div class="login">
