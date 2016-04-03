@@ -6,19 +6,15 @@ var Result = require("../models/result.js");
 var User = require("../models/user.js");
 
 
-// ROUTES
-// INDEX
-router.get("/", function(req, res) {
-  res.render("users/index.ejs");
-});
 
-// new account page
+// ROUTES
+// NEW-- renders static create account page
 router.get("/newaccount", function(req, res) {
   res.render("users/new.ejs");
-})
+}); // rather than serve page, make jquery form render?
 
 
-// SIGNUP
+// SIGNUP-- creates new user
 router.post("/signup", passport.authenticate("local-signup", { 
   failureRedirect: "/failedfailed"}), function(req, res) {
   // res.send(req.user); // checks that data persists
@@ -26,16 +22,16 @@ router.post("/signup", passport.authenticate("local-signup", {
 }); 
 
 
-// LOGIN
+// LOGIN-- signs existing user into account
 router.post("/login", passport.authenticate("local-login", { 
-  failureRedirect: "/failedfailed"}), function(req, res) {
+  failureRedirect: "/quizzes"}), function(req, res) {
   // res.send(req.user);
   res.redirect("/quizzes");
   // res.render("users/show.ejs")
-}); // end login route
+}); 
 
 
-// LOGOUT
+// LOGOUT-- logs user out of account, ends user's session
 router.get("/logout", function(req, res) {
   req.logout();
   req.session.destroy(function(err) {
@@ -46,7 +42,7 @@ router.get("/logout", function(req, res) {
 });
 
 
-// PROFILE
+// PROFILE-- displays user info
 router.get("/profile/:user_id", function(req, res) {
   User.findById(req.params.user_id, function(err, user) {
     res.render("users/show.ejs", {
@@ -57,14 +53,14 @@ router.get("/profile/:user_id", function(req, res) {
 });
 
 
-// ADD RESULT
+// ADD RESULT-- push result to user's results array
 router.put("/pushresult/:user_id", function(req, res) {
-  console.log("data: ", req.body);
+  // console.log("data: ", req.body);
   var quizId = req.body.quizId
-  console.log("quizId: ", quizId);
+  // console.log("quizId: ", quizId);
+  var result = req.body;
 
-  result = req.body;
-
+  // find user and push result to results array
   User.findByIdAndUpdate(req.params.user_id, {$addToSet: {
     results: result}}, {new: true}, function(err, user) {
       console.log(user);
@@ -74,7 +70,7 @@ router.put("/pushresult/:user_id", function(req, res) {
 });
 
 
-// // REMOVE RESULT
+// // REMOVE RESULT-- pull result from user's results array
 router.put("/deleteresult/:result_id", function(req, res) {
   var resultId = req.params.result_id;
   console.log("req.user: ", req.user); // confirms req.user accessible
@@ -87,22 +83,6 @@ router.put("/deleteresult/:result_id", function(req, res) {
     res.redirect(req.get("referer"));
   });
 });
-
-// // REMOVE RESULT
-// router.delete("/deleteresult/:result_id", function(req, res) {
-//   console.log("/DELETERESULT/:RESULT_ID ROUTE")
-//   var resultId = req.params.result_id;
-//   console.log("req.user: ", req.user); // confirms req.user accessible
-
-//   // find user and remove result from results array
-//   User.findByIdAndUpdate(req.user._id, {$pull: {
-//     results: {_id: resultId}}}, {new: true}, function(err, user) {
-//       console.log("updated user: ", user); // confirms updated user
-
-//       res.send("DONE!")
-//     // res.redirect(req.get("referer"));
-//   });
-// });
 
 
 // GETJSON/userdata-- send user data as json
@@ -117,11 +97,9 @@ router.get("/getjson/userdata", function(req, res) {
     res.json("no user");
   };
 
-  // User.findById(req.user.id, function(err, user) {
-  //   res.json(user);
-  // });
-
 });
+
+
 
 
 // shorten result descriptions on profile
@@ -156,7 +134,30 @@ function shortenResult(string) {
 
 
 
-
-
 // EXPORT
 module.exports = router;
+
+
+
+
+// TEST ROUTES AND SCRAP CODE
+// INDEX
+// router.get("/", function(req, res) {
+//   res.render("users/index.ejs");
+// });
+
+// // REMOVE RESULT
+// router.delete("/deleteresult/:result_id", function(req, res) {
+//   console.log("/DELETERESULT/:RESULT_ID ROUTE")
+//   var resultId = req.params.result_id;
+//   console.log("req.user: ", req.user); // confirms req.user accessible
+
+//   // find user and remove result from results array
+//   User.findByIdAndUpdate(req.user._id, {$pull: {
+//     results: {_id: resultId}}}, {new: true}, function(err, user) {
+//       console.log("updated user: ", user); // confirms updated user
+
+//       res.send("DONE!")
+//     // res.redirect(req.get("referer"));
+//   });
+// });

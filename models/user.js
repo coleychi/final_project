@@ -28,6 +28,13 @@ userSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
+
+// EXPORT
+module.exports = mongoose.model("User", userSchema);
+
+
+
+// SCRAP CODE
 // // check if result already exists in user's results array
 // userSchema.methods.checkResult = function(user, quizId) {
 //   console.log("user methods, user: ", user);
@@ -45,7 +52,3 @@ userSchema.methods.validPassword = function(password) {
 // userSchema.methods.pullResults = function(array) {
 //   console.log("user array from user model: ", array)
 // };
-
-
-// EXPORT
-module.exports = mongoose.model("User", userSchema);

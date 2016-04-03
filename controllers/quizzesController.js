@@ -12,45 +12,9 @@ var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY_ID;
 var AWS_SECRET_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 var S3_BUCKET = "quizquiz-assets"
 
+
+
 // ROUTES
-// TEST ROUTE
-router.get("/testroute", function(req, res) {
-  res.render("test_stuff/awstestsun.ejs")
-});
-
-// creates a signed url for put request to s3
-router.get('/sign_s3', function(req, res){
-    aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
-    var s3 = new aws.S3();
-    var s3_params = {
-        Bucket: S3_BUCKET,
-        Key: req.query.file_name,
-        Expires: 60,
-        ContentType: req.query.file_type,
-        ACL: 'public-read'
-    };
-    s3.getSignedUrl('putObject', s3_params, function(err, data){
-        if(err){
-            console.log(err);
-        }
-        else{
-            var return_data = {
-                signed_request: data,
-                url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/'+req.query.file_name
-            };
-            res.write(JSON.stringify(return_data));
-            res.end();
-        }
-    });
-});
-
-
-router.post("/testaws", function(req, res) {
-  res.json(req.body);
-})
-
-
-
 // INDEX-- display quizzes
 router.get("/", function(req, res) {
   Quiz.find({}).sort({"timestamp": "desc"}).exec(function(err, quizzes) {
@@ -67,40 +31,38 @@ router.get("/new", isLoggedIn, function(req, res) {
   res.render("quizzes/new.ejs")
 });
 
-router.get("/newscoredquiz", isLoggedIn, function(req, res) {
-  res.render("quizzes/newscoredquiz.ejs")
-});
 
-// NEWQUIZ-- test route to form data in json
+// NEWQUIZ-- test route to view form data in json
 router.post("/newquiztest", isLoggedIn, function(req, res) {
   res.json(req.body);
 });
 
-// creates a signed url for put request to s3
-// router.get('/sign_s3', function(req, res){
-//     aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
-//     var s3 = new aws.S3();
-//     var s3_params = {
-//         Bucket: S3_BUCKET,
-//         Key: req.query.file_name,
-//         Expires: 60,
-//         ContentType: req.query.file_type,
-//         ACL: 'public-read'
-//     };
-//     s3.getSignedUrl('putObject', s3_params, function(err, data){
-//         if(err){
-//             console.log(err);
-//         }
-//         else{
-//             var return_data = {
-//                 signed_request: data,
-//                 url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/'+req.query.file_name
-//             };
-//             res.write(JSON.stringify(return_data));
-//             res.end();
-//         }
-//     });
-// });
+
+// SIGN_S3-- creates a signed url for put request to s3
+router.get("/sign_s3", isLoggedIn, function(req, res){
+    aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
+    var s3 = new aws.S3();
+    var s3_params = {
+        Bucket: S3_BUCKET,
+        Key: req.query.file_name,
+        Expires: 60,
+        ContentType: req.query.file_type,
+        ACL: "public-read"
+    };
+    s3.getSignedUrl("putObject", s3_params, function(err, data){
+        if(err){
+            console.log(err);
+        }
+        else{
+            var return_data = {
+                signed_request: data,
+                url: "https://"+S3_BUCKET+".s3.amazonaws.com/"+req.query.file_name
+            };
+            res.write(JSON.stringify(return_data));
+            res.end();
+        }
+    });
+});
 
 
 // NEWQUIZ-- save quiz to database
@@ -145,6 +107,8 @@ router.post("/newquiz", isLoggedIn, function(req, res) {
 
 });
 
+
+//QUIZINFO-- static page with details about different types of quizzes
 router.get("/quiztypes", function(req, res) {
   res.render("pages/quizinfo.ejs");
 });
@@ -166,7 +130,7 @@ router.get("/:quiz_id", function(req, res) {
     // console.log("SHOW ME QUIZ DATA: ", quizData); // confirm quiz data
     // res.json(quizData);
 
-    // if quiz data is retrieved, render it
+    // if quiz data is retrieved, render show page with data
     res.render("quizzes/show.ejs", {
       quiz: quizData
     });
@@ -177,16 +141,16 @@ router.get("/:quiz_id", function(req, res) {
 
 
 // EDIT-- edit an existing quiz
-router.get("/edit/:quiz_id", function(req, res) {
-  // find quiz and pass data to client-side
-  Quiz.findById(req.params.quiz_id, function(err, quizData) {
-    res.render("quizzes/edit.ejs", {
-      quiz: quizData
-    });
+// router.get("/edit/:quiz_id", function(req, res) {
+//   // find quiz and pass data to client-side
+//   Quiz.findById(req.params.quiz_id, function(err, quizData) {
+//     res.render("quizzes/edit.ejs", {
+//       quiz: quizData
+//     });
 
-  });
+//   });
 
-});
+// });
 
 
 // DELETE QUIZ-- needs to delete the quiz, pull it from the authors array, delete all associated questions 
@@ -200,7 +164,7 @@ router.delete("/deletequiz/:quiz_id", function(req, res) {
   User.find({"results.quizId": quizId}, function(err, usersArray) {
     console.log("users who have taken this quiz: ", usersArray.length);
 
-    // iterate through users who have taken quiz and remove the result
+    // iterate through users who have taken quiz and remove associated results from each document
     for (var i = 0; i < usersArray.length; i++) {
       tempUserId = usersArray[i]._id;
 
@@ -210,23 +174,24 @@ router.delete("/deletequiz/:quiz_id", function(req, res) {
         results: {"quizId": quizId}
 
         }}, function(err, data) {
-        console.log("removed a result")
+        console.log("removed a result");
       });
 
     }; // closes for loop  
 
+    // retrieve quiz data from db
     Quiz.findById(quizId, function(err, quiz) {
     console.log("quiz: ", quiz); // returns the entire quiz object
 
-    quiz.removeQuestions(); // removes questions from questions collection
-    quiz.removeResults(); // removes results from results collection
+    quiz.removeQuestions(); // removes associated questions from questions collection
+    quiz.removeResults(); // removes associated results from results collection
 
     // pull quiz from author's array
     User.findByIdAndUpdate(userId, {$pull: {
       quizzesWritten: {_id: quizId}}}, {new: true}, function(err, updatedUser) {
         console.log("updated user without the quiz: ", updatedUser);
 
-        // delete quiz
+        // delete quiz-- removes quiz from quizzes collection
         quiz.remove(function(err) {
           console.log("removed the quiz");
           res.redirect("/quizzes");
@@ -261,7 +226,6 @@ router.delete("/deletequiz/:quiz_id", function(req, res) {
   // });
 
 });
-
 
 
 // GETJSON/:QUIZ_ID-- send quiz data as json
@@ -303,3 +267,42 @@ function isLoggedIn(req, res, next) {
 
 // EXPORT
 module.exports = router;
+
+
+
+// TEST ROUTES AND SCRAP CODE
+// TEST ROUTE
+// router.get("/testroute", function(req, res) {
+//   res.render("test_stuff/awstestsun.ejs")
+// });
+
+// // creates a signed url for put request to s3
+// router.get('/sign_s3', function(req, res){
+//     aws.config.update({accessKeyId: AWS_ACCESS_KEY, secretAccessKey: AWS_SECRET_KEY});
+//     var s3 = new aws.S3();
+//     var s3_params = {
+//         Bucket: S3_BUCKET,
+//         Key: req.query.file_name,
+//         Expires: 60,
+//         ContentType: req.query.file_type,
+//         ACL: 'public-read'
+//     };
+//     s3.getSignedUrl('putObject', s3_params, function(err, data){
+//         if(err){
+//             console.log(err);
+//         }
+//         else{
+//             var return_data = {
+//                 signed_request: data,
+//                 url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/'+req.query.file_name
+//             };
+//             res.write(JSON.stringify(return_data));
+//             res.end();
+//         }
+//     });
+// });
+
+
+// router.post("/testaws", function(req, res) {
+//   res.json(req.body);
+// })

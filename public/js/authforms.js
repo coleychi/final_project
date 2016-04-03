@@ -3,42 +3,9 @@ $(document).ready(function() {
   $("#signup").click(function() {
     // console.log("clicked");
     generatePopup();
-
     generateSignup($cancelButton);
-
-    // // create login form and append to popup 
-    // $loginForm = $("<form></form>").attr({
-    //   action: "../users/signup",
-    //   method: "POST",
-    //   class: "auth-form"
-    //   }).insertBefore($cancelButton)
-
-    // // generate input fields
-    // $usernameInput = $("<input>").attr({
-    //   type: "text",
-    //   name: "username",
-    //   placeholder: "username"
-    //   }).appendTo($loginForm);
-
-    // $emailInput = $("<input>").attr({
-    //   type: "text",
-    //   name: "email",
-    //   placeholder: "email"
-    //   }).appendTo($loginForm);
-
-    // $passwordInput = $("<input>").attr({
-    //   type: "password",
-    //   name: "password",
-    //   placeholder: "password"
-    //   }).appendTo($loginForm)
-
-    // // generate submit button
-    // $submitInput = $("<input>").attr({
-    //   type: "submit",
-    //   name: "submit"
-    //   }).appendTo($loginForm)
-
   });
+
 
   // generate signup form
   var generateSignup = function(elem) {
@@ -70,15 +37,16 @@ $(document).ready(function() {
       type: "password",
       name: "password",
       placeholder: "password"
-      }).appendTo($signupForm)
+      }).appendTo($signupForm);
 
     // generate submit button
     $submitInput = $("<input>").attr({
       type: "submit",
       name: "sign up",
       value: "Sign up"
-      }).appendTo($signupForm)
-  }
+      }).appendTo($signupForm);
+  };
+
 
   // generate login form
   var generateLogin = function(elem) {
@@ -102,48 +70,21 @@ $(document).ready(function() {
       type: "password",
       name: "password",
       placeholder: "password"
-      }).appendTo($loginForm)
+      }).appendTo($loginForm);
 
     // generate submit button
     $submitInput = $("<input>").attr({
       type: "submit",
       name: "log in",
       value: "Log in"
-      }).appendTo($loginForm)
+      }).appendTo($loginForm);
   };
 
 
   $("#login").click(function() {
     // console.log("clicked");
     generatePopup();
-
     generateLogin($cancelButton);
-    // // create login form and append to popup 
-    // $loginForm = $("<form></form>").attr({
-    //   action: "../users/login",
-    //   method: "POST",
-    //   class: "auth-form"
-    //   }).insertBefore($cancelButton);
-
-    // // generate input fields
-    // $usernameInput = $("<input>").attr({
-    //   type: "text",
-    //   name: "username",
-    //   placeholder: "username"
-    //   }).appendTo($loginForm);
-
-    // $passwordInput = $("<input>").attr({
-    //   type: "password",
-    //   name: "password",
-    //   placeholder: "password"
-    //   }).appendTo($loginForm)
-
-    // // generate submit button
-    // $submitInput = $("<input>").attr({
-    //   type: "submit",
-    //   name: "submit"
-    //   }).appendTo($loginForm)
-
   });
 
 
@@ -162,9 +103,10 @@ $(document).ready(function() {
       id: "closePopup"
     }).text("x");
 
-    $cancelButton.appendTo($popupDiv)
+    $cancelButton.appendTo($popupDiv);
 
   };
+
 
   // close form when button is clicked
   $(document).on("click", "#closePopup", function() {
@@ -180,8 +122,7 @@ $(document).ready(function() {
   };
 
 
-
-
+  // generate signup-log in form together
   $("#signup-login").click(function() {
     //--- generate popup
     // black everything else out
@@ -216,12 +157,13 @@ $(document).ready(function() {
   }); 
 
 
+
 }); // closes document ready
 
 
 
 
-
+// SCRAP CODE
 
   // // create blackout
   // $blackoutDiv = $("<div></div>");
@@ -266,4 +208,37 @@ $(document).ready(function() {
   // })
 
   // $submitInput.appendTo($signInForm)
+
+
+  // // create login form and append to popup 
+  // $loginForm = $("<form></form>").attr({
+  //   action: "../users/signup",
+  //   method: "POST",
+  //   class: "auth-form"
+  //   }).insertBefore($cancelButton)
+
+  // // generate input fields
+  // $usernameInput = $("<input>").attr({
+  //   type: "text",
+  //   name: "username",
+  //   placeholder: "username"
+  //   }).appendTo($loginForm);
+
+  // $emailInput = $("<input>").attr({
+  //   type: "text",
+  //   name: "email",
+  //   placeholder: "email"
+  //   }).appendTo($loginForm);
+
+  // $passwordInput = $("<input>").attr({
+  //   type: "password",
+  //   name: "password",
+  //   placeholder: "password"
+  //   }).appendTo($loginForm)
+
+  // // generate submit button
+  // $submitInput = $("<input>").attr({
+  //   type: "submit",
+  //   name: "submit"
+  //   }).appendTo($loginForm)
 

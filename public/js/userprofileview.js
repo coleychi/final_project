@@ -1,3 +1,4 @@
+// navigate tabs on profile
 $(document).ready(function() { 
 
   // save components as variables

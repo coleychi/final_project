@@ -21,6 +21,7 @@ var quizSchema = new mongoose.Schema({
 
 
 // METHODS
+// ADD METHODS
 // create questions and save to quiz
 quizSchema.methods.createQuestions = function(formData) {
 
@@ -94,7 +95,6 @@ quizSchema.methods.createQuestions = function(formData) {
     for (var j = 0; j < optionsArray.length; j++) {
       newQuestion.responseOptions.push(optionsArray[j])
     }
-
 
 
     // saves question to database
