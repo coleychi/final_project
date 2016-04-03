@@ -26,7 +26,7 @@ $(document).ready(function() {
   }); // closes getQuizData ajax call
 
   var getUserData = $.ajax({
-    url: "/users/getjson/userdata",
+    url: "/users/getjson/userdata", // uses req.user to pull data
     method: "GET"
   }); // closes getUserData ajax call
 
@@ -468,7 +468,7 @@ $(document).ready(function() {
       action_properties: JSON.stringify({
         result: {
           "og:url": fullUrl,
-          "og:title": userResult.title + " from " + quizData.title,
+          "og:title": userResult.title + " via " + quizData.title + " on QuizQuiz",
           "og:description": userResult.description,
           "og:image": quizData.imgUrl // userResult.imgUrl
         }

@@ -9,7 +9,16 @@
 		<h2><%= user.username %></h2>
 	</div>
 
+	<% if (locals.username === user.username) { %>
+
+		<i class="fa fa-pencil" id="edit-profile"></i>
+
+	<% } %>
+
 </section>
+
+
+
 
 
 <div id="prof-tabs">
@@ -41,6 +50,17 @@
 						<%= user.results[i].quizTitle %>
 					</a>
 				</div>
+
+				<% if (locals.username === user.username) { %>
+					<!-- <a href="/quizzes/<%= user.results[i].quizId %>"> -->
+						<div class="hover-overlay" onclick="location.href='/quizzes/<%= user.results[i].quizId %>';" style="cursor: pointer;">
+							<form action="../deleteresult/<%= user.results[i].id %>?_method=PUT" method="POST" name="removeResult">
+								<button><i class="fa fa-trash-o"></i></button>
+							</form>
+						</div>
+					<!-- </a> -->
+				<% } %>
+				<!-- <div class="hover-overlay">hhh</div> -->
 
 			</div>
 					

@@ -51,9 +51,6 @@ router.post("/testaws", function(req, res) {
 
 
 
-
-
-
 // INDEX-- display quizzes
 router.get("/", function(req, res) {
   Quiz.find({}).sort({"timestamp": "desc"}).exec(function(err, quizzes) {

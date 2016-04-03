@@ -114,7 +114,7 @@ $(document).ready(function() {
     $imgPath.appendTo(".image-path");
 
     $("<span>Or click to input an existing url</span>").attr({
-      class: "small",
+      class: "smallToUpload",
       id: "switch-to-url"
     }).insertAfter($imgUrlInput);
 

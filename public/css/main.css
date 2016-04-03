@@ -406,7 +406,7 @@ section[class*="q-"] {
 	margin-bottom: 0.3em;
 	display: inline-block;
 	float: left;
-	border-bottom: 5px solid #ffffff;
+	border-bottom: 3px solid #ffffff;
 }
 
 .options .option:nth-child(3n) {
@@ -684,7 +684,7 @@ section[class*="q-"]:after {
 
 .image-path {
 	/*display: inline-block;*/
-	width: 75%;
+	width: 83.5%;
 	/*background-color: #f4f4f4;*/
 	/*padding: 0.3em 0.5em;*/
 	float: left;
@@ -692,7 +692,7 @@ section[class*="q-"]:after {
 
 .upload-button {
 	float: left;
-	width: 23.5%;
+	width: 15%;
 	/*display: block;*/
 	/*background-color: green;*/
 	margin-left: 1.5%;
@@ -723,17 +723,13 @@ section[class*="q-"]:after {
 	float: left;
 	display: block;
 	color: #a8a8a8;
-	font-size: 0.6em;
+	/*font-size: 0.6em;*/
+	font-size: 10px;
 	font-weight: 700;
 	/*letter-spacing: 1px;*/
 	text-transform: uppercase;
 	font-family: "Lato", "Helvetica", sans-serif;
 	cursor: pointer;
-}
-
-.smallToUpload {
-	margin-top: 0;
-	font-size: 0.6em;
 }
 
 
@@ -993,6 +989,25 @@ div[id*="opts"]:after {
 	background-color: #ffffff;
 	padding: 1em;
 	margin: 0 auto 1em;	
+	position: relative;
+}
+
+#edit-profile {
+	position: absolute;
+	bottom: 3%;
+	right: 1%;
+	color: #d3d3d3;
+	cursor: pointer;
+}
+
+#edit-profile:hover {
+	color: #663399;
+}
+
+#edit-profile-form {
+	width: 85%;
+	background-color: #ffffff;
+	margin: 0 auto;
 }
 
 .profile-section-container {
@@ -1104,7 +1119,49 @@ ul.tabs li.selected:hover {
 
 .result-block a {
 	text-decoration: none;
+	z-index: 4;
 }
+
+.result-block.hovered {
+	background-color: #000;
+}
+
+.hover-overlay {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	display: none;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 3;
+}
+
+.hover-overlay form {
+	padding: 0;
+	margin: 0;
+}
+
+.hover-overlay form button {
+	background-color: transparent;
+	border: 0;
+	outline: none;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 2em;
+	position: absolute;
+	top: 40%;
+	right: 45%;
+}
+
+/*#delete-button-prof {
+	position: absolute;
+	top: 50%;
+	right: 50%;
+	color: #fff;
+	z-index: 5;
+	font-size: 2em;
+}
+*/
 
 #result-tiles-container .result-block:nth-child(5n) {
 	margin-right: 0%;
@@ -1197,14 +1254,13 @@ ul.tabs li.selected:hover {
 	margin-left: 1%;
 	line-height: 1em;
 	font-size: 0.6em;
-	font-family: "Lato";
+	font-family: "Lato", "Helvetica";
 }
 
 
 .user-panel {
 	background-color: green;
 }
-
 
 
 /* PAGES/QUIZINFO.EJS */
