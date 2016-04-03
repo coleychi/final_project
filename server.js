@@ -28,9 +28,9 @@ require("./config/passport")(passport);
 app.use(express.static("public"));
 
 // // configure aws
-// var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY_ID;
-// var AWS_SECRET_KEY = process.env.AWS_SECRET_ACCESS_KEY;
-// var S3_BUCKET = "quizapp13";
+var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY_ID;
+var AWS_SECRET_KEY = process.env.AWS_SECRET_ACCESS_KEY;
+var S3_BUCKET = "quizquiz-assets";
 
 // // test route for aws
 // app.get("/test", function(req, res) {
