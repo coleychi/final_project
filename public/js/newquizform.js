@@ -13,6 +13,12 @@ $(document).ready(function() {
 
   valid = false;
 
+  $imageUploadDiv = $(".image-upload");
+  $savedDiv = $imageUploadDiv;
+  $imgPath = $("#img-path");
+  $fileInput = $("#file-input");
+  $imgUrl = $("#imgUrl");
+
 
   // AWS
   // listens for change in input
@@ -73,7 +79,7 @@ $(document).ready(function() {
   };
 
   // switch to url input
-  $(document).on("click", "#switch", function(event) {
+  $(document).on("click", "#switch-to-url", function(event) {
     console.log("switch");
     // hide image upload stuff
     $(".image-upload").hide();
@@ -82,8 +88,42 @@ $(document).ready(function() {
     $imgUrlInput = $("<input>").attr({
       type: "text",
       name: "imgUrl",
+      id: "imgUrlInput",
       placeholder: "image url"
-    }).insertAfter($("#imgUrl-label"))
+    }).insertAfter($("#imgUrl-label"));
+
+    $("#file-input").detach(); // remove input so validation doesn't get messed up
+    $("#img-path").detach();
+    $("#imgUrl").detach();
+
+    // add link to switch
+    $("<span>Or click to upload an image</span>").attr({
+      class: "small",
+      id: "switch-to-upload"
+    }).insertAfter($imgUrlInput)
+
+  });
+
+  $(document).on("click", "#switch-to-upload", function(event) {
+    console.log("switch");
+
+    $("#switch-to-upload").detach();
+    $("#imgUrlInput").detach();
+
+    $imgPath.appendTo(".image-path");
+
+    $("<span>Or click to input an existing url</span>").attr({
+      class: "small",
+      id: "switch-to-url"
+    }).insertAfter($imgUrlInput);
+
+    $fileInput.insertAfter("#switch-to-url");
+    $imgUrl.insertAfter($fileInput)
+
+
+    $(".image-upload").show();
+
+    
 
 
   });
@@ -566,17 +606,17 @@ $(document).ready(function() {
 
 
       // run validation on all input forms with change
-      // validateInput(allInputs, function() {
+      validateInput(allInputs, function() {
 
-      //   console.log("is form valid?: ", valid);
+        console.log("is form valid?: ", valid);
 
-      //   if (!valid) {
-      //     console.log("not valid, do not submit");
-      //     event.preventDefault();
-      //   };
+        if (!valid) {
+          console.log("not valid, do not submit");
+          event.preventDefault();
+        };
 
 
-      // }); // closes validateInput(allInputs)
+      }); // closes validateInput(allInputs)
 
     });
 

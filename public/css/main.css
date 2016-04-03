@@ -677,12 +677,12 @@ section[class*="q-"]:after {
 	/*height: 2em;*/
 }
 
-#img-path {
+/*#img-path {
 	padding: 0.4em;
 	font-size: 1em;
-}
+}*/
 
-.img-path {
+.image-path {
 	/*display: inline-block;*/
 	width: 75%;
 	/*background-color: #f4f4f4;*/
@@ -728,6 +728,12 @@ section[class*="q-"]:after {
 	/*letter-spacing: 1px;*/
 	text-transform: uppercase;
 	font-family: "Lato", "Helvetica", sans-serif;
+	cursor: pointer;
+}
+
+.smallToUpload {
+	margin-top: 0;
+	font-size: 0.6em;
 }
 
 
