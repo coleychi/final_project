@@ -473,7 +473,7 @@ $(document).ready(function() {
           "og:url": fullUrl,
           "og:title": userResult.title + " via " + quizData.title + " on QuizQuiz",
           "og:description": userResult.description,
-          "og:image": quizData.imgUrl // userResult.imgUrl
+          "og:image": userResult.imgUrl // userResult.imgUrl
         }
       })
       }, function(response){});

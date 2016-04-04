@@ -115,9 +115,9 @@ app.use(function(req, res, next) {
 
 
 // root
-// app.get("/", function(req, res) {
-//   res.redirect("/quizzes");
-// });
+app.get("/", function(req, res) {
+  res.redirect("/quizzes");
+});
 
 
 // CONTROLLERS
