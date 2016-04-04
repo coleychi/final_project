@@ -472,7 +472,7 @@ $(document).ready(function() {
         result: {
           "og:url": fullUrl,
           "og:title": quizData.title,
-          "og:description": "My result: " + userResult.title + "... " + userResult.description + ". Find our your result on QuizQuiz!",
+          "og:description": "My result: " + userResult.title + ". " + userResult.description + ". Find our your result on QuizQuiz!",
           "og:image": userResult.imgUrl // userResult.imgUrl
         }
       })
