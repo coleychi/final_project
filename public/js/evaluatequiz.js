@@ -284,6 +284,7 @@ $(document).ready(function() {
     }; // closes switch statement
 
     console.log("user result: ", userResult);
+    // quizTaken = true;
 
     addResult(); // push (new) result to user model
 
@@ -343,6 +344,8 @@ $(document).ready(function() {
 
     }; // closes if statement
 
+    // $("#quiz-container").addClass("hide"); // hide quiz
+
     quizTaken = true; // toggle quizTaken value to true 
 
   }; // closes addResult
@@ -373,7 +376,7 @@ $(document).ready(function() {
     $resultImageDiv.appendTo($resultContainer);
 
     $resultContainer.show();
-
+    
     // display share panel
     $sharePanel = $("<div class='share'></div>");
     $sharePanel.appendTo($resultContainer);

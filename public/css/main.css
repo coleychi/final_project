@@ -177,6 +177,13 @@ h1 a {
 	z-index: 2;
 }
 
+.signlog-static {
+	width: 70%;
+	height: 55%;
+	background-color: #ffffff;
+	margin: auto;
+}
+
 .signlog-top {
 	width: 100%;
 	/*background-color: blue;*/
@@ -1233,8 +1240,37 @@ ul.tabs li.selected:hover {
 	color: #292929;
 }
 
+.quiz-line form {
+	padding: 0;
+	margin: 0;
+	margin-left: 0.5em;
+	display: inline;
+}
+
+.quiz-line i {
+	font-size: 0.75em;
+}
+
 #quizzes-content-container .quiz-line:nth-child(2n) {
 	background-color: #f4f4f4;
+}
+
+#quizzes-content-container p {
+	padding: 1em 0.5em;
+	/*background-color: red;*/
+	text-align: center;
+}
+
+#quizzes-content-container p a {
+	/*color: #292929;*/
+	/*color: #a8a8a8;*/
+	color: #663399;
+	/*font-weight: bold;*/
+	text-decoration: none;
+}
+
+#quizzes-content-container p a:hover {
+	color: #663399;
 }
 
 .quiz-line:hover, #quizzes-content-container .quiz-line:nth-child(2n):hover {

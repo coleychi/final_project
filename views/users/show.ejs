@@ -20,7 +20,7 @@
 
 
 
-
+<!-- tabs to navigate profile content -->
 <div id="prof-tabs">
 	<ul class="tabs">
 		<li id="user-results" class="selected">Results</li>
@@ -29,6 +29,7 @@
 </div>
 
 
+<!-- display all results that user has received -->
 <section class="profile-content-container">
 
 	<div id="result-tiles-container">
@@ -51,16 +52,16 @@
 					</a>
 				</div>
 
+				<!-- if user owns profile, allow results to be deleted -->
 				<% if (locals.username === user.username) { %>
-					<!-- <a href="/quizzes/<%= user.results[i].quizId %>"> -->
 						<div class="hover-overlay" onclick="location.href='/quizzes/<%= user.results[i].quizId %>';" style="cursor: pointer;">
 							<form action="../deleteresult/<%= user.results[i].id %>?_method=PUT" method="POST" name="removeResult">
 								<button><i class="fa fa-trash-o"></i></button>
 							</form>
 						</div>
-					<!-- </a> -->
+					
 				<% } %>
-				<!-- <div class="hover-overlay">hhh</div> -->
+				
 
 			</div>
 					
@@ -71,11 +72,24 @@
 </section>
 
 
-
+<!-- display all quizzes that user has written -->
 <div id="quizzes-content-container">
 
 	<!-- to display most recent first -->
 	<% userQuizzes = user.quizzesWritten.reverse() %>
+
+	<!-- if user owns profile and has not written any quizzes yet -->
+	<% if ((userQuizzes.length === 0) && (locals.username === user.username)) { %>
+
+		<p>You have not written any quizzes yet. Submit your first quiz <a href="/quizzes/new">here.</a></p>
+
+	<!-- if user has not written any quizzes yet -->
+	<% } else if (userQuizzes.length === 0) { %>
+
+		<p><%= user.username %> has not written any quizzes yet.</p>
+
+	<% } %>
+
 	
 	<% for (var i = 0; i < user.quizzesWritten.length; i++) { %>
 
@@ -83,13 +97,13 @@
 			<a href="/quizzes/<%= user.quizzesWritten[i]._id %>">
 				<h2><%= userQuizzes[i].title %></h2>
 				<span><%= userQuizzes[i].description %></span>
-				<!-- <h2><%= user.quizzesWritten[i].title %></h2>  -->
-				<!-- <span><%= user.quizzesWritten[i].description %></span> -->
+				<!-- <form>
+					<i class="fa fa-trash-o"></i>
+				</form> -->
 			</a>
 		</div>
 
 	<% } %>
-
 
 </div>
 

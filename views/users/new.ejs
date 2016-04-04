@@ -1,8 +1,30 @@
 <% include ../partials/header_partial.ejs %>
 
-<div id="blurb">
-	You must be logged in to do that.
+<div class="signlog-static">
+	<div class="signlog-top">
+		<h2>You must be logged in to do that.</h2>
+	</div>
+
+	<div class="signup">
+		<form action="/users/signup" method="POST" class="auth-form">
+			<h4>Signup</h4>
+			<input type="text" name="username" placeholder="username">
+			<input type="text" name="email" placeholder="email">
+			<input type="password" name="password" placeholder="password">
+			<input type="submit" name="sign up" value="Sign up">
+		</form>
+	</div>
+
+	<div class="login-pop">
+		<form action="/users/login" method="POST" class="auth-form">
+			<h4>Login</h4>
+			<input type="text" name="username" placeholder="username">
+			<input type="password" name="password" placeholder="password">
+			<input type="submit" name="log in" value="Log in">
+		</form>
+	</div>
 </div>
+
 
 
 </div><!-- closes #content-container -->
