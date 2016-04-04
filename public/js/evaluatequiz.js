@@ -471,8 +471,8 @@ $(document).ready(function() {
       action_properties: JSON.stringify({
         result: {
           "og:url": fullUrl,
-          "og:title": userResult.title + " via " + quizData.title + " on QuizQuiz",
-          "og:description": userResult.description,
+          "og:title": quizData.title,
+          "og:description": "My result: " + userResult.title + "... " + userResult.description + ". Find our your result on QuizQuiz!",
           "og:image": userResult.imgUrl // userResult.imgUrl
         }
       })
