@@ -4,7 +4,7 @@ Quizquiz is a playful application where users can create and take personality qu
 
 
 # Features
-- Image uploading
+- Image uploading with AWS
 - Flexible quizzes: the amount of questions and results to a quiz are flexible and easy to reset in settings. Results are calculated based on the number of points assigned to each option the user selects.
 - Sharing: quizzes and results can be shared on Facebook and Twitter. Results can also be e-mailed.
 
